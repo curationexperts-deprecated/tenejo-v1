@@ -54,6 +54,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq', '~> 0.20.0'
+  gem 'clamby'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
@@ -75,6 +76,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'ffaker'
   gem 'rspec-rails'
+  gem 'rspec-retry'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
 end
