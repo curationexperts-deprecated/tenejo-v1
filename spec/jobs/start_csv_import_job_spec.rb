@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe StartCsvImportJob, type: :job do
+RSpec.describe StartCsvImportJob, perform_jobs: :true, type: :job do
   describe '#perform' do
     let(:user) { FactoryBot.create(:user) }
 
