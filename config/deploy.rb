@@ -51,7 +51,7 @@ set :assets_prefix, "#{shared_path}/public/assets"
 
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
-set :branch, ENV['REVISION'] || ENV['BRANCH'] || 'master'
+set :branch, ENV['REVISION'] || ENV['BRANCH'] || ENV['BRANCH_NAME'] || 'master'
 
 append :linked_dirs, "log"
 append :linked_dirs, "public/assets"
