@@ -12,8 +12,17 @@ Contact [tenejo@curationexperts.com](mailto:tenejo@curationexperts.com) for info
 
 Development
 -----------
+1. Copy `.env.sample`
+  This application uses `dotenv` to set environment variables. To set this up locally,
+  copy the sample file to set values for your local test and development environments.
+  ```
+  cp .env.sample .env.test
+  cp .env.sample .env.development
+  ```
+  Edit these files as appropriate. Most notably, you will want a different database
+  name for development vs test.
 
-1. Setup your database.
+1. Setup your databases.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
    `create role tenejo with createdb login`. Then do
