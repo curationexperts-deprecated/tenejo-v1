@@ -8,7 +8,7 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-gem 'hyrax', '~> 2.1.0'
+gem 'hyrax', '2.3.3'
 gem 'rails', '~> 5.1.6'
 
 # Use postgresql
