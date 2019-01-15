@@ -4,6 +4,7 @@ lock "~> 3.11.0"
 
 set :application, "tenejo"
 set :repo_url, "https://github.com/curationexperts/tenejo.git"
+set :ssh_options, keys: ["tenejo-cd"] if File.exist?("tenejo-cd")
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
