@@ -18,6 +18,8 @@ Development
    need have Postgres installed and running. In your `psql` console do
    `create role tenejo with createdb login`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
+2. `cp .env.sample .env.development`
+3. (optional) Create standard accounts: `rake tenejo:standard_users_setup`
 
 License
 -------
