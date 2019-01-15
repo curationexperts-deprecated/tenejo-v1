@@ -10,6 +10,7 @@ Metrics/BlockLength:
     - '**/*/catalog_controller.rb'
     - 'config/**/*'
     - 'spec/features**/*'
+    - lib/tasks/tenejo.rake
 
 RSpec/ExampleLength:
   Enabled: true
