@@ -22,3 +22,5 @@
 
 .byebug_history
 .env.development
+
+csv_uploads

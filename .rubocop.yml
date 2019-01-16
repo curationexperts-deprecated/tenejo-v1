@@ -11,8 +11,28 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'spec/features**/*'
     - lib/tasks/tenejo.rake
+    - 'spec/controllers/csv_imports_controller_spec.rb'
+    - 'spec/uploaders/csv_manifest_validator_spec.rb'
+    - 'spec/uploaders/csv_manifest_uploader_spec.rb'
+
+RSpec/AnyInstance:
+  Enabled: false
+
+Rails/Delegate:
+  Exclude:
+    - 'app/models/csv_import.rb'
 
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
     - 'spec/features**/*'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/controllers/csv_imports_controller_spec.rb'
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false

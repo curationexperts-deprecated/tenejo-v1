@@ -2,6 +2,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :csv_imports, only: [:index, :show, :new, :create]
+  post 'csv_imports/preview', as: 'preview_csv_import'
+
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
 
