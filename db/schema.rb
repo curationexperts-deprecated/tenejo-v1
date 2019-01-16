@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604004616) do
+ActiveRecord::Schema.define(version: 20190116220312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20180604004616) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "external_key"
+  end
+
+  create_table "csv_imports", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "manifest"
+    t.index ["user_id"], name: "index_csv_imports_on_user_id"
   end
 
   create_table "curation_concerns_operations", force: :cascade do |t|
@@ -571,6 +579,7 @@ ActiveRecord::Schema.define(version: 20180604004616) do
   end
 
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
+  add_foreign_key "csv_imports", "users"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
