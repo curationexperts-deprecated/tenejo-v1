@@ -13,6 +13,7 @@ Contact [tenejo@curationexperts.com](mailto:tenejo@curationexperts.com) for info
 Development
 -----------
 
+1. Copy `dotenv.sample` to .env.development if you want to override any default settings in your local development environment
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
@@ -20,6 +21,11 @@ Development
    `bundle exec rake db:setup` to setup the create the database and schema.
 2. `cp .env.sample .env.development`
 3. (optional) Create standard accounts: `rake tenejo:standard_users_setup`
+
+Production
+----------
+1. Set `IIIF_SERVER_URL=http://SERVERNAME/cantaloupe/iiif/2/` to use an external cantaloupe IIIF server
+
 
 License
 -------

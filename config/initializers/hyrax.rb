@@ -139,20 +139,26 @@ Hyrax.config do |config|
   #   * iiif_image_size_default
   #
   # Default is false
+  # Default is false
   config.iiif_image_server = true
 
-  # Returns a URL that resolves to an image provided by a IIIF image server
+  # If we have an external IIIF server, use it for image requests; else, use riiif
   config.iiif_image_url_builder = lambda do |file_id, base_url, size|
-    Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
+    if ENV['IIIF_SERVER_URL'].present?
+      ENV['IIIF_SERVER_URL'] + file_id.gsub('/', '%2F') + "/" + size + "/full/0/default.jpg"
+    else
+      Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
+    end
   end
-  # config.iiif_image_url_builder = lambda do |file_id, base_url, size|
-  #   "#{base_url}/downloads/#{file_id.split('/').first}"
-  # end
 
-  # Returns a URL that resolves to an info.json file provided by a IIIF image server
+  # If we have an external IIIF server, use it for info.json; else, use riiif
   config.iiif_info_url_builder = lambda do |file_id, base_url|
-    uri = Riiif::Engine.routes.url_helpers.info_url(file_id, host: base_url)
-    uri.sub(%r{/info\.json\Z}, '')
+    if ENV['IIIF_SERVER_URL'].present?
+      ENV['IIIF_SERVER_URL'] + file_id.gsub('/', '%2F')
+    else
+      uri = Riiif::Engine.routes.url_helpers.info_url(file_id, host: base_url)
+      uri.sub(%r{/info\.json\Z}, '')
+    end
   end
   # config.iiif_info_url_builder = lambda do |_, _|
   #   ""
@@ -162,7 +168,7 @@ Hyrax.config do |config|
   # config.iiif_image_compliance_level_uri = 'http://iiif.io/api/image/2/level2.json'
 
   # Returns a IIIF image size default
-  # config.iiif_image_size_default = '600,'
+  config.iiif_image_size_default = '600,'
 
   # Fields to display in the IIIF metadata section; default is the required fields
   # config.iiif_metadata_fields = Hyrax::Forms::WorkForm.required_fields
