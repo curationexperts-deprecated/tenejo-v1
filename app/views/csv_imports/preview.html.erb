@@ -4,8 +4,11 @@
   <% if @csv_import.manifest.file %>
     <label> CSV Manifest: </label>
     <%= File.basename(@csv_import.manifest.to_s) %>
+    <label> Collection: </label>
+    <%= @csv_import.fedora_collection_id %>
   <% end %>
   <br />
+
 
   <p> TODO: This import will add XXX new records. </p>
 </div>

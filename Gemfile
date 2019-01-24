@@ -51,6 +51,8 @@ group :development do
   gem 'capistrano-sidekiq', '~> 0.20.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

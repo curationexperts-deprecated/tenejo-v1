@@ -9,14 +9,23 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra_headers.csv') }
 
   context 'logged in as an admin user' do
+    let(:collection) { Collection.new(title: ['Testing Collection']) }
     let(:admin_user) { FactoryBot.create(:admin) }
+    let(:collection_type) { Hyrax::CollectionType.new(title: ['test_type']) }
     before { login_as admin_user }
 
     it 'starts the import' do
+      collection_type.save!
+      collection.collection_type_gid = collection_type.gid
+      collection.save!
+      collection.depositor = admin_user.id
+
       visit new_csv_import_path
+      expect(page).to have_content 'Testing Collection'
+      select 'Testing Collection', from: "csv_import[fedora_collection_id]"
 
       # Fill in and submit the form
-      attach_file('csv_import[manifest]', csv_file)
+      attach_file('csv_import[manifest]', csv_file, make_visible: true)
       click_on 'Preview Import'
 
       # We expect to see warnings for this CSV file.
