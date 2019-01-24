@@ -29,8 +29,11 @@ RSpec.describe CsvManifestValidator, type: :model do
   end
 
   context 'a file that can\'t be parsed' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'not_a_csv_file.pdf.csv') }
+
     it 'has an error' do
-      skip # TODO
+      validator.validate
+      expect(validator.errors).to eq ['We are unable to read this CSV file.']
     end
   end
 
@@ -44,8 +47,15 @@ RSpec.describe CsvManifestValidator, type: :model do
   end
 
   context 'a CSV that is missing required fields' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_field.csv') }
+
     it 'has an error' do
-      skip # TODO
+      validator.validate
+      expect(validator.errors).to eq [
+        'Missing required metadata "title": row 2',
+        'Missing required metadata "title": row 3',
+        'Missing required metadata "title": row 5'
+      ]
     end
   end
 
