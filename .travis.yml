@@ -6,8 +6,13 @@ jdk:
 - oraclejdk8
 rvm:
 - 2.5
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
 before_script:
-- bundle exec rake db:create
+  - export PATH=$PATH:/usr/lib/chromium-browser/
+  - export DISPLAY=:99.0
+  - bundle exec rake db:create
 script:
 - bundle exec rake
 services:

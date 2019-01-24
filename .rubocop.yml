@@ -26,6 +26,7 @@ RSpec/ExampleLength:
   Enabled: true
   Exclude:
     - 'spec/features**/*'
+    - 'spec/system/**/*'
 
 Style/BlockDelimiters:
   Exclude:
