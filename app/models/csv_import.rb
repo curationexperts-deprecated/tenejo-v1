@@ -3,6 +3,7 @@
 class CsvImport < ApplicationRecord
   belongs_to :user
 
+  # This is where the CSV file is stored:
   mount_uploader :manifest, CsvManifestUploader
 
   def manifest_warnings
@@ -15,5 +16,10 @@ class CsvImport < ApplicationRecord
 
   def manifest_records
     manifest.records
+  end
+
+  def queue_start_job
+    StartCsvImportJob.perform_later(id)
+    # TODO: We'll probably need to store job_id on this record.
   end
 end

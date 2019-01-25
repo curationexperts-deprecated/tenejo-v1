@@ -34,7 +34,7 @@ RSpec/ExampleLength:
 
 Style/BlockDelimiters:
   Exclude:
-    - 'spec/controllers/csv_imports_controller_spec.rb'
+    - 'spec/**/*'
 
 Style/EmptyMethod:
   Enabled: false
