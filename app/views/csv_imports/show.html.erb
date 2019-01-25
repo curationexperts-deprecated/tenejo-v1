@@ -5,6 +5,9 @@
   <label> CSV Manifest: </label>
   <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
   <br />
+  <label> Collection: </label>
+  <span> <%= @csv_import.fedora_collection_id %> </span>
+  <br />
   <label> Uploaded by: </label>
   <span> <%= @csv_import.user.name %> </span>
   <br />
@@ -13,4 +16,3 @@
 </p>
 
 <p> TODO: Put info about the current status of the import here. </p>
-

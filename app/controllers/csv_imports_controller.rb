@@ -39,7 +39,7 @@ class CsvImportsController < ApplicationController
     end
 
     def create_params
-      params.fetch(:csv_import, {}).permit(:manifest)
+      params.fetch(:csv_import, {}).permit(:manifest, :fedora_collection_id)
     end
 
     # Since we are re-rendering the form (once for
@@ -50,5 +50,6 @@ class CsvImportsController < ApplicationController
     def preserve_cache
       return unless params['csv_import']
       @csv_import.manifest_cache = params['csv_import']['manifest_cache']
+      @csv_import.fedora_collection_id = params['csv_import']['fedora_collection_id']
     end
 end
