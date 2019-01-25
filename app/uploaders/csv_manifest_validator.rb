@@ -24,10 +24,12 @@ class CsvManifestValidator
   attr_reader :csv_file
 
   def validate
-    @rows = CSV.read(csv_file.path)
+    parse_csv
+    return unless @rows
 
     missing_headers
     unrecognized_headers
+    missing_titles
   end
 
   # One record per row
@@ -51,17 +53,34 @@ class CsvManifestValidator
 
 private
 
+  def parse_csv
+    @rows = CSV.read(csv_file.path)
+    @headers = @rows.first || []
+  rescue
+    @errors << 'We are unable to read this CSV file.'
+  end
+
   def missing_headers
-    return if @rows.first.include?('title')
+    return if @headers.include?('title')
     @errors << 'Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.'
   end
 
   # Warn the user if we find any unexpected headers.
   def unrecognized_headers
-    extra_headers = @rows.first - valid_headers
+    extra_headers = @headers - valid_headers
     extra_headers.each do |header|
       @warnings << "The field name \"#{header}\" is not supported.  This field will be ignored, and the metadata for this field will not be imported."
     end
     extra_headers
+  end
+
+  def missing_titles
+    title_index = @headers.find_index('title')
+    return unless title_index
+
+    @rows.each_with_index do |row, i|
+      next unless row[title_index].blank?
+      @errors << "Missing required metadata \"title\": row #{i}"
+    end
   end
 end

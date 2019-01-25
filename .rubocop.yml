@@ -27,6 +27,7 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/features**/*'
     - 'spec/system/**/*'
+    - 'spec/uploaders/csv_manifest_validator_spec.rb'
 
 Style/BlockDelimiters:
   Exclude:
