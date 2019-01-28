@@ -32,3 +32,4 @@ csv_uploads
 auto-save-list
 tramp
 .\#*
+public/tmp

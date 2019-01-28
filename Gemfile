@@ -8,7 +8,9 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
+gem 'darlingtonia', git: 'https://github.com/curationexperts/darlingtonia.git', branch: 'master'
 gem 'hyrax', '~> 2.4'
+
 gem 'rails', '~> 5.1.6'
 
 # Use postgresql
