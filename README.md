@@ -13,14 +13,26 @@ Contact [tenejo@curationexperts.com](mailto:tenejo@curationexperts.com) for info
 Development
 -----------
 
-1. Copy `dotenv.sample` to .env.development if you want to override any default settings in your local development environment
+1. Copy `.env.sample` to .env.development if you want to override any default settings in your local development environment. Choose a random password for your local tenejo database user and add it to this file.  
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
-   need have Postgres installed and running. In your `psql` console do
-   `create role tenejo with createdb login`. Then do
-   `bundle exec rake db:setup` to setup the create the database and schema.
-2. `cp .env.sample .env.development`
-3. (optional) Create standard accounts: `rake tenejo:standard_users_setup`
+   need have Postgres installed and running. In your `psql` console do:
+   ```
+    postgres=# create database tenejo_development;
+    CREATE DATABASE
+    postgres=# create database tenejo_test;
+    CREATE DATABASE
+    postgres=# create user tenejo with encrypted password 'whatever';
+    CREATE ROLE              
+    postgres=# grant all privileges on database tenejo_development to tenejo;
+    GRANT
+    postgres=# grant all privileges on database tenejo_test to tenejo;
+    GRANT
+    postgres=# \q
+```
+Then run
+`bundle exec rake db:migrate` to setup the development database and schema.
+3. (optional) Create standard accounts: `rake tenejo:standard_users_setup`.
 
 Production
 ----------
