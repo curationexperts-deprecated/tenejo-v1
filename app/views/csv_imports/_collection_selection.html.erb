@@ -1,3 +1,4 @@
 <div class="form-group">
-  <%= form.select :fedora_collection_id, options_for_select(Collection.all.map{ |c| [c.title.first.to_s, c.id] }), {}, class: "form-control", id: "fedora_collection_id"  %>
+  <% collections = ActiveFedora::SolrService.query('has_model_ssim:Collection') %>
+  <%= form.select :fedora_collection_id, options_for_select(collections.map{ |c| [c['title_tesim'], c['id']] }), {}, class: "form-control", id: "fedora_collection_id"  %>
 </div>

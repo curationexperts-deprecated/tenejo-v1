@@ -6,7 +6,7 @@
   <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
   <br />
   <label> Collection: </label>
-  <span> <%= @csv_import.fedora_collection_id %> </span>
+  <span>  <%=  ActiveFedora::SolrService.query("id:#{@csv_import.fedora_collection_id}")[0]['title_tesim'] %> </span>
   <br />
   <label> Uploaded by: </label>
   <span> <%= @csv_import.user.name %> </span>
