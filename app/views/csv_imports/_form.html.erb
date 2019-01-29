@@ -1,6 +1,33 @@
+<%= form_with(model: csv_import, local: true, html: { multipart: true }, url: preview_csv_import_path) do |form| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Upload a CSV</b> that has your content. You can download a template to get started <a href="/import_manifest.csv">here</a>. </p>
+            <div class="text-center">
+              <%= render "file_upload", form: form  %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Choose a collection</b>. All imports need to be associated with a collection. </p>
+            <div class="text-center">
+              <%= render "collection_selection", form: form %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Preview your import</b> before starting the process. </p>
+            <div class="text-center">
+              <%= render "actions", form: form %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
-    <%= form_with(model: csv_import, local: true, html: { multipart: true }, url: preview_csv_import_path) do |form| %>
       <div class="row">
         <div class="col-md-4">
           <%= render "error", csv_import: csv_import %>
@@ -8,25 +35,7 @@
         <div class="col-md-4">
         </div>
       </div>
-      <div class="row">
 
-        <div class="col-md-4">
-          <%= render "file_upload", form: form  %>
-        </div>
-        <div class="col-md-8"></div>
-      </div>
 
       <%= form.hidden_field :manifest_cache %>
-      <div class="row">
-        <div class="col-md-2">
-          <%= render "collection_selection", form: form %>
-        </div>
-        <div class="col-md-8"></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <%= render "actions", form: form %>
-        </div>
-        <div class="cold-md-8"></div>
-      </div>
-    <% end %>
+<% end %>
