@@ -29,6 +29,9 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       # We expect to see warnings for this CSV file.
       expect(page).to have_content 'The field name "another_header_1" is not supported'
 
+      # We expect to see the title of the collection on the page
+      expect(page).to have_content 'Testing Collection'
+
       # There is a link so the user can cancel.
       expect(page).to have_link 'Cancel', href: new_csv_import_path(locale: I18n.locale)
 
@@ -39,6 +42,9 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       # The show page for the CsvImport
       expect(page).to have_content 'extra_headers.csv'
       expect(page).to have_content 'Start time'
+
+      # We expect to see the title of the collection on the page
+      expect(page).to have_content 'Testing Collection'
 
       # TODO: Check that the import got kicked off.
       # e.g. Check that a job got queued.
