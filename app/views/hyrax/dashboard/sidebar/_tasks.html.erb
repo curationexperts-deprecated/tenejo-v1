@@ -22,3 +22,10 @@
       <span class="fa fa-table"></span> <span class="sidebar-action-text">Download CSV Template</span>
   <% end %>
 <% end %>
+
+
+<% if Flipflop.import_csv? %>
+  <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
+      <span class="fa fa-upload"></span> <span class="sidebar-action-text">Import Content From a CSV</span>
+  <% end %>
+<% end %>
