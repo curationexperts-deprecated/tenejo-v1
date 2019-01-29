@@ -10,7 +10,7 @@
           </div>
           <div class="col-md-4">
             <label> Collection: </label>
-            <%= ActiveFedora::SolrService.query("id:#{@csv_import.fedora_collection_id}")[0]['title_tesim'] %>
+            <%= ActiveFedora::SolrService.query("id:#{@csv_import.fedora_collection_id}")[0]['title_tesim'][0] %>
           </div>
         </div>
       <% end %>

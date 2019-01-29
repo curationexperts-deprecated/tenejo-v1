@@ -20,6 +20,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
     it 'starts the import' do
       visit new_csv_import_path
       expect(page).to have_content 'Testing Collection'
+      expect(page).not_to have_content '["Testing Collection"]'
       select 'Testing Collection', from: "csv_import[fedora_collection_id]"
 
       # Fill in and submit the form

@@ -10,6 +10,7 @@ Metrics/BlockLength:
     - '**/*/catalog_controller.rb'
     - 'config/**/*'
     - 'spec/features**/*'
+    - 'spec/system**/*'
     - lib/tasks/tenejo.rake
     - 'spec/controllers/csv_imports_controller_spec.rb'
     - 'spec/uploaders/csv_manifest_validator_spec.rb'
