@@ -1,2 +1,7 @@
-<%= form.file_field :manifest, required: true, id: 'file-upload', class: "file-upload form-control" %>
+<%= form.file_field :manifest, required: true, id: 'file-upload', class: "file-upload form-control", onchange: "displayUploadedFile" %>
 <label for="file-upload" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload Your CSV</label>
+<div id="file-upload-display"></div>
+
+<script>
+  document.querySelector("#file-upload").onchange = Tenejo.displayUploadedFile
+</script>
