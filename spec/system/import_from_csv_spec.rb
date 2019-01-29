@@ -25,6 +25,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
 
       # Fill in and submit the form
       attach_file('csv_import[manifest]', csv_file, make_visible: true)
+      expect(page).to have_content 'extra_headers.csv'
       click_on 'Preview Import'
 
       # We expect to see warnings for this CSV file.
