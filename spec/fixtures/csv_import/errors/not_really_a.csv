@@ -1,0 +1,5 @@
+While this is a vaild csv file; we should reject it because
+* no row apppears to contain comma separated values - for a mimimally good file, there should be at least 4 commas per line (5 fields)
+* missing header row
+* missing header value
+etc.
