@@ -1,4 +1,4 @@
-<h2><span class="glyphicon glyphicon-cloud-upload"></span>Preview your CSV Import</h2>
+<h2><span class="glyphicon glyphicon-cloud-upload"></span> Preview your CSV Import</h2>
 <div class="panel panel-default">
   <div class="panel-body">
     <div id='csv_info'>
@@ -15,11 +15,7 @@
         </div>
       <% end %>
 
-      <div class="row">
-        <div class="col-md-8">
-          <p> TODO: This import will add XXX new records. </p>
-        </div>
-      </div>
+      <%= render 'record_count', locals: { csv_import: @csv_import } %>
 
       <% unless @csv_import.manifest_errors.empty? %>
         <div class="row">

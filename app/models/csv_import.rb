@@ -12,4 +12,8 @@ class CsvImport < ApplicationRecord
   def manifest_errors
     manifest.errors
   end
+
+  def manifest_records
+    manifest.records
+  end
 end
