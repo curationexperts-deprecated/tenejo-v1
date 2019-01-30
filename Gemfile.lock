@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/curationexperts/darlingtonia.git
-  revision: 0321ab975449bbc3c011ebd423933adf95e48020
+  revision: 9bab573607586997af7693eec31db770370faa20
   branch: master
   specs:
     darlingtonia (1.2.3)
