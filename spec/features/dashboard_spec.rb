@@ -14,5 +14,9 @@ RSpec.feature 'Dashboard' do
     scenario 'can download a CSV template' do
       expect(page).to have_link 'Download CSV Template'
     end
+
+    scenario 'can get to the importer page' do
+      expect(page).to have_link 'Import Content From a CSV'
+    end
   end
 end
