@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/curationexperts/darlingtonia.git
-  revision: 9bab573607586997af7693eec31db770370faa20
+  revision: 7715a37a13c77eef49ee8238ca6e2e618a5a2bf4
   branch: master
   specs:
     darlingtonia (1.2.3)
@@ -59,7 +59,7 @@ GEM
       activemodel (= 5.1.6.1)
       activesupport (= 5.1.6.1)
       arel (~> 8.0)
-    activerecord-import (0.28.2)
+    activerecord-import (1.0.0)
       activerecord (>= 3.2)
     activesupport (5.1.6.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -123,9 +123,9 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    bootstrap-sass (3.3.7)
+    bootstrap-sass (3.4.0)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     bootstrap_form (4.1.0)
       rails (>= 5.0)
     breadcrumbs_on_rails (3.0.1)
@@ -274,7 +274,7 @@ GEM
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
     ffaker (2.10.0)
-    ffi (1.10.0)
+    ffi (1.9.25)
     flipflop (2.4.0)
       activesupport (>= 4.0)
     flot-rails (0.0.7)
@@ -521,7 +521,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nest (3.1.1)
+    nest (3.1.2)
       redic
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
@@ -732,6 +732,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.0.0)
+      ffi (~> 1.9.6)
+      rake
     select2-rails (3.5.10)
       thor (~> 0.14)
     selenium-webdriver (3.141.0)
