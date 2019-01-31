@@ -3,9 +3,6 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
-  before { driven_by :selenium_chrome_headless }
-  after { driven_by :rack_test }
-
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra_headers.csv') }
 
   context 'logged in as an admin user' do

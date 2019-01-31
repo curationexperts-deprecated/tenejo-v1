@@ -6,7 +6,6 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require 'database_cleaner'
 require 'active_fedora/cleaner'
 require 'ffaker'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -36,18 +35,18 @@ RSpec.configure do |config|
   config.before(:suite) do
     ActiveJob::Base.queue_adapter = :test
     ActiveFedora::Cleaner.clean!
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.start
   end
 
-  config.before(clean: true) do |example|
-    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
-    end
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+    # Uncomment if you want to watch the browser
+    # driven_by :rack_test
+  end
+  config.after(:each, type: :system) do
+    driven_by :rack_test
+  end
 
+  config.before(clean: true) do
     ActiveFedora::Cleaner.clean!
   end
 
