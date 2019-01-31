@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Dashboard' do
+RSpec.describe 'Dashboard', type: :system do
   context 'as a regular user' do
     let(:user) { FactoryBot.create(:user) }
 
@@ -11,11 +11,11 @@ RSpec.feature 'Dashboard' do
       visit '/dashboard'
     end
 
-    scenario 'can download a CSV template' do
+    it 'can download a CSV template' do
       expect(page).to have_link 'Download CSV Template'
     end
 
-    scenario 'can get to the importer page' do
+    it 'can get to the importer page' do
       expect(page).to have_link 'Import Content From a CSV'
     end
   end

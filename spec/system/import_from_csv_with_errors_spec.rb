@@ -3,9 +3,6 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Importing records from a CSV file with fatal errors', type: :system, js: true do
-  before { driven_by :selenium_chrome_headless }
-  after { driven_by :rack_test }
-
   let(:bad_csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_header.csv') }
 
   let(:collection) { FactoryBot.build(:collection) }
