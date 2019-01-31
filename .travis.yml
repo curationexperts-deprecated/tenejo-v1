@@ -10,6 +10,8 @@ jdk:
 - oraclejdk8
 rvm:
 - 2.5
+addons:
+  chrome: stable
 before_install:
   - sudo apt-get update
   - sudo apt-get install chromium-chromedriver

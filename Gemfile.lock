@@ -72,6 +72,8 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.4.0)
     autoprefixer-rails (9.4.7)
@@ -175,6 +177,9 @@ GEM
       mime-types (>= 1.16)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (2.1.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     clipboard-rails (1.7.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -412,6 +417,7 @@ GEM
     ice_nine (0.11.2)
     iiif_manifest (0.5.0)
       activesupport (>= 4)
+    io-like (0.3.0)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -851,6 +857,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-sidekiq (~> 0.20.0)
   capybara (~> 2.13)
+  chromedriver-helper
   coffee-rails (~> 4.2)
   darlingtonia!
   devise
