@@ -31,6 +31,7 @@ RSpec/ExampleLength:
     - 'spec/features**/*'
     - 'spec/system/**/*'
     - 'spec/uploaders/csv_manifest_validator_spec.rb'
+    - 'spec/importers/modular_importer_spec.rb'
 
 Style/BlockDelimiters:
   Exclude:

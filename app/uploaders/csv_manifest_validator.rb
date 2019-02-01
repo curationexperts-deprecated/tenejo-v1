@@ -39,15 +39,15 @@ class CsvManifestValidator
   end
 
   def valid_headers
-    ['title', 'files', 'representative_media',
+    ['title', 'files', 'representative media',
      'thumbnail', 'rendering', 'depositor',
      'date_uploaded', 'date_modified', 'label',
-     'relative_path', 'import_url', 'resource_type',
-     'creator', 'contributor', 'description',
-     'keyword', 'license', 'rights_statement',
-     'publisher', 'date_created', 'subject',
-     'language', 'identifier', 'based_near',
-     'related_url', 'bibliographic_citation',
+     'relative_path', 'import url', 'resource type',
+     'creator', 'contributor', 'abstract or summary',
+     'keyword', 'license', 'rights statement',
+     'publisher', 'date created', 'subject',
+     'language', 'identifier', 'location',
+     'related url', 'bibliographic_citation',
      'source', 'visibility']
   end
 
