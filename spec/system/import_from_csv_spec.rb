@@ -3,7 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
-  let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra_headers.csv') }
+  let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra - headers.csv') }
 
   context 'logged in as an admin user' do
     let(:collection) { FactoryBot.build(:collection, title: ['Testing Collection']) }
@@ -22,7 +22,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
 
       # Fill in and submit the form
       attach_file('csv_import[manifest]', csv_file, make_visible: true)
-      expect(page).to have_content 'extra_headers.csv'
+      expect(page).to have_content 'extra_-_headers.csv'
       click_on 'Preview Import'
 
       # We expect to see warnings for this CSV file.
@@ -41,7 +41,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       click_on 'Start Import'
 
       # The show page for the CsvImport
-      expect(page).to have_content 'extra_headers.csv'
+      expect(page).to have_content 'extra_-_headers.csv'
       expect(page).to have_content 'Start time'
 
       # We expect to see the title of the collection on the page

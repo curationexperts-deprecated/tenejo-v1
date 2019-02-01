@@ -60,7 +60,7 @@ RSpec.describe CsvManifestValidator, type: :model do
   end
 
   context 'a CSV that has extra headers' do
-    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra_headers.csv') }
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'extra - headers.csv') }
 
     it 'has a warning' do
       validator.validate
