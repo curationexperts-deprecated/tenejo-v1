@@ -26,7 +26,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       click_on 'Preview Import'
 
       # We expect to see warnings for this CSV file.
-      expect(page).to have_content 'The field name "another_header_1" is not supported'
+      expect(page).to have_content 'The field name "another_header_2" is not supported'
 
       # We expect to see the title of the collection on the page
       expect(page).to have_content 'Testing Collection'

@@ -12,24 +12,21 @@ RSpec.describe ModularImporter, :clean do
     ENV['IMPORT_PATH'] = File.expand_path('../fixtures/images', File.dirname(__FILE__))
   end
 
-  it "imports a csv" do
-    expect { ModularImporter.new(modular_csv, collection.id).import }.to change { Work.count }.by 3
-  end
+  it "imports a CSV with the correct metadata" do
+    expect {
+      ModularImporter.new(modular_csv, collection.id).import
+    }.to change { Work.count }.to 3
 
-  it "puts the title into the title field" do
-    ModularImporter.new(modular_csv, collection.id).import
-    expect(Work.where(title: 'A Cute Dog').count).to eq 1
-  end
-
-  it "puts the url into the source field" do
-    ModularImporter.new(modular_csv, collection.id).import
-    expect(Work.where(source: 'https://www.pexels.com/photo/animal-blur-canine-close-up-551628/').count).to eq 1
-  end
-
-  it "creates publicly visible objects" do
-    ModularImporter.new(modular_csv, collection.id).import
-    imported_work = Work.first
-    expect(imported_work.visibility).to eq 'open'
+    work = Work.where(title: 'A Cute Dog').first
+    expect(work.source).to eq ['https://www.pexels.com/photo/animal-blur-canine-close-up-551628/']
+    expect(work.visibility).to eq 'open'
+    expect(work.rights_statement).to eq ['http://rightsstatements.org/vocab/InC/1.0/']
+    expect(work.description).to contain_exactly('dog photo', 'some kind of spaniel?')
+    expect(work.date_created).to eq ['2018']
+    expect(work.based_near).to eq ['United States']
+    expect(work.related_url).to eq ['https://www.pexels.com/']
+    expect(work.resource_type).to eq ['image']
+    expect(work.creator).to eq ['Kat Jayne']
   end
 
   it "attaches files" do
