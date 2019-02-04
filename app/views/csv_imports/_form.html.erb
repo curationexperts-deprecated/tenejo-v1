@@ -2,9 +2,38 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
+        <div class="col-md-8">
+          <h2> Getting Started </h2>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-4">
           <div class="well well-lg">
-            <p> <b>Upload a CSV</b> that has your content. You can download a template to get started <a href="/import_manifest.csv">here</a>. </p>
+            <p><b>Read the CSV Field Guide</b> to learn what is required in your CSV.</p>
+            <div class="text-center">
+              <a href="/importer_documentation/guide" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-book"></i> CSV Field Guide</a>
+            </div>
+          </div>
+        </div>
+         <div class="col-md-4">
+          <div class="well well-lg">
+            <p><b>Download a CSV template</b> to get started.</b></p>
+            <div class="text-center">
+              <a href="/import_manifest.csv" data-turbolinks="false" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-list"></i> Download a CSV Template</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-8">
+          <h2> Upload Your CSV </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Upload a CSV</b> that has your content. </p>
             <div class="text-center">
               <%= render "file_upload", form: form  %>
             </div>
