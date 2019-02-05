@@ -10,6 +10,7 @@ RSpec.describe ModularImporter, :clean do
 
   before do
     ENV['IMPORT_PATH'] = File.expand_path('../fixtures/images', File.dirname(__FILE__))
+    allow_any_instance_of(::Ability).to receive(:can?).and_return(true)
   end
 
   it "imports a CSV with the correct metadata" do
