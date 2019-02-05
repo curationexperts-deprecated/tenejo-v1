@@ -3,6 +3,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   get 'importer_documentation/guide'
+  get 'importer_documentation/csv'
 
   post 'csv_imports/preview', as: 'preview_csv_import'
   get 'csv_imports/preview', to: redirect('csv_imports/new')
