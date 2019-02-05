@@ -4,11 +4,13 @@ A name to aid in identifying a work.
 
 This field is a string.  **This field is required**.
 
+
+
 ## Example
 
 `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].`
 
-If you have multiple titles you can enter them like this:
+If you have multiple titles, separate them with the `|~|` delimiter, like this:
 
 `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].|~|[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].`
 
@@ -93,7 +95,7 @@ this [vocabulary](https://github.com/curationexperts/tenejo/blob/master/config/a
 
 `http://creativecommons.org/licenses/by/3.0/us/`
 
-If you have multiple abstracts you can enter them like this:
+If you have multiple rights statements you can enter them like this:
 
 `http://creativecommons.org/licenses/by/3.0/us/|~|http://creativecommons.org/licenses/by-sa/3.0/us/`
 
@@ -107,7 +109,7 @@ This field is a string. *This field is optional*.
 
 `Library of Congress`
 
-If you have multiple abstracts you can enter them like this:
+If you have multiple publishers you can enter them like this:
 
 `Library of Congress|~|National Archives`
 
