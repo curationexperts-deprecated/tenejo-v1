@@ -45,10 +45,18 @@ class CsvManifestUploader < CarrierWave::Uploader::Base
     end
 
     def configured_upload_path
-      ENV['CSV_MANIFESTS_PATH'] || Hyrax.config.upload_path.call + 'csv_uploads'
+      ENV['CSV_MANIFESTS_PATH'] || base_path_uploads + 'csv_uploads'
     end
 
     def configured_cache_path
-      ENV['CSV_MANIFESTS_CACHE_PATH'] || Hyrax.config.cache_path.call + 'csv_uploads/cache'
+      ENV['CSV_MANIFESTS_CACHE_PATH'] || base_path_cache + 'csv_uploads/cache'
+    end
+
+    def base_path_uploads
+      ENV['TRAVIS'] ? Rails.root : Hyrax.config.upload_path.call
+    end
+
+    def base_path_cache
+      ENV['TRAVIS'] ? Rails.root : Hyrax.config.cache_path.call
     end
 end
