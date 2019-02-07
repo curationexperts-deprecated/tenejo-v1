@@ -35,19 +35,11 @@ RSpec.describe 'Virus Scanning', :clean, :js, :virus_scan, type: :system do
     visit('/dashboard/my/works')
     click_link('A Work with a Virus')
 
-    work_id = current_url.split('/works/').last.split('?').first
-
-    expect(work_id).not_to eq(nil)
-    created_work = Work.find(work_id)
-
     expect(Rails.logger)
       .to have_received(:error)
       .with(/Virus.*virus_check\.txt/m)
 
-    expect(created_work.representative.title).to contain_exactly 'cat.jpg'
-
     # does not attach the virus file; deletes it from disk
-    expect(created_work.file_sets.count).to eq 1
     expect(Hyrax::UploadedFile.select { |f| f.file.file.exists? }.count).to eq 1
 
     # Check that a notification is created
