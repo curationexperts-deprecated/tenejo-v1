@@ -181,6 +181,7 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     chronic (0.10.2)
+    clamby (1.6.1)
     clipboard-rails (1.7.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -709,6 +710,8 @@ GEM
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
+    rspec-retry (0.6.1)
+      rspec-core (> 3.3)
     rspec-support (3.8.0)
     rubocop (0.52.1)
       parallel (~> 1.10)
@@ -863,6 +866,7 @@ DEPENDENCIES
   capistrano-sidekiq (~> 0.20.0)
   capybara (~> 2.13)
   chromedriver-helper
+  clamby
   coffee-rails (~> 4.2)
   darlingtonia!
   devise
@@ -887,6 +891,7 @@ DEPENDENCIES
   riiif (~> 1.1)
   rsolr (>= 1.0)
   rspec-rails
+  rspec-retry
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq (~> 5.1.3)
