@@ -14,6 +14,8 @@ RSpec.describe CsvManifestValidator, type: :model do
   context 'a valid CSV file' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
 
+    before { validator.validate }
+
     it 'has no errors' do
       expect(validator.errors).to eq []
     end
@@ -23,7 +25,24 @@ RSpec.describe CsvManifestValidator, type: :model do
     end
 
     it 'returns the record count' do
-      validator.validate
+      expect(validator.record_count).to eq 3
+    end
+  end
+
+  context 'a valid CSV file with capitalization and whitespace in headers' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'modular_input.csv') }
+
+    before { validator.validate }
+
+    it 'has no errors' do
+      expect(validator.errors).to eq []
+    end
+
+    it 'has no warnings' do
+      expect(validator.warnings).to eq []
+    end
+
+    it 'returns the record count' do
       expect(validator.record_count).to eq 3
     end
   end
@@ -42,7 +61,7 @@ RSpec.describe CsvManifestValidator, type: :model do
 
     it 'has an error' do
       validator.validate
-      expect(validator.errors).to eq ['Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.']
+      expect(validator.errors).to eq ['Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling.']
     end
   end
 
@@ -52,9 +71,9 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has an error' do
       validator.validate
       expect(validator.errors).to eq [
-        'Missing required metadata "title": row 2',
-        'Missing required metadata "title": row 3',
-        'Missing required metadata "title": row 5'
+        'Missing required metadata "Title": row 2',
+        'Missing required metadata "Title": row 3',
+        'Missing required metadata "Title": row 5'
       ]
     end
   end
