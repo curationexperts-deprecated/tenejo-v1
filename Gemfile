@@ -24,11 +24,16 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem "loofah", ">= 2.2.3"
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'coffee-rails'
-gem 'turbolinks', '~> 5'
 
-gem 'clamby'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
@@ -70,7 +75,6 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'ffaker'
   gem 'rspec-rails'
-  gem 'rspec-retry'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
 end

@@ -3,15 +3,11 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
-
 require 'rspec/rails'
-require 'rspec/retry'
 require 'active_fedora/cleaner'
 require 'ffaker'
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -54,20 +50,6 @@ RSpec.configure do |config|
     ActiveFedora::Cleaner.clean!
   end
 
-  config.before do |_example|
-    class_double("Clamby").as_stubbed_const
-    allow(Clamby).to receive(:virus?).and_return(false)
-  end
-
-  # We use an EICAR-STANDARD-ANTIVIRUS-TEST-FILE, but when stubbing virus checks
-  # we can just check the filename.
-  RSpec::Matchers.define :a_virus_test_file do
-    match do |actual|
-      path = actual.respond_to?(:path) ? actual.path : actual
-      File.basename(path) == 'virus_check.txt'
-    end
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -96,10 +78,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before(virus_scan: true) do
-    allow(Clamby).to receive(:virus?).with(a_virus_test_file).and_return(true)
-  end
-
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.before perform_jobs: true do
@@ -110,28 +88,4 @@ RSpec.configure do |config|
     ActiveJob::Base.queue_adapter.filter                = nil
     ActiveJob::Base.queue_adapter.perform_enqueued_jobs = false
   end
-
-  # Use this example group when you want to perform jobs inline during testing.
-  #
-  # Limit to specific job classes with:
-  #
-  #   ActiveJob::Base.queue_adapter.filter = [JobClass]
-  config.before(perform_enqueued: true) do
-    ActiveJob::Base.queue_adapter.perform_enqueued_jobs    = true
-    ActiveJob::Base.queue_adapter.perform_enqueued_at_jobs = true
-  end
-
-  config.after(perform_enqueued: true) do
-    ActiveJob::Base.queue_adapter.enqueued_jobs  = []
-    ActiveJob::Base.queue_adapter.performed_jobs = []
-
-    ActiveJob::Base.queue_adapter.perform_enqueued_jobs    = false
-    ActiveJob::Base.queue_adapter.perform_enqueued_at_jobs = false
-  end
-
-  # Retry ReadTimeout errors
-  config.verbose_retry = true
-  config.default_retry_count = 2
-  # Retry when Selenium raises Net::ReadTimeout
-  config.exceptions_to_retry = [Net::ReadTimeout]
 end
