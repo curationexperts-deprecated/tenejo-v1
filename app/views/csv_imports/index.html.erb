@@ -12,8 +12,8 @@
   <tbody>
     <% @csv_imports.each do |csv_import| %>
       <tr>
-        <td><%= csv_import.id %></td>
-        <td><%= link_to 'Show', csv_import %></td>
+        <% link_text = csv_import.manifest.file ? File.basename(csv_import.manifest.to_s) : 'show' %>
+        <td><%= link_to link_text, csv_import %></td>
       </tr>
     <% end %>
   </tbody>
