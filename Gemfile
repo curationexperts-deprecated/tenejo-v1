@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'clamby'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
@@ -54,7 +55,6 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq', '~> 0.20.0'
-  gem 'clamby'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'

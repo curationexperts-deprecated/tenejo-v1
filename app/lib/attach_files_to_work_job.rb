@@ -19,7 +19,7 @@ class AttachFilesToWorkJob < Hyrax::ApplicationJob
     uploaded_files.each do |uploaded_file|
       next if uploaded_file.file_set_uri.present?
 
-      virus_check!(uploaded_file)
+      virus_check!(uploaded_file, user)
       actor = Hyrax::Actors::FileSetActor.new(FileSet.create, user)
       uploaded_file.update(file_set_uri: actor.file_set.uri)
       actor.file_set.permissions_attributes = work_permissions
@@ -28,10 +28,7 @@ class AttachFilesToWorkJob < Hyrax::ApplicationJob
       actor.attach_to_work(work)
     end
   rescue VirusDetectedError => error
-    user.send_message(user, "A virus was detected while processing work #{work.id} it has been deleted and a log was created.",
-                      "Virus encountered while processing work #{work.id}")
-    Rails.logger.error "Virus encountered while processing work #{work.id} uploaded by #{user.email}.\n" \
-                       "\t#{error.message}"
+    Rails.logger.error "A virus was detected when uploading a file for work #{work.id}: #{error.message} \n"
   end
   # rubocop:enable Metrics/MethodLength
 
@@ -39,10 +36,13 @@ class AttachFilesToWorkJob < Hyrax::ApplicationJob
 
   private
 
-    def virus_check!(uploaded_file)
+    def virus_check!(uploaded_file, user)
       return unless Hydra::Works::VirusCheckerService.file_has_virus?(uploaded_file.file)
       carrierwave_file = uploaded_file.file.file
       carrierwave_file.delete
+      user.send_message(user, "A virus was detected while uploading files it has been deleted and a log was created.",
+                        "Virus encountered while processing the file #{carrierwave_file.filename} uploaded by #{user.email}")
+      Rails.logger.error "Virus encountered while processing file #{carrierwave_file.filename} uploaded by #{user.email}.\n"
       raise(VirusDetectedError, carrierwave_file.filename)
     end
 
