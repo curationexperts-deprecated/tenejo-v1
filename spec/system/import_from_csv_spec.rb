@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Importing records from a CSV file', :perform_jobs, type: :system, js: true do
+RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type: :system, js: true do
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'good', 'all_fields.csv') }
 
   context 'logged in as an admin user' do
@@ -10,6 +10,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, type: :system
     let(:admin_user) { FactoryBot.create(:admin) }
 
     before do
+      allow(CharacterizeJob).to receive(:perform_later) # There is no fits installed on travis-ci
       collection.save!
       login_as admin_user
     end
@@ -50,6 +51,16 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, type: :system
       # Ensure that all the fields got assigned as expected
       work = Work.where(title: "*haberdashery*").first
       expect(work.title.first).to match(/haberdashery/)
+
+      # Ensure location (a.k.a. based_near) gets turned into a controlled vocabulary term
+      expect(work.based_near.first.class).to eq Hyrax::ControlledVocabularies::Location
+
+      visit "/concern/works/#{work.id}"
+      expect(page).to have_content work.title.first
+
+      # Controlled vocabulary location should have been resolved to its label name
+      expect(page).to have_content "Montana"
+      expect(page).to have_content "United States"
     end
   end
 end

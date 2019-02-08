@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/curationexperts/darlingtonia.git
-  revision: 2eacd1f581b928bbb37507bc911d40839c1685ca
+  revision: ad46c5d8a50e9396f39f118aba3d7df2414353f1
   branch: master
   specs:
     darlingtonia (2.0.0)
@@ -199,7 +199,7 @@ GEM
     declarative-option (0.1.0)
     deprecation (1.0.0)
       activesupport
-    devise (4.5.0)
+    devise (4.6.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -215,7 +215,7 @@ GEM
     dropbox_api (0.1.12)
       faraday (~> 0.9, ~> 0.8)
       oauth2 (~> 1.1)
-    dry-configurable (0.8.0)
+    dry-configurable (0.8.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
     dry-container (0.7.0)
@@ -271,7 +271,7 @@ GEM
     execjs (2.7.0)
     factory_bot (5.0.0)
       activesupport (>= 4.2.0)
-    factory_bot_rails (5.0.0)
+    factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
     faraday (0.12.2)

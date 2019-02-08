@@ -30,7 +30,7 @@ RSpec.describe ModularImporter, :clean do
     expect(work.rights_statement).to eq ['http://rightsstatements.org/vocab/InC/1.0/']
     expect(work.description).to contain_exactly('dog photo', 'some kind of spaniel?')
     expect(work.date_created).to eq ['2018']
-    expect(work.based_near).to eq ['United States']
+    expect(work.based_near.first.class).to eq Hyrax::ControlledVocabularies::Location
     expect(work.related_url).to eq ['https://www.pexels.com/']
     expect(work.resource_type).to eq ['image']
     expect(work.creator).to eq ['Kat Jayne']
