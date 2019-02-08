@@ -15,9 +15,10 @@ RSpec.describe StartCsvImportJob, perform_jobs: :true, type: :job do
 
       let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
 
-      it 'starts the importer' do
+      it 'starts the importer and logs the batch id' do
         expect_any_instance_of(ModularImporter).to receive(:import)
         described_class.perform_now(csv_import.id)
+        expect(File.open("log/test_csv_import.log") { |f| f.readlines.join.match?("Starting import with batch ID: #{csv_import.id}") }).to eq(true)
       end
     end
   end
