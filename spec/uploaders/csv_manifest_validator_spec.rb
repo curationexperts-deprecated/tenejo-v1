@@ -89,4 +89,15 @@ RSpec.describe CsvManifestValidator, type: :model do
       ]
     end
   end
+
+  context 'a CSV that has invalid license values' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'errors', 'invalid_license.csv') }
+
+    it 'has an error' do
+      validator.validate
+      expect(validator.errors).to eq [
+        "Invalid license value in row 1: http://creativecommons.org/licenses/foobar"
+      ]
+    end
+  end
 end

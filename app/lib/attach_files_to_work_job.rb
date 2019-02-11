@@ -9,7 +9,6 @@ class AttachFilesToWorkJob < Hyrax::ApplicationJob
 
   # @param [ActiveFedora::Base] work - the work object
   # @param [Array<Hyrax::UploadedFile>] uploaded_files - an array of files to attach
-  # rubocop:disable Metrics/MethodLength
   def perform(work, uploaded_files, **work_attributes)
     validate_files!(uploaded_files)
     depositor = proxy_or_depositor(work)
