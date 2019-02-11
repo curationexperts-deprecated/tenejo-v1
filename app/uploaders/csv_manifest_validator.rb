@@ -30,6 +30,7 @@ class CsvManifestValidator
     missing_headers
     unrecognized_headers
     missing_titles
+    invalid_license
   end
 
   # One record per row
@@ -51,6 +52,26 @@ class CsvManifestValidator
      'source', 'visibility']
   end
 
+  def valid_licenses
+    [
+      'http://creativecommons.org/licenses/by/3.0/us/',
+      'http://creativecommons.org/licenses/by-sa/3.0/us/',
+      'http://creativecommons.org/licenses/by-nc/3.0/us/',
+      'http://creativecommons.org/licenses/by-nd/3.0/us/',
+      'http://creativecommons.org/licenses/by-nc-nd/3.0/us/',
+      'http://creativecommons.org/licenses/by-nc-sa/3.0/us/',
+      'http://www.europeana.eu/portal/rights/rr-r.html',
+      'https://creativecommons.org/licenses/by/4.0/',
+      'https://creativecommons.org/licenses/by-sa/4.0/',
+      'https://creativecommons.org/licenses/by-nd/4.0/',
+      'https://creativecommons.org/licenses/by-nc/4.0/',
+      'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+      'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+      'http://creativecommons.org/publicdomain/zero/1.0/',
+      'http://creativecommons.org/publicdomain/mark/1.0/'
+    ]
+  end
+
 private
 
   def parse_csv
@@ -64,6 +85,20 @@ private
   def missing_headers
     return if @transformed_headers.include?('title')
     @errors << 'Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling.'
+  end
+
+  # We can only allow valid license values expected by Hyrax. Otherwise, the application
+  # throws an error when it tries to display the work.
+  def invalid_license
+    license_index = @transformed_headers.find_index('license')
+    return unless license_index
+
+    @rows.each_with_index do |row, i|
+      next if row[license_index] == 'license' # Skip the header row
+      next if row[license_index].nil?
+      next if valid_licenses.include?(row[license_index])
+      @errors << "Invalid license value in row #{i}: #{row[license_index]}"
+    end
   end
 
   # Warn the user if we find any unexpected headers.

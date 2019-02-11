@@ -18,6 +18,9 @@ Metrics/BlockLength:
     - spec/importers/modular_importer_spec.rb
     - spec/rails_helper.rb
 
+Metrics/MethodLength:
+  Enabled: false
+
 RSpec/AnyInstance:
   Enabled: false
 
