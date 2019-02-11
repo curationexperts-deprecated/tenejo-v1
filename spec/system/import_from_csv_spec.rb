@@ -55,9 +55,11 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       # Ensure location (a.k.a. based_near) gets turned into a controlled vocabulary term
       expect(work.based_near.first.class).to eq Hyrax::ControlledVocabularies::Location
 
+      # Ensure work is being added to the collection as expected
+      expect(work.member_of_collection_ids).to eq [collection.id]
+
       visit "/concern/works/#{work.id}"
       expect(page).to have_content work.title.first
-
       # Controlled vocabulary location should have been resolved to its label name
       expect(page).to have_content "Montana"
       expect(page).to have_content "United States"
