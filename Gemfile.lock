@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/curationexperts/darlingtonia.git
-  revision: ad46c5d8a50e9396f39f118aba3d7df2414353f1
+  revision: 3bf6c63d8bfd1636e8a318ea6f34b5a70adbb461
   branch: master
   specs:
     darlingtonia (2.0.0)
@@ -665,7 +665,7 @@ GEM
       rdf-turtle (~> 3.0, >= 3.0.3)
     rdf-trix (2.2.1)
       rdf (>= 2.2, < 4.0)
-    rdf-turtle (3.0.4)
+    rdf-turtle (3.0.5)
       ebnf (~> 1.1)
       rdf (~> 3.0)
     rdf-vocab (3.0.4)
