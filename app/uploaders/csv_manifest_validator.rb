@@ -31,6 +31,7 @@ class CsvManifestValidator
     unrecognized_headers
     missing_titles
     invalid_license
+    invalid_resource_type
   end
 
   # One record per row
@@ -101,5 +102,21 @@ private
       next unless row[title_index].blank?
       @errors << "Missing required metadata \"Title\": row #{i}"
     end
+  end
+
+  def invalid_resource_type
+    rt_index = @transformed_headers.find_index('resource type')
+    return unless rt_index
+
+    @rows.each_with_index do |row, i|
+      next if i.zero? # Skip the header row
+      next unless row[rt_index]
+      next if valid_resource_types.include? row[rt_index]
+      @errors << "Invalid Resource Type in row #{i}: #{row[rt_index]}"
+    end
+  end
+
+  def valid_resource_types
+    @valid_resource_type_ids ||= Qa::Authorities::Local.subauthority_for('resource_types').all.select { |term| term[:active] }.map { |term| term[:id] }
   end
 end
