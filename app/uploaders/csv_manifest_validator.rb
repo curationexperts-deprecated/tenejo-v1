@@ -68,8 +68,14 @@ private
   end
 
   def missing_headers
-    return if @transformed_headers.include?('title')
-    @errors << 'Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling.'
+    required_headers.each do |header|
+      next if @transformed_headers.include?(header)
+      @errors << "Missing required column: \"#{header.titleize}\".  Your spreadsheet must have this column."
+    end
+  end
+
+  def required_headers
+    ['title', 'creator', 'keyword', 'rights statement', 'visibility', 'files']
   end
 
   # We can only allow valid license values expected by Hyrax. Otherwise, the application

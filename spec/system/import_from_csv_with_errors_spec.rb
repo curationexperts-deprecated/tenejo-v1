@@ -3,7 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Importing records from a CSV file with fatal errors', type: :system, js: true do
-  let(:bad_csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_header.csv') }
+  let(:bad_csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_headers.csv') }
 
   let(:collection) { FactoryBot.build(:collection) }
 
@@ -23,7 +23,7 @@ RSpec.describe 'Importing records from a CSV file with fatal errors', type: :sys
       click_on 'Preview Import'
 
       # We expect to see errors for this CSV file.
-      expect(page).to have_content 'Missing required column: "title".'
+      expect(page).to have_content 'Missing required column: "Title".'
 
       # Because there are fatal errors, the 'Start Import' button should not be available.
       expect(page).not_to have_button('Start Import')

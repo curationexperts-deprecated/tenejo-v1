@@ -57,11 +57,18 @@ RSpec.describe CsvManifestValidator, type: :model do
   end
 
   context 'a CSV that is missing required headers' do
-    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_header.csv') }
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_headers.csv') }
 
     it 'has an error' do
       validator.validate
-      expect(validator.errors).to eq ['Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling.']
+      expect(validator.errors).to eq [
+        'Missing required column: "Title".  Your spreadsheet must have this column.',
+        'Missing required column: "Creator".  Your spreadsheet must have this column.',
+        'Missing required column: "Keyword".  Your spreadsheet must have this column.',
+        'Missing required column: "Rights Statement".  Your spreadsheet must have this column.',
+        'Missing required column: "Visibility".  Your spreadsheet must have this column.',
+        'Missing required column: "Files".  Your spreadsheet must have this column.'
+      ]
     end
   end
 
