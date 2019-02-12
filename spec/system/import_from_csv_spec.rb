@@ -55,6 +55,9 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       # Ensure location (a.k.a. based_near) gets turned into a controlled vocabulary term
       expect(work.based_near.first.class).to eq Hyrax::ControlledVocabularies::Location
 
+      # It sets the date_uploaded field
+      expect(work.date_uploaded.class).to eq DateTime
+
       # Ensure visibility gets turned into expected Hyrax values (e.g., 'PUBlic' becomes 'open')
       expect(work.visibility).to eq 'open'
 
