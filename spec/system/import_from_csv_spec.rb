@@ -68,7 +68,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       expect(page).to have_content "United States"
 
       # The license value resolves to a controlled field from creative commons
-      expect(page).to have_link "Attribution 3.0 United States"
+      expect(page).to have_link "Attribution 4.0"
     end
   end
 end

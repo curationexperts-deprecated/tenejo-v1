@@ -53,23 +53,7 @@ class CsvManifestValidator
   end
 
   def valid_licenses
-    [
-      'http://creativecommons.org/licenses/by/3.0/us/',
-      'http://creativecommons.org/licenses/by-sa/3.0/us/',
-      'http://creativecommons.org/licenses/by-nc/3.0/us/',
-      'http://creativecommons.org/licenses/by-nd/3.0/us/',
-      'http://creativecommons.org/licenses/by-nc-nd/3.0/us/',
-      'http://creativecommons.org/licenses/by-nc-sa/3.0/us/',
-      'http://www.europeana.eu/portal/rights/rr-r.html',
-      'https://creativecommons.org/licenses/by/4.0/',
-      'https://creativecommons.org/licenses/by-sa/4.0/',
-      'https://creativecommons.org/licenses/by-nd/4.0/',
-      'https://creativecommons.org/licenses/by-nc/4.0/',
-      'https://creativecommons.org/licenses/by-nc-nd/4.0/',
-      'https://creativecommons.org/licenses/by-nc-sa/4.0/',
-      'http://creativecommons.org/publicdomain/zero/1.0/',
-      'http://creativecommons.org/publicdomain/mark/1.0/'
-    ]
+    @active_ids ||= Hyrax::LicenseService.new.authority.all.select { |license| license[:active] }.map { |license| license[:id] }
   end
 
 private
@@ -94,7 +78,7 @@ private
     return unless license_index
 
     @rows.each_with_index do |row, i|
-      next if row[license_index] == 'license' # Skip the header row
+      next if i.zero? # Skip the header row
       next if row[license_index].nil?
       next if valid_licenses.include?(row[license_index])
       @errors << "Invalid license value in row #{i}: #{row[license_index]}"
