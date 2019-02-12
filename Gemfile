@@ -8,7 +8,8 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-gem 'darlingtonia', '~> 2.1', require: false
+gem 'darlingtonia', '~> 3.0'
+
 gem 'hyrax', '~> 2.4'
 gem 'rails', '~> 5.1.6'
 
