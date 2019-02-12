@@ -100,4 +100,16 @@ RSpec.describe CsvManifestValidator, type: :model do
       ]
     end
   end
+
+  context 'a CSV with invalid resource type' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'invalid_resource_type.csv') }
+
+    it 'has errors' do
+      validator.validate
+      expect(validator.errors).to eq [
+        'Invalid Resource Type in row 1: An Invalid Type',
+        'Invalid Resource Type in row 3: Another Resource Type'
+      ]
+    end
+  end
 end

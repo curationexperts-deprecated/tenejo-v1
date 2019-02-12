@@ -217,7 +217,7 @@ If you have multiple sources you can enter them like this:
 
 This field is a string. *This field is optional*.
 
-Pre-defined categories to describe the type of content being uploaded, such as "article" or "dataset." More than one type may be selected.
+Pre-defined categories to describe the type of content being uploaded, such as "Article" or "Dataset." More than one type may be selected.
 
 You must choose from one of the types listed [here](https://github.com/curationexperts/tenejo/blob/master/config/authorities/resource_types.yml).
 

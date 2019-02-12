@@ -32,7 +32,7 @@ RSpec.describe ModularImporter, :clean do
     expect(work.date_created).to eq ['2018']
     expect(work.based_near.first.class).to eq Hyrax::ControlledVocabularies::Location
     expect(work.related_url).to eq ['https://www.pexels.com/']
-    expect(work.resource_type).to eq ['image']
+    expect(work.resource_type).to eq ['Image']
     expect(work.creator).to eq ['Kat Jayne']
   end
 
