@@ -113,7 +113,7 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has an error' do
       validator.validate
       expect(validator.errors).to eq [
-        "Invalid license value in row 1: http://creativecommons.org/licenses/foobar"
+        "Invalid License in row 1: http://creativecommons.org/licenses/foobar"
       ]
     end
   end
