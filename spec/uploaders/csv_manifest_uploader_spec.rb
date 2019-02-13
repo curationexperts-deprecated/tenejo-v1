@@ -38,10 +38,10 @@ RSpec.describe CsvManifestUploader, type: :model do
   end
 
   context 'a CSV that has errors' do
-    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_header.csv') }
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_headers.csv') }
 
     it 'has error messages' do
-      expect(uploader.errors).to eq ['Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling.']
+      expect(uploader.errors).to include('Missing required column: "Title".  Your spreadsheet must have this column.')
     end
   end
 end
