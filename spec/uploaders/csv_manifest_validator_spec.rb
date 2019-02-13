@@ -113,7 +113,7 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has an error' do
       validator.validate
       expect(validator.errors).to eq [
-        "Invalid License in row 1: http://creativecommons.org/licenses/foobar"
+        "Invalid License in row 2: http://creativecommons.org/licenses/foobar"
       ]
     end
   end
@@ -124,8 +124,8 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has errors' do
       validator.validate
       expect(validator.errors).to eq [
-        'Invalid Resource Type in row 1: An Invalid Type',
-        'Invalid Resource Type in row 3: Another Resource Type'
+        'Invalid Resource Type in row 2: An Invalid Type',
+        'Invalid Resource Type in row 4: Another Resource Type'
       ]
     end
   end
@@ -149,8 +149,8 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has errors' do
       validator.validate
       expect(validator.errors).to eq [
-        'Invalid Rights Statement in row 2: something_invalid',
-        'Invalid Rights Statement in row 3: invalid rights statement'
+        'Invalid Rights Statement in row 3: something_invalid',
+        'Invalid Rights Statement in row 4: invalid rights statement'
       ]
     end
   end

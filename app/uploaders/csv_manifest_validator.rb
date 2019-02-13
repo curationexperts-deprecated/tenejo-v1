@@ -153,7 +153,7 @@ private
       invalid_values = values.select { |value| !valid_values.include?(value) }
 
       invalid_values.each do |value|
-        @errors << "Invalid #{header_name.titleize} in row #{i}: #{value}"
+        @errors << "Invalid #{header_name.titleize} in row #{i + 1}: #{value}"
       end
     end
   end
