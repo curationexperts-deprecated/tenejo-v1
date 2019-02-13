@@ -28,6 +28,7 @@ class CsvManifestValidator
     return unless @rows
 
     missing_headers
+    duplicate_headers
     unrecognized_headers
     missing_titles
     invalid_license
@@ -76,6 +77,17 @@ private
 
   def required_headers
     ['title', 'creator', 'keyword', 'rights statement', 'visibility', 'files']
+  end
+
+  def duplicate_headers
+    duplicates = []
+    sorted_headers = @transformed_headers.sort
+    sorted_headers.each_with_index do |x, i|
+      duplicates << x if x == sorted_headers[i + 1]
+    end
+    duplicates.uniq.each do |header|
+      @errors << "Duplicate column names: You can have only one \"#{header.titleize}\" column."
+    end
   end
 
   # We can only allow valid license values expected by Hyrax. Otherwise, the application
