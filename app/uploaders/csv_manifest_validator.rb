@@ -41,6 +41,13 @@ class CsvManifestValidator
     @rows.size - 1 # Don't include the header row
   end
 
+  def delimiter
+    @delimiter ||= default_delimiter
+  end
+  attr_writer :delimiter
+
+private
+
   def valid_headers
     ['title', 'files', 'representative media',
      'thumbnail', 'rendering', 'depositor',
@@ -57,8 +64,6 @@ class CsvManifestValidator
   def valid_licenses
     @active_ids ||= Hyrax::LicenseService.new.authority.all.select { |license| license[:active] }.map { |license| license[:id] }
   end
-
-private
 
   def parse_csv
     @rows = CSV.read(csv_file.path)
@@ -129,12 +134,21 @@ private
     @rows.each_with_index do |row, i|
       next if i.zero? # Skip the header row
       next unless row[rt_index]
-      next if valid_resource_types.include? row[rt_index]
-      @errors << "Invalid Resource Type in row #{i}: #{row[rt_index]}"
+
+      values = row[rt_index].split(delimiter)
+      invalid_rt = values.select { |rt| !valid_resource_types.include?(rt) }
+
+      invalid_rt.each do |rt|
+        @errors << "Invalid Resource Type in row #{i}: #{rt}"
+      end
     end
   end
 
   def valid_resource_types
     @valid_resource_type_ids ||= Qa::Authorities::Local.subauthority_for('resource_types').all.select { |term| term[:active] }.map { |term| term[:id] }
+  end
+
+  def default_delimiter
+    Darlingtonia::HyraxBasicMetadataMapper.new.delimiter
   end
 end
