@@ -10,6 +10,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
     let(:admin_user) { FactoryBot.create(:admin) }
 
     before do
+      Collection.destroy_all
       collection.save!
       login_as admin_user
     end
