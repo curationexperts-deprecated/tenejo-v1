@@ -18,6 +18,11 @@ Metrics/BlockLength:
     - spec/importers/modular_importer_spec.rb
     - spec/rails_helper.rb
 
+Metrics/ClassLength:
+  Exclude:
+    - 'app/uploaders/csv_manifest_validator.rb'
+    - 'app/controllers/catalog_controller.rb'
+
 Metrics/MethodLength:
   Enabled: false
 

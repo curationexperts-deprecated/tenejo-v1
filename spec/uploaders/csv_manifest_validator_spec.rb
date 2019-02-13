@@ -119,4 +119,17 @@ RSpec.describe CsvManifestValidator, type: :model do
       ]
     end
   end
+
+  context 'a CSV with duplicate headers' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'duplicate_headers.csv') }
+
+    it 'has errors' do
+      validator.validate
+      expect(validator.errors).to eq [
+        'Duplicate column names: You can have only one "Creator" column.',
+        'Duplicate column names: You can have only one "Keyword" column.',
+        'Duplicate column names: You can have only one "Title" column.'
+      ]
+    end
+  end
 end
