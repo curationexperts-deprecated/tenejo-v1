@@ -42,7 +42,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
+    driven_by :selenium_chrome_headless, screen_size: [1920, 2080]
     # Uncomment if you want to watch the browser
     # driven_by :rack_test
   end

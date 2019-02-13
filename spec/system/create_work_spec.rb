@@ -62,7 +62,7 @@ RSpec.describe 'Create a Work', type: :system, clean: true, js: false do
       expect(page).to have_content('Please note, making something visible to the world (i.e. marking this as Public) may be viewed as publishing which could impact your ability to')
       check('agreement')
 
-      click_on('Save')
+      execute_script('$("#with_files_submit").click()')
       expect(page).to have_content('My Test Work')
       expect(page).to have_content "Your files are being processed"
     end
