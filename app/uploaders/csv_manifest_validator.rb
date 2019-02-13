@@ -117,15 +117,15 @@ private
   # Only allow valid license values expected by Hyrax.
   # Otherwise the app throws an error when it displays the work.
   def invalid_license
-    validate_controlled_vocab('license', :valid_licenses)
+    validate_values('license', :valid_licenses)
   end
 
   def invalid_resource_type
-    validate_controlled_vocab('resource type', :valid_resource_types)
+    validate_values('resource type', :valid_resource_types)
   end
 
   def invalid_rights_statement
-    validate_controlled_vocab('rights statement', :valid_rights_statements)
+    validate_values('rights statement', :valid_rights_statements)
   end
 
   def valid_licenses
@@ -140,15 +140,16 @@ private
     @valid_rights_statement_ids ||= Qa::Authorities::Local.subauthority_for('rights_statements').all.select { |term| term[:active] }.map { |term| term[:id] }
   end
 
-  def validate_controlled_vocab(header_name, valid_values_method)
-    index = @transformed_headers.find_index(header_name)
-    return unless index
+  # Make sure this column contains only valid values
+  def validate_values(header_name, valid_values_method)
+    column_number = @transformed_headers.find_index(header_name)
+    return unless column_number
 
     @rows.each_with_index do |row, i|
       next if i.zero? # Skip the header row
-      next unless row[index]
+      next unless row[column_number]
 
-      values = row[index].split(delimiter)
+      values = row[column_number].split(delimiter)
       valid_values = method(valid_values_method).call
       invalid_values = values.select { |value| !valid_values.include?(value) }
 
