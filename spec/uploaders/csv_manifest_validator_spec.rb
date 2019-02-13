@@ -142,4 +142,16 @@ RSpec.describe CsvManifestValidator, type: :model do
       ]
     end
   end
+
+  context 'a CSV with invalid rights statements' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'invalid_rights.csv') }
+
+    it 'has errors' do
+      validator.validate
+      expect(validator.errors).to eq [
+        'Invalid Rights Statement in row 2: something_invalid',
+        'Invalid Rights Statement in row 3: invalid rights statement'
+      ]
+    end
+  end
 end

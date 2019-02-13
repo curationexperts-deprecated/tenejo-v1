@@ -33,6 +33,7 @@ class CsvManifestValidator
     missing_titles
     invalid_license
     invalid_resource_type
+    invalid_rights_statement
   end
 
   # One record per row
@@ -47,6 +48,10 @@ class CsvManifestValidator
   attr_writer :delimiter
 
 private
+
+  def default_delimiter
+    Darlingtonia::HyraxBasicMetadataMapper.new.delimiter
+  end
 
   def valid_headers
     ['title', 'files', 'representative media',
@@ -148,7 +153,24 @@ private
     @valid_resource_type_ids ||= Qa::Authorities::Local.subauthority_for('resource_types').all.select { |term| term[:active] }.map { |term| term[:id] }
   end
 
-  def default_delimiter
-    Darlingtonia::HyraxBasicMetadataMapper.new.delimiter
+  def invalid_rights_statement
+    index = @transformed_headers.find_index('rights statement')
+    return unless index
+
+    @rows.each_with_index do |row, i|
+      next if i.zero? # Skip the header row
+      next unless row[index]
+
+      values = row[index].split(delimiter)
+      invalid_values = values.select { |value| !valid_rights_statements.include?(value) }
+
+      invalid_values.each do |value|
+        @errors << "Invalid Rights Statement in row #{i}: #{value}"
+      end
+    end
+  end
+
+  def valid_rights_statements
+    @valid_rights_statement_ids ||= Qa::Authorities::Local.subauthority_for('rights_statements').all.select { |term| term[:active] }.map { |term| term[:id] }
   end
 end
