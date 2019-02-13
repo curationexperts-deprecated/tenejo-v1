@@ -11,6 +11,16 @@ RSpec.describe CsvManifestValidator, type: :model do
     import
   end
 
+  context 'delimiter' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
+
+    it 'can set a different delimiter' do
+      expect(validator.delimiter).to eq '|~|'
+      validator.delimiter = 'ಠ_ಠ'
+      expect(validator.delimiter).to eq 'ಠ_ಠ'
+    end
+  end
+
   context 'a valid CSV file' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
 
