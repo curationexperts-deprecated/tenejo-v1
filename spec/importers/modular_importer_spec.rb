@@ -12,7 +12,6 @@ RSpec.describe ModularImporter, :clean do
     File.open(modular_csv) { |f| import.manifest = f }
     import
   end
-  let(:log_stream) { Tenejo::LogStream.new }
 
   before do
     ENV['IMPORT_PATH'] = File.expand_path('../fixtures/images', File.dirname(__FILE__))
@@ -21,7 +20,7 @@ RSpec.describe ModularImporter, :clean do
 
   it "imports a CSV with the correct metadata" do
     expect {
-      ModularImporter.new(csv_import, log_stream: log_stream).import
+      ModularImporter.new(csv_import).import
     }.to change { Work.count }.to 3
 
     work = Work.where(title: 'A Cute Dog').first
@@ -39,19 +38,19 @@ RSpec.describe ModularImporter, :clean do
   it "attaches files" do
     allow(AttachFilesToWorkJob).to receive(:perform_later)
 
-    ModularImporter.new(csv_import, log_stream: log_stream).import
+    ModularImporter.new(csv_import).import
     expect(AttachFilesToWorkJob).to have_received(:perform_later).exactly(3).times
   end
 
   it "adds the new record to the collection" do
     expect(Work.count).to eq 0
-    ModularImporter.new(csv_import, log_stream: log_stream).import
+    ModularImporter.new(csv_import).import
     work = Work.first
     expect(work.member_of_collections).to eq [collection]
   end
 
   it 'logs the collection and user id' do
-    ModularImporter.new(csv_import, log_stream: log_stream).import
+    ModularImporter.new(csv_import).import
     expect(File.open("log/test_csv_import.log") { |f| f.readlines.join.match?("Import for collection: #{collection.id} started by #{user.email}") }).to eq(true)
   end
 end

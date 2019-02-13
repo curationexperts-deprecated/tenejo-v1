@@ -5,9 +5,9 @@ class StartCsvImportJob < ApplicationJob
 
   def perform(csv_import_id)
     csv_import = CsvImport.find csv_import_id
-    log_stream = Tenejo::LogStream.new
+    log_stream = Darlingtonia.config.default_info_stream
     log_stream << "Starting import with batch ID: #{csv_import_id}"
-    importer = ModularImporter.new(csv_import, log_stream: log_stream)
+    importer = ModularImporter.new(csv_import)
     importer.import
   end
 end
