@@ -1,4 +1,4 @@
-rights_statement,another_header_2,rights statement,title,files,representative media,thumbnail,rendering,depositor,date_uploaded,date_modified,label,relative_path,import url,resource type,creator,contributor,abstract or summary,keyword,license,publisher,date created,subject,language,identifier,location,related url,bibliographic_citation,source,visibility
-,,,Work 1 Title,,,,,,,,,,,,,,,,,,,,,,,,,,open
-,,,Work 2 Title,,,,,,,,,,,,,,,,,,,,,,,,,,open
-,,,Work 3 Title,,,,,,,,,,,,,,,,,,,,,,,,,,open
+rights_statement,another_header_2,rights statement,title,files,label,relative_path,import url,resource type,creator,contributor,abstract or summary,keyword,license,publisher,date created,subject,language,identifier,location,related url,bibliographic_citation,source,visibility
+http://rightsstatements.org/vocab/InC/1.0/,,http://rightsstatements.org/vocab/InC/1.0/,Work 1 Title,cat.jpg,,,,,creator,,,cat,,,,,,,,,,,open
+http://rightsstatements.org/vocab/InC/1.0/,,http://rightsstatements.org/vocab/InC/1.0/,Work 2 Title,cat.jpg,,,,,creator,,,cat,,,,,,,,,,,open
+http://rightsstatements.org/vocab/InC/1.0/,,http://rightsstatements.org/vocab/InC/1.0/,Work 3 Title,cat.jpg,,,,,creator,,,cat,,,,,,,,,,,open

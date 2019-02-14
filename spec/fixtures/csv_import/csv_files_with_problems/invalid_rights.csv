@@ -1,4 +1,4 @@
 Title,Keyword,Creator,Files,Visibility,Rights Statement
-Work 1,key,creator,,open,http://rightsstatements.org/vocab/InC/1.0/
-Work 2,key,creator,,open,something_invalid|~|http://rightsstatements.org/vocab/InC/1.0/
-Work 3,key,creator,,open,invalid rights statement
+Work 1,key,creator,file,open,http://rightsstatements.org/vocab/InC/1.0/
+Work 2,key,creator,file,open,something_invalid|~|http://rightsstatements.org/vocab/InC/1.0/
+Work 3,key,creator,file,open,invalid rights statement
