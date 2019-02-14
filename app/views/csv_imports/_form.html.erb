@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-         <div class="col-md-4">
+        <div class="col-md-4">
           <div class="well well-lg">
             <p><b>Download a CSV template</b> to get started.</b></p>
             <div class="text-center">
@@ -25,46 +25,51 @@
         </div>
       </div>
       <hr/>
-      <div class="row">
-        <div class="col-md-8">
-          <h2> Upload Your CSV </h2>
+
+      <% if collections? %>
+        <div class="row">
+          <div class="col-md-8">
+            <h2> Upload Your CSV </h2>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="well well-lg">
-            <p> <b>Upload a CSV</b> that has your content. </p>
-            <div class="text-center">
-              <%= render "file_upload", form: form  %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="well well-lg">
+              <p> <b>Upload a CSV</b> that has your content. </p>
+              <div class="text-center">
+                <%= render "file_upload", form: form  %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="well well-lg">
+              <p> <b>Choose a collection</b>. All imports need to be associated with a collection. </p>
+              <div class="text-center">
+                <%= render "collection_selection", form: form %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="well well-lg">
+              <p> <b>Preview your import</b> before starting the process. </p>
+              <div class="text-center">
+                <%= render "actions", form: form %>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="well well-lg">
-            <p> <b>Choose a collection</b>. All imports need to be associated with a collection. </p>
-            <div class="text-center">
-              <%= render "collection_selection", form: form %>
-            </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <%= render "error", csv_import: csv_import %>
+          </div>
+          <div class="col-md-4">
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="well well-lg">
-            <p> <b>Preview your import</b> before starting the process. </p>
-            <div class="text-center">
-              <%= render "actions", form: form %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <%= render "error", csv_import: csv_import %>
-        </div>
-        <div class="col-md-4">
-        </div>
-      </div>
 
 
-      <%= form.hidden_field :manifest_cache %>
+        <%= form.hidden_field :manifest_cache %>
+      <% else %>
+        <%= render 'no_collection' %>
+      <% end %>
 <% end %>
