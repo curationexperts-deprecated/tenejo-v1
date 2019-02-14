@@ -113,7 +113,7 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has an error' do
       validator.validate
       expect(validator.errors).to eq [
-        "Invalid license value in row 1: http://creativecommons.org/licenses/foobar"
+        "Invalid License in row 2: http://creativecommons.org/licenses/foobar"
       ]
     end
   end
@@ -124,8 +124,8 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has errors' do
       validator.validate
       expect(validator.errors).to eq [
-        'Invalid Resource Type in row 1: An Invalid Type',
-        'Invalid Resource Type in row 3: Another Resource Type'
+        'Invalid Resource Type in row 2: An Invalid Type',
+        'Invalid Resource Type in row 4: Another Resource Type'
       ]
     end
   end
@@ -139,6 +139,18 @@ RSpec.describe CsvManifestValidator, type: :model do
         'Duplicate column names: You can have only one "Creator" column.',
         'Duplicate column names: You can have only one "Keyword" column.',
         'Duplicate column names: You can have only one "Title" column.'
+      ]
+    end
+  end
+
+  context 'a CSV with invalid rights statements' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'invalid_rights.csv') }
+
+    it 'has errors' do
+      validator.validate
+      expect(validator.errors).to eq [
+        'Invalid Rights Statement in row 3: something_invalid',
+        'Invalid Rights Statement in row 4: invalid rights statement'
       ]
     end
   end
