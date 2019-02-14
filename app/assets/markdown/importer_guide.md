@@ -241,46 +241,6 @@ You can use `open`, `registered`, or `restricted`
 
 `open`
 
-# Representative Media
-
-Select the file with media that represents this work.
-
-This field is a string file name of one of the files in the file column. *This field is optional*.
-
-You can only choose a single file as representative media.
-
-## Example
-
-`01267_150px.jpg`
-
-# Thumbnail
-
-Select the file to be used as the thumbnail for this work.
-
-This field is a string file name of one of the files in the file column. *This field is optional*.
-
-You can only choose a single file as a thumbnail.
-
-## Example
-
-`01267_150px.jpg`
-
-# Rendering
-
-Select file(s) to be offered as a download for every image in Universal Viewer, for example a PDF of the whole work.
-
-This field is a string. *This field is optional*.
-
-You can have multiple files for rendering.
-
-## Example
-
-`01267_150px.jpg`
-
-If you have multiple rendering files you can enter them like this:
-
-`01267_150px.jpg|~|01267_151px.jpg`
-
 # Files
 
 You can add one or more files to associate with this work.
