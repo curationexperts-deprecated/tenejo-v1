@@ -66,7 +66,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bixby', '~> 1.0.0'
+  gem 'bixby', '2.0.0.pre.beta1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
