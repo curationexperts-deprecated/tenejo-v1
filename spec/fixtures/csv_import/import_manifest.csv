@@ -1,4 +1,4 @@
-title,files,representative media,thumbnail,rendering,depositor,date_uploaded,date_modified,label,relative_path,import url,resource type,creator,contributor,abstract or summary,keyword,license,rights statement,publisher,date created,subject,language,identifier,location,related url,bibliographic_citation,source,visibility
-Work 1 Title,,,,,,,,,,,,,,,,,,,,,,,,,,,open
-Work 2 Title,,,,,,,,,,,,,,,,,,,,,,,,,,,open
-Work 3 Title,,,,,,,,,,,,,,,,,,,,,,,,,,,open
+title,files,label,relative_path,import url,resource type,creator,contributor,abstract or summary,keyword,license,rights statement,publisher,subject,language,identifier,location,related url,bibliographic_citation,source,visibility
+Work 1 Title,something,,,,Image,creator 1,contrib 1,desc 1,key1,,http://rightsstatements.org/vocab/InC/1.0/,pub 1,subj 1,English,id1,,,,,open
+Work 2 Title,something,,,,Image,creator 2,contrib 2,desc 2,key2,,http://rightsstatements.org/vocab/InC/1.0/,,subj 2,,id2,,,,,open
+Work 3 Title,something,,,,Image,creator 3,contrib 3,,key3,,http://rightsstatements.org/vocab/InC/1.0/,,subj 3,,id3,,,,,open

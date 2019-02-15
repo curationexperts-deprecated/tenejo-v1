@@ -30,7 +30,7 @@ class CsvManifestValidator
     missing_headers
     duplicate_headers
     unrecognized_headers
-    missing_titles
+    missing_values
     invalid_license
     invalid_resource_type
     invalid_rights_statement
@@ -104,13 +104,14 @@ private
     end
   end
 
-  def missing_titles
-    title_index = @transformed_headers.find_index('title')
-    return unless title_index
+  def missing_values
+    column_numbers = required_headers.map { |header| @transformed_headers.find_index(header) }.compact
 
     @rows.each_with_index do |row, i|
-      next unless row[title_index].blank?
-      @errors << "Missing required metadata \"Title\": row #{i}"
+      column_numbers.each_with_index do |column_number, j|
+        next unless row[column_number].blank?
+        @errors << "Missing required metadata in row #{i + 1}: \"#{required_headers[j].titleize}\" field cannot be blank"
+      end
     end
   end
 

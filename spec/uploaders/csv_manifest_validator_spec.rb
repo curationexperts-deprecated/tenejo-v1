@@ -82,15 +82,19 @@ RSpec.describe CsvManifestValidator, type: :model do
     end
   end
 
-  context 'a CSV that is missing required fields' do
-    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_field.csv') }
+  context 'a CSV that is missing required values' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_values.csv') }
 
-    it 'has an error' do
+    it 'has errors' do
       validator.validate
       expect(validator.errors).to eq [
-        'Missing required metadata "Title": row 2',
-        'Missing required metadata "Title": row 3',
-        'Missing required metadata "Title": row 5'
+        'Missing required metadata in row 2: "Creator" field cannot be blank',
+        'Missing required metadata in row 2: "Rights Statement" field cannot be blank',
+        'Missing required metadata in row 3: "Title" field cannot be blank',
+        'Missing required metadata in row 3: "Keyword" field cannot be blank',
+        'Missing required metadata in row 4: "Title" field cannot be blank',
+        'Missing required metadata in row 4: "Visibility" field cannot be blank',
+        'Missing required metadata in row 4: "Files" field cannot be blank'
       ]
     end
   end
