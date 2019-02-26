@@ -37,7 +37,7 @@ RSpec.describe ModularImporter, :clean do
     it 'updates existing records if the deduplication_field (identifier) matches' do
       first_importer.import
       work = Work.last
-      expect(work.keyword).to eq ["Clothing stores $z California $z Los Angeles", "Interior design $z California $z Los Angeles"]
+      expect(work.keyword).to contain_exactly("Clothing stores $z California $z Los Angeles", "Interior design $z California $z Los Angeles")
       second_importer.import
       work.reload
       expect(work.keyword.first).to eq "New Keyword"
