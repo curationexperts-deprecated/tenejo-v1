@@ -34,7 +34,7 @@ RSpec.describe ModularImporter, :clean do
       import
     end
     let(:second_importer) { ModularImporter.new(second_csv_import) }
-    it 'updates existing records if the ARK matches' do
+    it 'updates existing records if the deduplication_field (identifier) matches' do
       first_importer.import
       work = Work.last
       expect(work.keyword).to eq ["Clothing stores $z California $z Los Angeles", "Interior design $z California $z Los Angeles"]

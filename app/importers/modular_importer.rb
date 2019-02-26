@@ -2,6 +2,8 @@
 require 'darlingtonia'
 
 class ModularImporter
+  DEDUPLICATION_FIELD = 'identifier'
+
   def initialize(csv_import)
     @csv_import = csv_import
     @csv_file = csv_import.manifest.to_s
@@ -16,7 +18,8 @@ class ModularImporter
     attrs = {
       collection_id: @collection_id,
       depositor_id: @user_id,
-      batch_id: @csv_import.id
+      batch_id: @csv_import.id,
+      deduplication_field: DEDUPLICATION_FIELD
     }
 
     file = File.open(@csv_file)
