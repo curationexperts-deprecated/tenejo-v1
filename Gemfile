@@ -8,7 +8,7 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-gem 'darlingtonia', '~> 3.0'
+gem 'darlingtonia', '~> 3.1'
 
 gem 'hyrax', '~> 2.4'
 gem 'rails', '~> 5.1.6'

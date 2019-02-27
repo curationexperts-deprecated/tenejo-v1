@@ -19,6 +19,31 @@ RSpec.describe ModularImporter, :clean do
     allow_any_instance_of(::Ability).to receive(:can?).and_return(true)
   end
 
+  context "importing the same object twice" do
+    let(:first_csv_file)   { File.join(fixture_path, 'csv_import', 'good', 'all_fields.csv') }
+    let(:first_csv_import) do
+      import = CsvImport.new(user: user, fedora_collection_id: collection.id)
+      File.open(first_csv_file) { |f| import.manifest = f }
+      import
+    end
+    let(:first_importer) { ModularImporter.new(first_csv_import) }
+    let(:second_csv_file)  { File.join(fixture_path, 'csv_import', 'good', 'all_fields_update.csv') }
+    let(:second_csv_import) do
+      import = CsvImport.new(user: user, fedora_collection_id: collection.id)
+      File.open(second_csv_file) { |f| import.manifest = f }
+      import
+    end
+    let(:second_importer) { ModularImporter.new(second_csv_import) }
+    it 'updates existing records if the deduplication_field (identifier) matches' do
+      first_importer.import
+      work = Work.last
+      expect(work.keyword).to contain_exactly("Clothing stores $z California $z Los Angeles", "Interior design $z California $z Los Angeles")
+      second_importer.import
+      work.reload
+      expect(work.keyword.first).to eq "New Keyword"
+    end
+  end
+
   it "imports a CSV with the correct metadata" do
     expect {
       ModularImporter.new(csv_import).import
