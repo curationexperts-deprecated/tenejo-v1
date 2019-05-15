@@ -64,8 +64,6 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.4.0)
     autoprefixer-rails (9.6.1)
@@ -171,9 +169,6 @@ GEM
       mime-types (>= 1.16)
     childprocess (1.0.1)
       rake (< 13.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     chronic (0.10.2)
     clamby (1.6.2)
     clipboard-rails (1.7.1)
@@ -411,7 +406,6 @@ GEM
     ice_nine (0.11.2)
     iiif_manifest (0.5.0)
       activesupport (>= 4)
-    io-like (0.3.0)
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -856,7 +850,6 @@ DEPENDENCIES
   capistrano-rails
   capistrano-sidekiq (~> 0.20.0)
   capybara (~> 2.13)
-  chromedriver-helper
   clamby
   coffee-rails (~> 4.2)
   devise

@@ -11,6 +11,7 @@ require 'rspec/rails'
 require 'rspec/retry'
 require 'active_fedora/cleaner'
 require 'ffaker'
+require 'selenium-webdriver'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -27,10 +28,12 @@ require 'ffaker'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # rubocop:disable Rails/FilePath
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -39,15 +42,6 @@ RSpec.configure do |config|
   config.before(:suite) do
     ActiveJob::Base.queue_adapter = :test
     ActiveFedora::Cleaner.clean!
-  end
-
-  config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless, screen_size: [1920, 2080]
-    # Uncomment if you want to watch the browser
-    # driven_by :rack_test
-  end
-  config.after(:each, type: :system) do
-    driven_by :rack_test
   end
 
   config.before(clean: true) do
