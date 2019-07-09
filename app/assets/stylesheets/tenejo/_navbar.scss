@@ -1,0 +1,17 @@
+.navbar {
+  border: 0;
+}
+
+.navbar-static-top {
+  li {
+    a {
+      padding-bottom: 17px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .control-label {
+    height: 30px;
+  }
+}
