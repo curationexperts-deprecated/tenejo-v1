@@ -4,6 +4,7 @@
  *= require_self
 */
 
+@import 'tenejo/variables';
 @import "bootstrap-sprockets";
 @import "bootstrap-default-overrides";
 @import 'bootstrap';
@@ -14,6 +15,7 @@
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
+
 
 .brand-logo img {
   height: 28px;
