@@ -10,5 +10,8 @@ class ExceptionMiddleware
   rescue Blacklight::Exceptions::RecordNotFound
     # Redirect to non-existant location, which goes to the 404 page
     [301, { 'Location' => '/not-found', 'Content-Type' => 'text/html' }, ['Moved Permanently']]
+  rescue ActiveFedora::ObjectNotFoundError
+    # Redirect to non-existant location, which goes to the 404 page
+    [301, { 'Location' => '/not-found', 'Content-Type' => 'text/html' }, ['Moved Permanently']]
   end
 end
