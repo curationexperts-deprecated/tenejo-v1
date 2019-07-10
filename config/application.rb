@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require_relative 'boot'
 require_relative 'exception_middleware'
+require_relative 'contact_redirect_middleware'
 
 require 'rails/all'
 
@@ -15,5 +16,6 @@ module Tenejo
 
     config.active_job.queue_adapter = :sidekiq
     config.middleware.use(::ExceptionMiddleware)
+    config.middleware.use(::ContactRedirectMiddleware)
   end
 end
