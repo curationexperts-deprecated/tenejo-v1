@@ -18,4 +18,11 @@ RSpec.describe 'Getting a 404 for RecordNotFound', type: :system do
       expect(page).to have_content('does not exist')
     end
   end
+
+  context 'visiting a non-existent collection' do
+    it 'has a 404 page' do
+      visit('/collections/not_a_collection_id')
+      expect(page).to have_content('does not exist')
+    end
+  end
 end
