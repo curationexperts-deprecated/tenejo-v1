@@ -20,5 +20,7 @@ class Ability
     # end
 
     can :manage, CsvImport if current_user.admin?
+
+    can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role if current_user.admin?
   end
 end
