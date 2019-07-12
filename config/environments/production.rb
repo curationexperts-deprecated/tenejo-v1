@@ -73,6 +73,9 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
+  # Required for devise
+  Rails.application.routes.default_url_options[:host] = `hostname`.strip
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
