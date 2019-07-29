@@ -10,7 +10,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 module Tenejo
   class Application < Rails::Application
-    require 'darlingtonia'
+    require 'zizia'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

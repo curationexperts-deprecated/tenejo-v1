@@ -11,7 +11,7 @@ RSpec.describe 'Trying to import a CSV without collections', :clean, type: :syst
     end
 
     it 'displays a warning message' do
-      visit new_csv_import_path
+      visit '/csv_imports/new'
       expect(page.html.match?(/no-collection/)).to eq(true)
     end
   end

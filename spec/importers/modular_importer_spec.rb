@@ -8,11 +8,11 @@ RSpec.describe ModularImporter, :clean do
   let(:user) { ::User.batch_user }
   let(:collection) { FactoryBot.create(:collection) }
   let(:csv_import) do
-    import = CsvImport.new(user: user, fedora_collection_id: collection.id)
+    import = Zizia::CsvImport.new(user: user, fedora_collection_id: collection.id)
     File.open(modular_csv) { |f| import.manifest = f }
     import
   end
-  let(:log_path) { Darlingtonia::LogStream.new(severity: Logger::INFO).send(:build_filename) }
+  let(:log_path) { Zizia::LogStream.new(severity: Logger::INFO).send(:build_filename) }
 
   before do
     ENV['IMPORT_PATH'] = File.expand_path('../fixtures/images', File.dirname(__FILE__))
@@ -22,14 +22,15 @@ RSpec.describe ModularImporter, :clean do
   context "importing the same object twice" do
     let(:first_csv_file)   { File.join(fixture_path, 'csv_import', 'good', 'all_fields.csv') }
     let(:first_csv_import) do
-      import = CsvImport.new(user: user, fedora_collection_id: collection.id)
+      import = Zizia::CsvImport.new(user: user, fedora_collection_id: collection.id)
       File.open(first_csv_file) { |f| import.manifest = f }
       import
     end
     let(:first_importer) { ModularImporter.new(first_csv_import) }
+
     let(:second_csv_file)  { File.join(fixture_path, 'csv_import', 'good', 'all_fields_update.csv') }
     let(:second_csv_import) do
-      import = CsvImport.new(user: user, fedora_collection_id: collection.id)
+      import = Zizia::CsvImport.new(user: user, fedora_collection_id: collection.id)
       File.open(second_csv_file) { |f| import.manifest = f }
       import
     end

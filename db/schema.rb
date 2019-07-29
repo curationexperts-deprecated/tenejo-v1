@@ -70,15 +70,6 @@ ActiveRecord::Schema.define(version: 20190124153654) do
     t.string "external_key"
   end
 
-  create_table "csv_imports", force: :cascade do |t|
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "manifest"
-    t.string "fedora_collection_id"
-    t.index ["user_id"], name: "index_csv_imports_on_user_id"
-  end
-
   create_table "curation_concerns_operations", force: :cascade do |t|
     t.string "status"
     t.string "operation_type"
@@ -579,8 +570,16 @@ ActiveRecord::Schema.define(version: 20190124153654) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  create_table "zizia_csv_imports", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "manifest"
+    t.string "fedora_collection_id"
+    t.index ["user_id"], name: "index_zizia_csv_imports_on_user_id"
+  end
+
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
-  add_foreign_key "csv_imports", "users"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
@@ -588,4 +587,5 @@ ActiveRecord::Schema.define(version: 20190124153654) do
   add_foreign_key "permission_template_accesses", "permission_templates"
   add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
   add_foreign_key "uploaded_files", "users"
+  add_foreign_key "zizia_csv_imports", "users"
 end
