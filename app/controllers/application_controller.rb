@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  helper Zizia::Engine.helpers
   # What to do if read_only mode has been enabled, via FlipFlop
   # If read_only is enabled, redirect any requests that would allow
   # changes to the system. This is to enable easier migrations.

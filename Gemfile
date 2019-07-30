@@ -11,7 +11,6 @@ ruby '>= 2.4.0', '<= 2.5.99'
 gem "actionview", ">= 5.1.6.2"
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
-gem 'darlingtonia', '~> 3.1'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
@@ -32,6 +31,7 @@ gem 'sidekiq', '~> 5.1.3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
+gem 'zizia', '~> 2.1.0.alpha.02'
 
 group :development do
   # Use Capistrano for deployment automation

@@ -15,8 +15,7 @@ RSpec.describe 'Importing records from a CSV file with fatal errors', type: :sys
     end
 
     it 'aborts the import' do
-      visit new_csv_import_path
-
+      visit '/csv_imports/new'
       # Fill in and submit the form
       attach_file('csv_import[manifest]', bad_csv_file, make_visible: true)
       select collection.title.first, from: "csv_import[fedora_collection_id]"

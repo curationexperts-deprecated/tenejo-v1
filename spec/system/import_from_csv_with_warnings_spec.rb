@@ -16,7 +16,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
     end
 
     it 'starts the import' do
-      visit new_csv_import_path
+      visit '/csv_imports/new'
       expect(page).to have_content 'Testing Collection'
       expect(page).not_to have_content '["Testing Collection"]'
       select 'Testing Collection', from: "csv_import[fedora_collection_id]"
@@ -35,7 +35,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       expect(page).to have_content 'This import will add 3 new records.'
 
       # There is a link so the user can cancel.
-      expect(page).to have_link 'Cancel', href: new_csv_import_path(locale: I18n.locale)
+      expect(page).to have_link 'Cancel', href: '/csv_imports/new?locale=en'
 
       # After reading the warnings, the user decides
       # to continue with the import.
