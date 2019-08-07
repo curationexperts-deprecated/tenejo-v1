@@ -23,7 +23,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
 
       # Fill in and submit the form
       attach_file('csv_import[manifest]', csv_file, make_visible: true)
-      expect(page).to have_content 'all_fields.csv'
+
       click_on 'Preview Import'
 
       # We expect to see the title of the collection on the page
