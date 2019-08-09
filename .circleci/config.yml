@@ -15,7 +15,7 @@ jobs:
         default: 2.0.2
 
     executor:
-      name: 'ruby_fcrepo_solr_redis_postgres'
+      name: 'samvera/ruby_fcrepo_solr_redis_postgres'
       ruby_version: << parameters.ruby_version >>
 
     environment:
