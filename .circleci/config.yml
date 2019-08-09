@@ -29,7 +29,6 @@ jobs:
       - samvera/bundle:
           ruby_version: << parameters.ruby_version >>
           bundler_version: << parameters.bundler_version >>
-          project: tenejo
       - samvera/rubocop
       - samvera/parallel_rspec
 
