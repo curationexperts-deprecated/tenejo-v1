@@ -1,6 +1,6 @@
 default: &default
   host: <%= ENV['DATABASE_HOST'] || '127.0.0.1' %>
-  username: <%= ENV['CI'] == 'true' ? ('travis') : (ENV['POSTGRES_USER'] || 'tenejo') %>
+  username: <%= ENV['DATABASE_USERNAME']  %>
   adapter:  postgresql
   encoding: unicode
   pool:     <%= ENV['DATABASE_POOL_SIZE'] || 5 %>
