@@ -10,6 +10,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
     let(:admin_user) { FactoryBot.create(:admin) }
 
     before do
+      ENV['IMPORT_PATH'] = File.join(fixture_path, 'images')
       allow(CharacterizeJob).to receive(:perform_later) # There is no fits installed on travis-ci
       collection.save!
       login_as admin_user
@@ -29,7 +30,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       # We expect to see the title of the collection on the page
       expect(page).to have_content 'Testing Collection'
 
-      expect(page).to have_content 'This import will add 1 new records.'
+      expect(page).to have_content 'This import will create or update 2 records.'
 
       # There is a link so the user can cancel.
       expect(page).to have_link 'Cancel', href: '/csv_imports/new?locale=en'
@@ -46,7 +47,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       expect(page).to have_content 'Testing Collection'
 
       # Let the background jobs run, and check that the expected number of records got created.
-      expect(Work.count).to eq 1
+      expect(Work.count).to eq 2
 
       # Ensure that all the fields got assigned as expected
       work = Work.where(title: "*haberdashery*").first

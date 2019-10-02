@@ -10,6 +10,6 @@ RSpec.describe 'viewing the importer guide', type: :system do
 
   it 'displays without error' do
     visit '/importer_documentation/guide'
-    expect(page.title).to match(/Guide Importer Documentation/)
+    expect(page.title).to match(/Show Metadata Detail \/\/ Tenejo/)
   end
 end
