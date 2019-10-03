@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124153654) do
+ActiveRecord::Schema.define(version: 201901241536542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -570,13 +570,47 @@ ActiveRecord::Schema.define(version: 20190124153654) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  create_table "zizia_csv_import_details", force: :cascade do |t|
+    t.bigint "csv_import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "depositor_id"
+    t.string "collection_id"
+    t.string "batch_id"
+    t.integer "success_count"
+    t.integer "failure_count"
+    t.string "deduplication_field"
+    t.string "update_actor_stack"
+    t.index ["csv_import_id"], name: "index_zizia_csv_import_details_on_csv_import_id"
+  end
+
   create_table "zizia_csv_imports", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "manifest"
     t.string "fedora_collection_id"
+    t.string "update_actor_stack"
     t.index ["user_id"], name: "index_zizia_csv_imports_on_user_id"
+  end
+
+  create_table "zizia_pre_ingest_files", force: :cascade do |t|
+    t.integer "size"
+    t.text "row"
+    t.integer "row_number"
+    t.string "filename"
+    t.bigint "pre_ingest_work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pre_ingest_work_id"], name: "index_zizia_pre_ingest_files_on_pre_ingest_work_id"
+  end
+
+  create_table "zizia_pre_ingest_works", force: :cascade do |t|
+    t.integer "parent_object"
+    t.bigint "csv_import_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["csv_import_detail_id"], name: "index_zizia_pre_ingest_works_on_csv_import_detail_id"
   end
 
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
