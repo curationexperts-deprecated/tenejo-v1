@@ -26,9 +26,3 @@ script:
 services:
 - redis-server
 - postgresql
-after_success:
-  - |
-    if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
-      openssl aes-256-cbc -K $encrypted_57e6d9c2b1f5_key -iv $encrypted_57e6d9c2b1f5_iv -in tenejo-cd.enc -out tenejo-cd -d
-      bundle exec cap cd deploy
-    fi
