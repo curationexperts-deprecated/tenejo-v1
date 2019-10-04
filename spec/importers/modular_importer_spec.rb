@@ -19,7 +19,10 @@ RSpec.describe ModularImporter, :clean do
 
   it "imports a csv" do
     expect { ModularImporter.new(csv_import).import }.to change { Work.count }.by 2
-    expect(Work.first.title.first).to match(/nterior view/)
-    expect(Work.last.title.first).to match(/nterior view/)
+
+    # We can't guarantee that background jobs create this
+    # arrangement currently.
+    expect(Work.first.title.first).to match(/terior view/)
+    expect(Work.last.title.first).to match(/terior view/)
   end
 end
