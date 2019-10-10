@@ -59,6 +59,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'fcrepo_wrapper'
   gem 'ffaker'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'rspec-retry'
   gem 'selenium-webdriver'
