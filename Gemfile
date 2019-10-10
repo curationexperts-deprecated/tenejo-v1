@@ -59,9 +59,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'fcrepo_wrapper'
   gem 'ffaker'
-  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'rspec-retry'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
   gem 'solr_wrapper', '>= 0.3'
 end
