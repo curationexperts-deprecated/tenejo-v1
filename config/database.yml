@@ -1,6 +1,6 @@
 default: &default
   host: <%= ENV['DATABASE_HOST'] || '127.0.0.1' %>
-  username: <%= ENV['CI'] == 'true' ? ('travis') : (ENV['POSTGRES_USER'] || 'tenejo') %>
+  username: <%= ENV['DATABASE_USERNAME']  %>
   adapter:  postgresql
   encoding: unicode
   pool:     <%= ENV['DATABASE_POOL_SIZE'] || 5 %>
@@ -15,7 +15,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: tenejo_test
+  database: <%= ENV['POSTGRES_DB'] || ENV['DATABASE_NAME'] %>
+  username: <%= ENV['POSTGRES_USER'] || ENV['DATABASE_USERNAME'] %>
 
 production:
   <<: *default

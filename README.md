@@ -1,7 +1,7 @@
 Tenejo: a General Purpose Digital Repository
 ============================================
 
-[![Build Status](https://travis-ci.org/curationexperts/tenejo.svg?branch=master)](https://travis-ci.org/curationexperts/tenejo) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
+[![CircleCI](https://circleci.com/gh/curationexperts/tenejo.svg?style=svg)](https://circleci.com/gh/curationexperts/tenejo) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE) [![Maintainability](https://api.codeclimate.com/v1/badges/11b857b0d512575d91c5/maintainability)](https://codeclimate.com/github/curationexperts/tenejo/maintainability)
 
 Tenejo gives you the most commonly used Samvera features and functions in an easy to use hosted solution.
 
