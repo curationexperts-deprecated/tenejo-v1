@@ -13,11 +13,11 @@ RSpec.describe 'Dashboard', type: :system do
     end
 
     it 'can download a CSV template' do
-      expect(page).to have_link 'Download Import Template'
+      expect(page).not_to have_link 'Download Import Template'
     end
 
     it 'can get to the importer page' do
-      expect(page).to have_link 'Import Content From a CSV'
+      expect(page).not_to have_link 'Import Content From a CSV'
     end
 
     it 'has the footer version' do
@@ -34,6 +34,14 @@ RSpec.describe 'Dashboard', type: :system do
     before do
       login_as admin
       visit '/dashboard'
+    end
+
+    it 'can download a CSV template' do
+      expect(page).to have_link 'Download Import Template'
+    end
+
+    it 'can get to the importer page' do
+      expect(page).to have_link 'Import Content From a CSV'
     end
 
     it 'has a link to the user roles page' do

@@ -23,15 +23,19 @@
       <% end %>
   <% end %>
 
-<% if Flipflop.download_csv? %>
+  <% if Flipflop.download_csv? %>
+    <% if current_user.admin? %>
   <%= menu.nav_link('/importer_documentation/csv',  data: { turbolinks: false }) do %>
-      <span class="fa fa-table"></span> <span class="sidebar-action-text">Download Import Template</span>
+    <span class="fa fa-table"></span> <span class="sidebar-action-text">Download Import Template</span>
+    <% end %>
   <% end %>
 <% end %>
 
 
 <% if Flipflop.import_csv? %>
+  <% if current_user.admin? %>
   <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
       <span class="fa fa-upload"></span> <span class="sidebar-action-text">Import Content From a CSV</span>
+    <% end %>
   <% end %>
 <% end %>
