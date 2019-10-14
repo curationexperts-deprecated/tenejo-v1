@@ -37,7 +37,7 @@ RSpec.describe 'Dashboard', type: :system do
     end
 
     it 'can download a CSV template' do
-      expect(page).to have_link 'Download Import Template'
+      expect(page).not_to have_link 'Download Import Template'
     end
 
     it 'can get to the importer page' do
