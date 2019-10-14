@@ -22,13 +22,6 @@
           <span class="fa fa-line-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.sidekiq') %></span>
       <% end %>
   <% end %>
-
-  <% if Flipflop.download_csv? %>
-    <% if current_user.admin? %>
-  <%= menu.nav_link('/importer_documentation/csv',  data: { turbolinks: false }) do %>
-    <span class="fa fa-table"></span> <span class="sidebar-action-text">Download Import Template</span>
-    <% end %>
-  <% end %>
 <% end %>
 
 
