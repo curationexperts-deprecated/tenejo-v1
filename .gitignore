@@ -17,6 +17,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore coverage
+/coverage/*
+
 /node_modules
 /yarn-error.log
 
