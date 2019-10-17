@@ -14,5 +14,6 @@
  *= require openseadragon
  *= require hyrax
  *= require tenejo
+ *= require zizia/application
  *= require_self
  */
