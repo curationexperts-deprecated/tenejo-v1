@@ -1,5 +1,25 @@
 ---
 en:
+  simple_form:
+   labels:
+     defaults:
+       abstract: Abstract or Summary
+       based_near: Location
+       bibliographic_citation: Bibliographic Citation
+       contributor: Contributor
+       creator: Creator
+       date_created: Date Created
+       identifier: Identifier
+       keyword: Keyword
+       language: Language
+       license: License
+       publisher: Publisher
+       related_url: Related URL
+       resource_type: Resource Type
+       rights_statement: Rights Statement
+       source: Source
+       subject: Subject
+       title: Title
   blacklight:
     search:
       fields:
