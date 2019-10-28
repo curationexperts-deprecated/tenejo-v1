@@ -51,7 +51,7 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.  This is extremely chatty, so we provide a mechanism to
   # selectively reduce log output on production instances.
-  config.log_level = ENV['LOG_LEVEL'] || 'debug'
+  config.log_level = ENV['LOG_LEVEL'] || 'error'
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
