@@ -78,5 +78,5 @@ en:
     product_twitter_handle: "@SamveraRepo"
     visibility:
       authenticated:
-        note_html: Restrict access to authenticated users.
-        text: "anything"
+        note_html: 'Restrict access to registered users.'
+        text: 'Authenticated'
