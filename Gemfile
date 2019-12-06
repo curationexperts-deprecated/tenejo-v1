@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.7' # Use Puma as the app server
+gem 'puma', '~> 3.12' # Use Puma as the app server
 gem 'rails', '~> 5.1.6'
 gem 'redcarpet'
 gem 'riiif', '~> 1.1'
