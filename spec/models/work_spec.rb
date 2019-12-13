@@ -1,10 +1,12 @@
 # frozen_string_literal: true
-# Generated via
-#  `rails generate hyrax:work Work`
+
 require 'rails_helper'
 
 RSpec.describe Work do
-  it "has tests" do
-    skip "Add your tests here"
+  let(:work) { described_class.new }
+
+  it "has a deduplication key" do
+    work.deduplication_key = 'abc/123'
+    expect(work.deduplication_key).to eq('abc/123')
   end
 end

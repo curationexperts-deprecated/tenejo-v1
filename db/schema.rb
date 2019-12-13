@@ -581,6 +581,7 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.integer "failure_count"
     t.string "deduplication_field"
     t.string "update_actor_stack"
+    t.string "status"
     t.index ["csv_import_id"], name: "index_zizia_csv_import_details_on_csv_import_id"
   end
 
@@ -602,6 +603,7 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.bigint "pre_ingest_work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "preingest"
     t.index ["pre_ingest_work_id"], name: "index_zizia_pre_ingest_files_on_pre_ingest_work_id"
   end
 
@@ -610,7 +612,10 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.bigint "csv_import_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "deduplication_key"
+    t.string "status", default: "preingest"
     t.index ["csv_import_detail_id"], name: "index_zizia_pre_ingest_works_on_csv_import_detail_id"
+    t.index ["deduplication_key"], name: "index_zizia_pre_ingest_works_on_deduplication_key"
   end
 
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
