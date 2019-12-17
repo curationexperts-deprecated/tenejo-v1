@@ -30,7 +30,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       # We expect to see the title of the collection on the page
       expect(page).to have_content 'Testing Collection'
 
-      expect(page).to have_content 'This import will create or update 2 records.'
+      expect(page).to have_content 'This import will process 2 row(s).'
 
       # There is a link so the user can cancel.
       expect(page).to have_link 'Cancel', href: '/csv_imports/new?locale=en'
@@ -68,8 +68,8 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       visit "/concern/works/#{work.id}"
       expect(page).to have_content work.title.first
       # Controlled vocabulary location should have been resolved to its label name
-      expect(page).to have_content "Montana"
-      expect(page).to have_content "United States"
+      expect(page).to have_content "California"
+      expect(page).to have_content "Los Angeles"
 
       # The license value resolves to a controlled field from creative commons
       expect(page).to have_link "Attribution 4.0"
