@@ -40,7 +40,7 @@ group :development do
   gem 'capistrano-ext'
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
-  gem 'capistrano-sidekiq', '~> 0.20.0'
+  gem 'capistrano-sidekiq', '~> 1.0.3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
