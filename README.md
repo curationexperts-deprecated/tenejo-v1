@@ -53,12 +53,11 @@ Development
 
 1. Run `bundle install`
 1. Run `bundle exec rake db:migrate` to setup the development database and schema.
+1. Start the servers, one per terminal window/tab - `fcrepo_wrapper`, `solr_wrapper`, `rails server`, and `sidekiq`
 1. (optional) Create standard accounts: `rake tenejo:standard_users_setup`.
 1. Create default collection types: `bundle exec rails hyrax:default_collection_types:create`
 1. `bundle exec rails hyrax:default_admin_set:create`
-1. Start the servers, one per terminal window/tab - `fcrepo_wrapper`, `solr_wrapper`, `rails server`, and `sidekiq`
-1. Make sure your computer has a directory /opt/uploads/ that you own
-
+1. Make sure your computer has directories `/opt/uploads/` and `/opt/derivatives` that you own
 
 Production
 ----------
