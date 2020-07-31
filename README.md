@@ -36,21 +36,20 @@ Development
     postgres=# \q
     ```
 1. Set up your gemset using rvm (it's possible you'll need to download a new Ruby, depending on the project - `rvm install [ruby-version]`)
-  ```
-  rvm list rubies
-  * ruby-2.5.1 [ x86_64 ]
-  => ruby-2.6.3 [ x86_64 ]
+    ```
+    rvm list rubies
+    * ruby-2.5.1 [ x86_64 ]
+    => ruby-2.6.3 [ x86_64 ]
 
-  # => - current
-  # =* - current && default
-  #  * - default
+    # => - current
+    # =* - current && default
+    #  * - default
 
-  rvm use gemset ruby-2.6.3@tenejo --create
-  ruby-2.6.3 - #gemset created /Users/max/.rvm/gems/ruby-2.6.3@tenejo
-  ruby-2.6.3 - #generating tenejo wrappers.........
-  Using /Users/max/.rvm/gems/ruby-2.6.3 with gemset tenejo
-  ```
-
+    rvm use gemset ruby-2.6.3@tenejo --create
+    ruby-2.6.3 - #gemset created /Users/max/.rvm/gems/ruby-2.6.3@tenejo
+    ruby-2.6.3 - #generating tenejo wrappers.........
+    Using /Users/max/.rvm/gems/ruby-2.6.3 with gemset tenejo
+    ```
 1. Run `bundle install`
 1. Run `bundle exec rake db:migrate` to setup the development database and schema.
 1. Start the servers, one per terminal window/tab - `fcrepo_wrapper`, `solr_wrapper`, `rails server`, and `sidekiq`
