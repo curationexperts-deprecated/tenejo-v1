@@ -42,21 +42,12 @@ ENV PATH "/fits:$PATH"
 ENV APP_HOME /tenejo
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
-
 ENV BUNDLE_PATH /box
 ENV GEM_PATH /box
 ENV GEM_HOME /box
-
 RUN gem install bundler:2.0.2
-
-RUN ls -la
-
 COPY Gemfile* $APP_HOME/
 RUN bundle _2.0.2_ install
-
-RUN bundle show bundler
-
-RUN bundle show --paths
 
 # Add tenejo
 COPY . $APP_HOME
