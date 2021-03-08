@@ -1,4 +1,4 @@
-FROM ruby:2.5-stretch
+FROM ruby:2.6.3-stretch
 
 RUN apt-get update -qq
 # Add https support to apt to download yarn & node
