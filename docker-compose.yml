@@ -14,6 +14,7 @@ services:
       - ./.env.sample
     environment:
       DATABASE_HOST: db
+      DATABASE_PASSWORD: postgres
       FEDORA_HOST: http://fedora
       FEDORA_PORT: 8080
       FEDORA_DEV_URL: http://fedora:8080/rest
@@ -100,6 +101,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: tenejo
+      POSTGRES_PASSWORD: postgres
 
   redis:
     image: redis:4
