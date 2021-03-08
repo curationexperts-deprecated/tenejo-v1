@@ -27,7 +27,7 @@ RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
 # Install Ruby Gems
-RUN gem install bundler
+RUN gem install bundler:2.0.2
 ENV BUNDLE_PATH /usr/local/bundle
 WORKDIR /tenejo
 COPY Gemfile /tenejo/Gemfile

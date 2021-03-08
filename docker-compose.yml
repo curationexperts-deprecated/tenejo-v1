@@ -2,6 +2,7 @@ version: "3.6"
 
 services:
   web:
+    build: .
     image: curationexperts/tenejo:latest
     depends_on:
       - db
