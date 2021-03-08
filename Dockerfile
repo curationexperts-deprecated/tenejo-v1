@@ -28,11 +28,16 @@ RUN rm -f chromedriver_linux64.zip
 
 # Install Ruby Gems
 RUN gem install bundler:2.0.2
-ENV BUNDLE_PATH /usr/local/bundle
-WORKDIR /tenejo
-COPY Gemfile /tenejo/Gemfile
-COPY Gemfile.lock /tenejo/Gemfile.lock
+#ENV BUNDLE_PATH /usr/local/bundle
+#ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
+COPY Gemfile* /tmp/
+WORKDIR /tmp
 RUN bundle install
+
+# Add tenejo
+RUN mkdir /tenejo
+WORKDIR /tenejo
+COPY . /tenejo
 
 # Update AV
 RUN freshclam
@@ -45,6 +50,4 @@ ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /
 RUN unzip fits-1.4.0.zip -d /fits
 ENV PATH "/fits:$PATH"
 
-# Add tenejo
-COPY / /tenejo
 CMD ["sh", "/tenejo/docker/start-app.sh"]

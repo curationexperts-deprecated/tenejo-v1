@@ -34,7 +34,6 @@ services:
       - data:/opt/data
       - derivatives:/opt/derivatives
       - uploads:/opt/uploads
-      - ./bundle:/usr/local/bundle
       - log:/tenejo/log
       - tenejo_tmp:/tenejo/tmp
       - tmp:/tmp
