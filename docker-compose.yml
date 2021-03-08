@@ -3,7 +3,7 @@ version: "3.6"
 services:
   web:
     build: .
-    image: curationexperts/tenejo:latest
+    image: curationexperts/tenejo:${TENEJO_VERSION:-latest}
     depends_on:
       - db
       - fedora
@@ -41,7 +41,7 @@ services:
     stdin_open: true
     tty: true
   sidekiq:
-    image: curationexperts/tenejo:latest
+    image: curationexperts/tenejo:${TENEJO_VERSION:-latest}
     command: ['bundle', 'exec', 'sidekiq']
     depends_on:
       - web

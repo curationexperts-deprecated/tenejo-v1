@@ -26,6 +26,7 @@ RUN wget -q https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver
 RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
+
 # Install Ruby Gems
 RUN gem install bundler:2.0.2
 #ENV BUNDLE_PATH /usr/local/bundle
@@ -38,6 +39,7 @@ RUN bundle install
 RUN mkdir /tenejo
 WORKDIR /tenejo
 COPY . /tenejo
+
 
 # Update AV
 RUN freshclam
