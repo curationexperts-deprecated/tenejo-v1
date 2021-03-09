@@ -105,7 +105,7 @@ services:
     ports:
       - "6379:6379"
   solr:
-    image: solr:6.5
+    image: solr:7-alpine
     volumes:
       - ./solr/config:/opt/solr/server/solr/configsets/tenejo
     ports:
@@ -115,7 +115,7 @@ services:
       - tenejo
       - /opt/solr/server/solr/configsets/tenejo
   solr_test:
-    image: solr:6.5
+    image: solr:7-alpine
     volumes:
       - ./solr/config:/opt/solr/server/solr/configsets/tenejo
     ports:
