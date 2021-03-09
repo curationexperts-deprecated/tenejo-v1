@@ -1,4 +1,4 @@
-FROM ruby:2.5-stretch
+FROM ruby:2.6.3-stretch
 
 RUN apt-get update -qq
 # Add https support to apt to download yarn & node
@@ -26,14 +26,6 @@ RUN wget -q https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver
 RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
-# Install Ruby Gems
-RUN gem install bundler
-ENV BUNDLE_PATH /usr/local/bundle
-WORKDIR /tenejo
-COPY Gemfile /tenejo/Gemfile
-COPY Gemfile.lock /tenejo/Gemfile.lock
-RUN bundle install
-
 # Update AV
 RUN freshclam
 RUN /etc/init.d/clamav-daemon start &
@@ -45,6 +37,15 @@ ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /
 RUN unzip fits-1.4.0.zip -d /fits
 ENV PATH "/fits:$PATH"
 
+# Install Ruby Gems
+RUN gem install bundler:2.0.2
+COPY Gemfile* /tmp/
+WORKDIR /tmp
+RUN bundle install
+
 # Add tenejo
-COPY / /tenejo
+RUN mkdir /tenejo
+WORKDIR /tenejo
+COPY . /tenejo
+
 CMD ["sh", "/tenejo/docker/start-app.sh"]
