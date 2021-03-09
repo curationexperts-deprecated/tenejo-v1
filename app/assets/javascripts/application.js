@@ -16,6 +16,7 @@
 // Required by Blacklight
 //= require jquery
 //= require jquery_ujs
+//= require browse_everything
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
