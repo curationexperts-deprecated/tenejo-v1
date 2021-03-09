@@ -12,10 +12,10 @@ services:
       - fedora_test
       - solr_test
     env_file:
-      - ./.env.sample
+      - ./.env.${RAILS_ENV:-development}
     environment:
       DATABASE_HOST: db
-      DATABASE_NAME: tenejo_${RAILS_ENV}
+      DATABASE_NAME: tenejo_${RAILS_ENV:-development}
       DATABASE_PASSWORD: postgres
       FEDORA_HOST: http://fedora
       FEDORA_PORT: 8080
@@ -53,7 +53,7 @@ services:
       - fedora_test
       - solr_test
     env_file:
-      - ./.env.sample
+      - ./.env.${RAILS_ENV:-development}
     environment:
       DATABASE_HOST: db
       FEDORA_HOST: http://fedora

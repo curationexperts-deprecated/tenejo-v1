@@ -6,6 +6,7 @@ default: &default
   password: <%= ENV['DATABASE_PASSWORD'] %>
   pool:     <%= ENV['DATABASE_POOL_SIZE'] || 5 %>
   timeout:  5000
+  database: <%= ENV['DATABASE_NAME'] %>
 
 development:
   <<: *default
@@ -16,8 +17,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
 
 production:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
