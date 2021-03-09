@@ -9,7 +9,7 @@ jobs:
                 default: 2.6.3
             bundler_version:
                 type: string
-                default: 2.0.1
+                default: 2.2.14
         environment:
           DATABASE_NAME: circle_test
           DATABASE_USERNAME: postgres
