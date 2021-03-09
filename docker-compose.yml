@@ -93,7 +93,7 @@ services:
     environment:
       JAVA_OPTIONS: "-Xmx512m"
   db:
-    image: postgres:9
+    image: postgres:9.6-alpine
     volumes:
       - pg_data:/var/lib/postgresql/data
     ports:
