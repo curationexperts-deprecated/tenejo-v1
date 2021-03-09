@@ -26,21 +26,6 @@ RUN wget -q https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver
 RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
-
-# Install Ruby Gems
-RUN gem install bundler:2.0.2
-#ENV BUNDLE_PATH /usr/local/bundle
-#ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
-COPY Gemfile* /tmp/
-WORKDIR /tmp
-RUN bundle install
-
-# Add tenejo
-RUN mkdir /tenejo
-WORKDIR /tenejo
-COPY . /tenejo
-
-
 # Update AV
 RUN freshclam
 RUN /etc/init.d/clamav-daemon start &
@@ -51,5 +36,16 @@ WORKDIR /fits
 ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /fits/
 RUN unzip fits-1.4.0.zip -d /fits
 ENV PATH "/fits:$PATH"
+
+# Install Ruby Gems
+RUN gem install bundler:2.0.2
+COPY Gemfile* /tmp/
+WORKDIR /tmp
+RUN bundle install
+
+# Add tenejo
+RUN mkdir /tenejo
+WORKDIR /tenejo
+COPY . /tenejo
 
 CMD ["sh", "/tenejo/docker/start-app.sh"]

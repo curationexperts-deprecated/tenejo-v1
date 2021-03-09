@@ -95,7 +95,6 @@ services:
   db:
     image: postgres:9
     volumes:
-      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - pg_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
