@@ -16,7 +16,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: tenejo_test
+  database: <%= ENV['DATABASE_NAME'] %>
 
 production:
   <<: *default
