@@ -31,6 +31,7 @@ ENV PATH "/fits:$PATH"
 
 # Install Ruby Gems
 RUN gem install bundler:2.2.14
+
 COPY Gemfile* /tmp/
 WORKDIR /tmp
 RUN bundle install
