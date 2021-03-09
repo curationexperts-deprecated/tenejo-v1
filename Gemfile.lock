@@ -720,7 +720,7 @@ GEM
     rdf-xsd (3.1.1)
       rdf (~> 3.1)
       rexml (~> 3.2)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redic (1.5.3)
       hiredis
     redis (4.2.5)
@@ -949,7 +949,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.12)
   rails (~> 5.2.4)
-  redcarpet
+  redcarpet (>= 3.5.1)
   riiif (~> 1.1)
   rsolr (>= 1.0)
   rspec-rails

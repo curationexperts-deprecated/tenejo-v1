@@ -22,7 +22,7 @@ gem 'loofah', '>= 2.2.3'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.12' # Use Puma as the app server
 gem 'rails', '~> 5.2.4'
-gem 'redcarpet'
+gem 'redcarpet', '>= 3.5.1'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
