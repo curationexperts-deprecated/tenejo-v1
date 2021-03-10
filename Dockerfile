@@ -14,12 +14,11 @@ RUN curl -sS https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
 RUN apt-get update -qq && apt install -y --no-install-recommends postgresql-client build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip clamav clamav-freshclam clamav-daemon openjdk-8-jre-headless apt-transport-https build-essential git vim google-chrome-stable
 
 # Chromedriver
-RUN curl -sS https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip > chromedriver_linux64.zip
+RUN curl -sS https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip > chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
 # Update AV
-RUN freshclam
 RUN /etc/init.d/clamav-daemon start &
 
 # Install fits
