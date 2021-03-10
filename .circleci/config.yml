@@ -11,7 +11,7 @@ jobs:
                 type: string
                 default: 2.2.14
         environment:
-          DATABASE_NAME: circle_test
+          DATABASE_NAME: tenejo_test
           DATABASE_USERNAME: postgres
           POSTGRES_DB: tenejo_test
           POSTGRES_HOST: 127.0.0.1
