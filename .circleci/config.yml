@@ -11,12 +11,6 @@ jobs:
                 type: string
                 default: 2.2.14
         environment:
-          DATABASE_URL: postgresql://postgres@127.0.0.1/tenejo_test
-          DATABASE_NAME: tenejo_test
-          POSTGRES_DB: tenejo_test
-          DATABASE_USERNAME: postgres
-          POSTGRES_HOST: 127.0.0.1
-          POSTGRES_USER: postgres
           WORKING_PATH: /tmp
           UPLOAD_PATH: /tmp
           CACHE_PATH: /tmp/cache
