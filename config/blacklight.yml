@@ -3,7 +3,7 @@ development:
   url: http://solr:8983/solr/tenejo
 test: &test
   adapter: solr
-  url: <%= ENV['CIRCLE_SOLR_URL'] || 'http://solr_test:8983/solr/tenejo' %>
+  url: <%= ENV['CIRCLE_SOLR_URL'] || 'http://solr:8983/solr/hydra_development' %>
 production:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/tenejo" %>

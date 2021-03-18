@@ -10,7 +10,6 @@ services:
       - redis
       - solr
       - fedora_test
-      - solr_test
     env_file:
       - ./.env.${RAILS_ENV:-development}
     environment:
@@ -51,6 +50,11 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_URL: redis://redis:6379/0
+<<<<<<< HEAD
+=======
+      SOLR_URL: http://solr:8983/solr/hydra-development
+      SOLR_TEST_URL: http://solr:8983/solr/hydra-test
+>>>>>>> single_solr_core
     volumes:
       - .:/tenejo
       - data:/opt/data
@@ -98,6 +102,7 @@ services:
       - ./solr/config:/opt/solr/server/solr/configsets/tenejo
     ports:
       - "8983:8983"
+<<<<<<< HEAD
     entrypoint:
       - solr-precreate
       - tenejo
@@ -112,6 +117,9 @@ services:
       - solr-precreate
       - tenejo
       - /opt/solr/server/solr/configsets/tenejo
+=======
+    command: bash -c 'precreate-core hydra-development /opt/solr/server/solr/configsets/tenejo; precreate-core hydra-test /opt/solr/server/solr/configsets/tenejo; exec solr -f'
+>>>>>>> single_solr_core
 volumes:
   data:
   bundle_dir:
