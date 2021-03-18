@@ -176,7 +176,7 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
       ssrf_filter (~> 1.0)
-    childprocess (1.0.0)
+    childprocess (3.0.0)
     chronic (0.10.2)
     clamby (1.6.2)
     clipboard-rails (1.7.1)
@@ -785,7 +785,7 @@ GEM
       oauth2
     ruby-progressbar (1.11.0)
     ruby_dep (1.5.0)
-    rubyzip (2.0.0)
+    rubyzip (2.3.0)
     samvera-nesting_indexer (2.0.0)
       dry-equalizer
     sass (3.7.4)
@@ -803,8 +803,8 @@ GEM
       ffi (~> 1.9)
     scanf (1.0.0)
     select2-rails (3.5.11)
-    selenium-webdriver (3.142.5)
-      childprocess (>= 0.5, < 3.0)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     shex (0.6.1)
       ebnf (~> 2.0)
