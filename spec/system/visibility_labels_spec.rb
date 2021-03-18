@@ -37,7 +37,7 @@ RSpec.describe 'Visibility labels', type: :system, clean: true, js: true do
       authenticated_view_label = authenticated_view_input.sibling("span").text
       expect(authenticated_view_label).to eq "Authenticated"
       authenticated_view_text = authenticated_view_input.find(:xpath, "..").text.gsub(authenticated_view_label + " ", "")
-      expect(authenticated_view_text).to eq "Restrict access to registered users."
+      expect(authenticated_view_text).to eq "Authenticated\nRestrict access to registered users."
     end
   end
 end

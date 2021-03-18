@@ -48,7 +48,7 @@ RSpec.describe 'Create a Work', type: :system, clean: true, js: true do
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
       within('span#addfiles') do
-        attach_file("files[]", "spec/fixtures/birds.jpg", visible: false)
+        attach_file("files[]", "spec/fixtures/images/birds.jpg", visible: false)
         attach_file("files[]", "spec/fixtures/cat.jpg", visible: false)
       end
       click_link "Descriptions" # switch tab
