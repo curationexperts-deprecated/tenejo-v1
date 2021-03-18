@@ -20,7 +20,7 @@ jobs:
           WORKING_PATH: /tmp
           UPLOAD_PATH: /tmp
           CACHE_PATH: /tmp/cache
-          CIRCLE_FEDORA_URL: http://127.0.0.1:8985/rest
+          CIRCLE_FEDORA_URL: http://127.0.0.1:8080/fcrepo/rest
           CIRCLE_SOLR_URL: http://127.0.0.1:8985/solr/hydra-test
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
