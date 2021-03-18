@@ -7,6 +7,7 @@ test:
   user: fedoraAdmin
   password: fedoraAdmin
   url: http://fedora_test:8080/rest
+  url:  <%= ENV['CIRCLE_FEDORA_URL'] || 'http://fedora_test:8080/rest' %>
   base_path: /test
 production:
   user: fedoraAdmin
