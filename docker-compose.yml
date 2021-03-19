@@ -9,7 +9,6 @@ services:
       - fedora
       - redis
       - solr
-      - fedora_test
     env_file:
       - ./.env.${RAILS_ENV:-development}
     environment:
@@ -20,7 +19,7 @@ services:
       FEDORA_PORT: 8080
       FEDORA_DEV_URL: http://fedora:8080/rest
       FEDORA_BASE_PATH: /dev
-      FEDORA_TEST_URL: http://fedora_test:8080/rest
+      FEDORA_TEST_URL: http://fedora:8080/rest
       FEDORA_TEST_BASE_PATH: /test
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -56,7 +55,7 @@ services:
       FEDORA_PORT: 8080
       FEDORA_DEV_URL: http://fedora:8080/rest
       FEDORA_BASE_PATH: /dev
-      FEDORA_TEST_URL: http://fedora_test:8080/rest
+      FEDORA_TEST_URL: http://fedora:8080/rest
       FEDORA_TEST_BASE_PATH: /test
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -82,12 +81,6 @@ services:
       JAVA_OPTIONS: "-Xmx512m"
     stdin_open: true
     tty: true
-  fedora_test:
-    image: nulib/fcrepo4:4.7.5
-    ports:
-      - "8986:8080"
-    environment:
-      JAVA_OPTIONS: "-Xmx512m"
   db:
     image: postgres:9.6-alpine
     volumes:
