@@ -34,15 +34,7 @@ RSpec.describe 'Create a Work', type: :system, clean: true, js: true do
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      expect(page).to have_link "Add new work"
-      click_link "Add new work"
-
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "Work"
-      # click_button "Create work"
-
+      visit '/concern/works/new'
       expect(page).to have_content "Add New Work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
