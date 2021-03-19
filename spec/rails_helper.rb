@@ -107,8 +107,8 @@ RSpec.configure do |config|
   end
 
   # Retry ReadTimeout errors
-  config.verbose_retry = true
-  config.default_retry_count = 5
+  #  config.verbose_retry = true
+  config.default_retry_count = 1 # for now
   # Retry when Selenium raises Net::ReadTimeout
   # Retry when trying to access something in Fedroa that doesn't exist yet
   config.exceptions_to_retry = [Net::ReadTimeout, Ldp::HttpError]

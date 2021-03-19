@@ -7,6 +7,8 @@ include Warden::Test::Helpers
 # NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.describe 'Create a Work', type: :system, clean: true, js: true do
   context 'a logged in user' do
+    # TODO: Remove following puts line once database issue has been resolved
+    puts "#{ENV['RAILS_ENV']} -- #{ENV['DATABASE_NAME']}"
     let(:user_attributes) do
       { email: 'test@example.com' }
     end
@@ -32,21 +34,14 @@ RSpec.describe 'Create a Work', type: :system, clean: true, js: true do
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
-
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "Work"
-      # click_button "Create work"
-
+      visit '/concern/works/new'
       expect(page).to have_content "Add New Work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
       within('span#addfiles') do
-        attach_file("files[]", "#{Hyrax::Engine.root}/spec/fixtures/image.jp2", visible: false)
-        attach_file("files[]", "#{Hyrax::Engine.root}/spec/fixtures/jp2_fits.xml", visible: false)
+        attach_file("files[]", "spec/fixtures/images/birds.jpg", visible: false)
+        attach_file("files[]", "spec/fixtures/images/cat.jpg", visible: false)
       end
       click_link "Descriptions" # switch tab
       fill_in('Title', with: 'My Test Work')

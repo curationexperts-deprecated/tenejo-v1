@@ -8,7 +8,6 @@ end
 
 ruby '2.6.3'
 
-gem "actionview", ">= 5.1.6.2"
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
@@ -16,14 +15,14 @@ gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
-gem 'hyrax', '~> 2.5.1'
+gem 'hyrax', '~> 2.9'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.12' # Use Puma as the app server
-gem 'rails', '~> 5.1.6'
-gem 'redcarpet'
+gem 'rails', '~> 5.2.4'
+gem 'redcarpet', '>= 3.5.1'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
@@ -55,7 +54,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara'
   gem 'factory_bot_rails'
   gem 'fcrepo_wrapper'
   gem 'ffaker'

@@ -70,7 +70,7 @@ en:
     directory:
       suffix: "@example.org"
     footer:
-      copyright_html: "<strong>Copyright &copy; 2019 Data Curation Experts, LLC</strong> Licensed under the Apache License, Version 2.0"
+      copyright_html: "<strong>Copyright &copy; %{year} Data Curation Experts, LLC</strong> Licensed under the Apache License, Version 2.0"
       service_html: Powered by <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
     institution_name: DCE
     institution_name_full: Data Curation Experts, LLC
