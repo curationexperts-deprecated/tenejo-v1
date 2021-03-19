@@ -18,8 +18,6 @@ RUN curl -sS https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriv
 RUN unzip chromedriver_linux64.zip -d /usr/local/bin
 RUN rm -f chromedriver_linux64.zip
 
-# Update AV
-RUN /etc/init.d/clamav-daemon start &
 
 # Install fits
 RUN mkdir /fits
@@ -34,6 +32,9 @@ RUN gem install bundler:2.2.14
 COPY Gemfile* /tmp/
 WORKDIR /tmp
 RUN bundle install
+
+# Update AV
+RUN /usr/bin/freshclam
 
 # Add tenejo
 RUN mkdir /tenejo
