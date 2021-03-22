@@ -7,8 +7,6 @@ include Warden::Test::Helpers
 # NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.describe 'Create a Work', type: :system, clean: true, js: true do
   context 'a logged in user' do
-    # TODO: Remove following puts line once database issue has been resolved
-    puts "#{ENV['RAILS_ENV']} -- #{ENV['DATABASE_NAME']}"
     let(:user_attributes) do
       { email: 'test@example.com' }
     end
