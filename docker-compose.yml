@@ -45,13 +45,15 @@ services:
       - ./.env.${RAILS_ENV:-development}
     environment:
       DATABASE_HOST: db
-      DATABASE_NAME: tenejo_${RAILS_ENV:-development}
       DATABASE_PASSWORD: postgres
       FEDORA_PORT: 8080
       FEDORA_DEV_URL: http://fedora:8080/rest
+      FEDORA_TEST_URL: http://fedora:8080/rest
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/hydra-development
+      SOLR_TEST_URL: http://solr:8983/solr/hydra-test
     volumes:
       - .:/tenejo
       - data:/opt/data
