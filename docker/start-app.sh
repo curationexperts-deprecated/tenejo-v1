@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/etc/init.d/clamav-freshclam start
+/etc/init.d/clamav-daemon start
 bundle check || bundle install
 find . -name *.pid -delete
 bundle exec rake db:create && bundle exec rake db:migrate
