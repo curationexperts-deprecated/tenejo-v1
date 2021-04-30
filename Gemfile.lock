@@ -566,8 +566,8 @@ GEM
       nokogiri (~> 1)
       rake
     mini_magick (4.11.0)
-    mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
+    mini_mime (1.1.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -584,7 +584,7 @@ GEM
     noid-rails (3.0.2)
       actionpack (>= 5.0.0, < 7)
       noid (~> 0.9)
-    nokogiri (1.11.1)
+    nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
@@ -976,4 +976,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.14
+   2.2.16
