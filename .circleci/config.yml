@@ -95,14 +95,24 @@ jobs:
                     ./cc-test-reporter upload-coverage --input='/tmp/codeclimate/summed_coverage.json'
 
     deploy-job:
+        parameters:
+            ruby_version:
+                type: string
+                default: 2.6.3
+            bundler_version:
+                type: string
+                default: 2.2.14
         docker:
             - image: circleci/ruby:2.6.3
         working_directory: ~/project
         steps:
             - checkout
-            - run:
-                  name: Bundle Install
-                  command: bundle check || bundle install
+            - samvera/bundle:
+                ruby_version: << parameters.ruby_version >>
+                bundler_version: << parameters.bundler_version >>
+            # - run:
+            #       name: Bundle Install
+            #       command: bundle check || bundle install
             - run:
                   name: Deploy if tests pass and branch is Main
                   command: bundle exec cap cd deploy
@@ -112,12 +122,14 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2-6-3
+                name: testing
             - coverage:
                 name: codeclimate
                 requires:
-                    - ruby2-6-3
+                    - testing
             - deploy-job:
+                requires:
+                    - testing
                 filters:
                   branches:
                     only: continuous_deploy
