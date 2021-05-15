@@ -94,6 +94,19 @@ jobs:
                     ./cc-test-reporter sum-coverage --output='/tmp/codeclimate/summed_coverage.json' /tmp/codeclimate/codeclimate.*.json
                     ./cc-test-reporter upload-coverage --input='/tmp/codeclimate/summed_coverage.json'
 
+    deploy-job:
+        docker:
+            - image: circleci/ruby:2.6.3
+        working_directory: ~/project
+        steps:
+            - checkout
+            - run:
+                  name: Bundle Install
+                  command: bundle check || bundle install
+            - run:
+                  name: Deploy if tests pass and branch is Main
+                  command: bundle exec cap cd deploy
+
 workflows:
     version: 2
     ci:
@@ -104,3 +117,8 @@ workflows:
                 name: codeclimate
                 requires:
                     - ruby2-6-3
+            - deploy-job:
+                filters:
+                  branches:
+                    only: continuous_deploy
+                    # only: main # Only run deploy job when commit is on the master branch
