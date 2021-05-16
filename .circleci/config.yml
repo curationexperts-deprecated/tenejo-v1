@@ -133,5 +133,4 @@ workflows:
                     - testing
                 filters:
                   branches:
-                    only: continuous_deploy
-                    # only: main # Only run deploy job when commit is on the main branch
+                    only: main # Only run deploy job when commit is on the main branch
