@@ -113,6 +113,10 @@ jobs:
             # - run:
             #       name: Bundle Install
             #       command: bundle check || bundle install
+            - add_ssh_keys:
+                  fingerprints:
+                    # - "SO:ME:FIN:G:ER:PR:IN:T"
+                    - "SHA256:1nLad8K7yij6K+rOaeINb0NBb0zIpWpqpevhAVhkGmg"
             - run:
                   name: Deploy if tests pass and branch is Main
                   command: bundle exec cap cd deploy
