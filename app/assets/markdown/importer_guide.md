@@ -45,7 +45,7 @@ If you have multiple keywords you can enter them like this:
 # Rights Statement
 
 This field is a URI. You can choose rights statements from
-this [vocabulary](https://github.com/curationexperts/tenejo/blob/master/config/authorities/rights_statements.yml).
+this [vocabulary](https://github.com/curationexperts/tenejo/blob/main/config/authorities/rights_statements.yml).
 
 **This field is required**
 
@@ -89,7 +89,7 @@ Licensing and distribution information governing access to the work.
 This field is a URI. *This field is optional*.
 
 You can choose rights statements from
-this [vocabulary](https://github.com/curationexperts/tenejo/blob/master/config/authorities/licenses.yml).
+this [vocabulary](https://github.com/curationexperts/tenejo/blob/main/config/authorities/licenses.yml).
 
 ## Example
 
@@ -219,7 +219,7 @@ This field is a string. *This field is optional*.
 
 Pre-defined categories to describe the type of content being uploaded, such as "Article" or "Dataset." More than one type may be selected.
 
-You must choose from one of the types listed [here](https://github.com/curationexperts/tenejo/blob/master/config/authorities/resource_types.yml).
+You must choose from one of the types listed [here](https://github.com/curationexperts/tenejo/blob/main/config/authorities/resource_types.yml).
 
 ## Example
 
