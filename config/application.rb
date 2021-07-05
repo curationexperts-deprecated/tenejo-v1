@@ -13,7 +13,6 @@ module Tenejo
     require 'zizia'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.web_console.whitelisted_ips = %w(0.0.0.0/0 ::/0)
 
     config.active_job.queue_adapter = :sidekiq
     config.middleware.use(::ExceptionMiddleware)
