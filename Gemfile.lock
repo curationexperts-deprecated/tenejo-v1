@@ -619,7 +619,8 @@ GEM
       pry (~> 0.10)
     public_suffix (4.0.6)
     pul_uv_rails (2.0.1)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     qa (5.6.0)
       activerecord-import
       deprecation
@@ -953,7 +954,7 @@ DEPENDENCIES
   pg (~> 1.0)
   pry
   pry-byebug
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 5.2.4)
   redcarpet (>= 3.5.1)
   riiif (~> 1.1)
