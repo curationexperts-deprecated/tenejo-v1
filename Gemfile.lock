@@ -102,6 +102,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bixby (2.0.0.pre.beta1)
       rubocop (= 0.63.1)
@@ -160,9 +161,10 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-sidekiq (1.0.3)
+    capistrano-sidekiq (2.0.0)
       capistrano (>= 3.9.0)
-      sidekiq (>= 3.4, < 6.0)
+      capistrano-bundler
+      sidekiq (>= 6.0)
     capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
@@ -276,6 +278,7 @@ GEM
       rdf (~> 3.1)
       scanf (~> 1.0)
       sxp (~> 1.1)
+    ed25519 (1.2.4)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.10.0)
@@ -584,7 +587,7 @@ GEM
     noid-rails (3.0.2)
       actionpack (>= 5.0.0, < 7)
       noid (~> 0.9)
-    nokogiri (1.11.3)
+    nokogiri (1.11.5)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
@@ -616,7 +619,8 @@ GEM
       pry (~> 0.10)
     public_suffix (4.0.6)
     pul_uv_rails (2.0.1)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     qa (5.6.0)
       activerecord-import
       deprecation
@@ -628,8 +632,6 @@ GEM
       rdf
     racc (1.5.2)
     rack (2.2.3)
-    rack-protection (2.0.7)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.5)
@@ -742,7 +744,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     retriable (3.1.2)
-    rexml (3.2.4)
+    rexml (3.2.5)
     riiif (1.7.1)
       deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
@@ -816,11 +818,10 @@ GEM
       rdf-xsd (~> 3.1)
       sparql (~> 3.1)
       sxp (~> 1.1)
-    sidekiq (5.1.3)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+    sidekiq (6.2.0)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     signet (0.15.0)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
@@ -924,6 +925,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf (~> 1.1)
   bixby (= 2.0.0.pre.beta1)
   byebug
   capistrano (~> 3.11)
@@ -931,13 +933,14 @@ DEPENDENCIES
   capistrano-ext
   capistrano-passenger
   capistrano-rails
-  capistrano-sidekiq (~> 1.0.3)
+  capistrano-sidekiq (~> 2.0.0)
   capybara
   clamby
   coffee-rails (~> 4.2)
   devise
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
+  ed25519 (~> 1.2, >= 1.2.4)
   factory_bot_rails
   fcrepo_wrapper
   ffaker
@@ -951,7 +954,7 @@ DEPENDENCIES
   pg (~> 1.0)
   pry
   pry-byebug
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 5.2.4)
   redcarpet (>= 3.5.1)
   riiif (~> 1.1)
@@ -961,7 +964,7 @@ DEPENDENCIES
   rspec_junit_formatter
   sass-rails (~> 5.0)
   selenium-webdriver
-  sidekiq (~> 5.1.3)
+  sidekiq (~> 6)
   simplecov
   solr_wrapper (>= 0.3)
   spring
@@ -976,4 +979,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.16
+   2.2.14
