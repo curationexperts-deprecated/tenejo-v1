@@ -8,11 +8,13 @@ end
 
 ruby '2.6.3'
 
+gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
+gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
 gem 'hyrax', '~> 2.9'
