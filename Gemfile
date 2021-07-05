@@ -28,7 +28,7 @@ gem 'redcarpet', '>= 3.5.1'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
-gem 'sidekiq', '~> 6'
+gem 'sidekiq', '~> 5.1.3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
@@ -41,7 +41,7 @@ group :development do
   gem 'capistrano-ext'
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
-  gem 'capistrano-sidekiq', '~> 2.0.0'
+  gem 'capistrano-sidekiq', '~> 1.0.3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
