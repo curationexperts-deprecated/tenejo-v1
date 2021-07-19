@@ -8,11 +8,13 @@ end
 
 ruby '2.6.3'
 
+gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
+gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
 gem 'hyrax', '~> 2.9'
@@ -20,7 +22,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.12' # Use Puma as the app server
+gem 'puma', '~> 4.3' # Use Puma as the app server
 gem 'rails', '~> 5.2.4'
 gem 'redcarpet', '>= 3.5.1'
 gem 'riiif', '~> 1.1'
