@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 namespace :tenejo do
+  desc "fix collection type translations"
+  task fix_i18n: :environment do
+    Hyrax::CollectionType.all.find_all { |x| x.title =~ /translation missing/ }.each do |x|
+      # strip off error message & locale to get key
+      translation = I18n.t(x.title.split.last.split(".")[1..].join('.'))
+      x.update!(title: translation)
+    end
+  end
+
   desc "Setup standard login accounts"
   task standard_users_setup: :environment do
     if ENV["RAILS_ENV"] != "production"
