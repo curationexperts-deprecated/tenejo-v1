@@ -32,32 +32,6 @@ services:
     working_dir: /tenejo
     stdin_open: true
     tty: true
-  sidekiq:
-    image: curationexperts/tenejo:${TENEJO_VERSION:-latest}
-    command: ['bundle', 'exec', 'sidekiq']
-    depends_on:
-      - db
-      - redis
-    env_file:
-      - ./.env.${RAILS_ENV:-development}
-    environment:
-      DATABASE_HOST: db
-      DATABASE_NAME: tenejo_${RAILS_ENV:-development}
-      DATABASE_PASSWORD: postgres
-      FEDORA_PORT: 8080
-      FEDORA_DEV_URL: http://fedora:8080/rest
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_URL: redis://redis:6379/0
-    volumes:
-      - .:/tenejo
-      - data:/opt/data
-      - derivatives:/opt/derivatives
-      - uploads:/opt/uploads
-      - log:/tenejo/log
-      - tenejo_tmp:/tenejo/tmp
-      - tmp:/tmp
-    working_dir: /tenejo
   fedora:
     image: nulib/fcrepo4:4.7.5
     ports:
