@@ -9,8 +9,6 @@ services:
       - fedora
       - redis
       - solr
-    env_file:
-      - ./.env.${RAILS_ENV:-development}
     environment:
       DATABASE_HOST: db
       DATABASE_PASSWORD: postgres
@@ -19,6 +17,8 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/hydra-development
+      SOLR_TEST_URL: http://solr:8983/solr/hydra-test
     ports:
       - "3000:3000"
     volumes:
