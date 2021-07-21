@@ -17,6 +17,6 @@ module Tenejo
     config.active_job.queue_adapter = :sidekiq
     config.middleware.use(::ExceptionMiddleware)
     config.middleware.use(::ContactRedirectMiddleware)
-    Redis.exists_returns_integer =  true
+    Redis.exists_returns_integer = true
   end
 end
