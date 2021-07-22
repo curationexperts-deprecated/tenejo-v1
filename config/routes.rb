@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :branding
+  end
+
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
