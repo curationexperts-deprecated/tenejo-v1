@@ -4,10 +4,6 @@ include Warden::Test::Helpers
 
 RSpec.describe 'Branding', type: :system do
   context "default banner image" do
-    let(:default_image_url) { "assets/banner_image.jpg" }
-    it "has a link to the local default banner image" do
-      expect(Hyrax.config.banner_image).to eq default_image_url
-    end
     context "as an admin user" do
       let(:admin) { FactoryBot.create(:admin) }
       before do
@@ -27,6 +23,9 @@ RSpec.describe 'Branding', type: :system do
         expect(page).to have_button("Save")
         click_on("Save")
         expect(page).to have_link("Edit")
+        expect(File).to exist('app/assets/images/banner_image_old.jpg')
+        # Put the system back how it was before the test
+        FileUtils.mv('app/assets/images/banner_image_old.jpg', 'app/assets/images/banner_image.jpg')
       end
     end
 

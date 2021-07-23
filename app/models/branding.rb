@@ -7,6 +7,6 @@ class Branding
 
   def initialize
     @id = 1
-    @banner_image = Hyrax.config.banner_image
+    @banner_image = 'assets/banner_image.jpg'
   end
 end

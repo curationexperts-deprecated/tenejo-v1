@@ -7,6 +7,6 @@ RSpec.describe Branding, type: :model do
   it "can be instantiated" do
     expect(brand).to be_an_instance_of Branding
     expect(brand.id).to eq 1
-    expect(brand.banner_image).to eq "banner_image.jpg"
+    expect(brand.banner_image).to eq "assets/banner_image.jpg"
   end
 end
