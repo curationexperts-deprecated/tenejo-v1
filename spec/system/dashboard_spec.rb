@@ -47,5 +47,10 @@ RSpec.describe 'Dashboard', type: :system do
     it 'has a link to the user roles page' do
       expect(page).to have_link 'Manage User Roles'
     end
+
+    it 'has a link to the branding page' do
+      click_on("Settings")
+      expect(page).to have_link 'Branding'
+    end
   end
 end
