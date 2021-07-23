@@ -4,6 +4,7 @@ module Admin
     include Hydra::Controller::ControllerBehavior
     before_action :set_locale
     before_action :ensure_admin!
+    before_action :set_branding
     with_themed_layout 'dashboard'
 
     def index
@@ -11,10 +12,25 @@ module Admin
       add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
     end
 
+    def edit
+      add_breadcrumb t(:'hyrax.controls.home'), root_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
+    end
+
+    def update
+      temp_file_path = params["branding"]["banner_image"].path
+      dest_file_path = "app/assets/images/banner_image.jpg"
+      FileUtils.cp(temp_file_path, dest_file_path)
+    end
+
   private
 
     def ensure_admin!
       authorize! :read, :admin_dashboard
+    end
+
+    def set_branding
+      @branding = Branding.new
     end
   end
 end
