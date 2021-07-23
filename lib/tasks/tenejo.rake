@@ -13,9 +13,7 @@ namespace :tenejo do
   task move_banner_image: :environment do
     public_asset_path = Rails.root.join("public", "assets", "banner_image.jpg")
     app_asset_path = Rails.root.join("app", "assets", "images", "banner_image.jpg")
-    unless File.exists?(public_asset_path)
-      FileUtils.cp(app_asset_path, public_asset_path)
-    end
+    FileUtils.cp(app_asset_path, public_asset_path) unless File.exist?(public_asset_path)
   end
 
   desc "Setup standard login accounts"
