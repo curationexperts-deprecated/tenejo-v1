@@ -4,7 +4,7 @@ include Warden::Test::Helpers
 
 RSpec.describe 'Branding', type: :system do
   context "default banner image" do
-    let(:default_image_url) { "banner_image.jpg" }
+    let(:default_image_url) { "assets/banner_image.jpg" }
     it "has a link to the local default banner image" do
       expect(Hyrax.config.banner_image).to eq default_image_url
     end
@@ -26,6 +26,7 @@ RSpec.describe 'Branding', type: :system do
         page.attach_file("spec/fixtures/images/Everest_Panorama_banner.jpg")
         expect(page).to have_button("Save")
         click_on("Save")
+        expect(page).to have_link("Edit")
       end
     end
 

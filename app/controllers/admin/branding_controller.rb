@@ -21,6 +21,9 @@ module Admin
       temp_file_path = params["branding"]["banner_image"].path
       dest_file_path = "app/assets/images/banner_image.jpg"
       FileUtils.cp(temp_file_path, dest_file_path)
+      # if @branding.update(temp_file_path)
+      redirect_to({ action: :index }, notice: 'Banner image was successfully updated.')
+      # end
     end
 
   private
