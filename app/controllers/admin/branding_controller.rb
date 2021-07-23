@@ -19,20 +19,7 @@ module Admin
 
     def update
       temp_file_path = params["branding"]["banner_image"].path
-      assets_path = Rails.root.join("public", "assets")
-      orig_file_path = File.join(assets_path, "banner_image.jpg")
-      # Move the original banner image to _old
-      FileUtils.mv(orig_file_path, File.join(assets_path, "banner_image_old.jpg"))
-      # Move the uploaded banner image to banner_image.jpg
-      FileUtils.cp(temp_file_path, orig_file_path)
-      # Get rid of the tempfile
-      FileUtils.rm(temp_file_path)
-      # rubocop:disable Style/NumericLiteralPrefix
-      FileUtils.chmod(0644, orig_file_path)
-      # rubocop:enable Style/NumericLiteralPrefix
-      # if @branding.update(temp_file_path)
-      redirect_to({ action: :index }, notice: 'Banner image was successfully updated.')
-      # end
+      redirect_to({ action: :index }, notice: 'Banner image was successfully updated.') if @branding.update(temp_file_path)
     end
 
   private
