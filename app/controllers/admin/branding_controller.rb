@@ -22,6 +22,8 @@ module Admin
       orig_file_path = "app/assets/images/banner_image.jpg"
       FileUtils.cp(orig_file_path, "app/assets/images/banner_image_old.jpg")
       FileUtils.cp(temp_file_path, orig_file_path)
+      FileUtils.rm(temp_file_path)
+      FileUtils.chmod(0644, orig_file_path)
       # if @branding.update(temp_file_path)
       redirect_to({ action: :index }, notice: 'Banner image was successfully updated.')
       # end
