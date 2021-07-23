@@ -9,6 +9,13 @@ namespace :tenejo do
     end
   end
 
+  desc "move default banner image if new one hasn't been uploaded"
+  task move_banner_image: :environment do
+    public_asset_path = Rails.root.join("public", "assets", "banner_image.jpg")
+    app_asset_path = Rails.root.join("app", "assets", "images", "banner_image.jpg")
+    FileUtils.cp(app_asset_path, public_asset_path) unless File.exist?(public_asset_path)
+  end
+
   desc "Setup standard login accounts"
   task standard_users_setup: :environment do
     if ENV["RAILS_ENV"] != "production"
