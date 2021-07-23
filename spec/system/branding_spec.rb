@@ -23,9 +23,9 @@ RSpec.describe 'Branding', type: :system do
         expect(page).to have_button("Save")
         click_on("Save")
         expect(page).to have_link("Edit")
-        expect(File).to exist('app/assets/images/banner_image_old.jpg')
+        expect(File).to exist('public/assets/banner_image_old.jpg')
         # Put the system back how it was before the test
-        FileUtils.mv('app/assets/images/banner_image_old.jpg', 'app/assets/images/banner_image.jpg')
+        FileUtils.mv('public/assets/banner_image_old.jpg', 'public/assets/banner_image.jpg')
       end
     end
 
