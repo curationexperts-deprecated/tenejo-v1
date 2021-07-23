@@ -19,11 +19,12 @@ module Admin
 
     def update
       temp_file_path = params["branding"]["banner_image"].path
+      new_file_path = File.join(Rails.root, "public/assets", "banner_image.jpg")
       orig_file_path = "app/assets/images/banner_image.jpg"
-      FileUtils.cp(orig_file_path, "app/assets/images/banner_image_old.jpg")
-      FileUtils.cp(temp_file_path, orig_file_path)
+      FileUtils.mkdir_p(File.join(Rails.root, "public/assets"))
+      FileUtils.cp(temp_file_path, new_file_path)
       FileUtils.rm(temp_file_path)
-      FileUtils.chmod(0644, orig_file_path)
+      FileUtils.chmod(0644, new_file_path)
       # if @branding.update(temp_file_path)
       redirect_to({ action: :index }, notice: 'Banner image was successfully updated.')
       # end
