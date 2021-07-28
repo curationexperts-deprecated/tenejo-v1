@@ -13,6 +13,7 @@ gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+gem 'devise_invitable', '~> 2.0.0'
 gem 'dotenv-rails', '~> 2.2.1'
 gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
 gem 'honeybadger', '~> 4.0'
