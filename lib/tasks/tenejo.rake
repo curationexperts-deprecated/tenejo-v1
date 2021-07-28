@@ -46,10 +46,12 @@ namespace :tenejo do
     u.display_name = ENV['ADMIN_DISPLAY_NAME']
     u.password = ENV['ADMIN_PASSWORD']
     u.save
-    unless u.admin?
-      admin_role = Role.find_or_create_by(name: 'admin')
-      admin_role.users << u
-      admin_role.save
-    end
+    assign_admin_role_to_first_admin unless u.admin?
+  end
+
+  def assign_admin_role_to_first_admin
+    admin_role = Role.find_or_create_by(name: 'admin')
+    admin_role.users << u
+    admin_role.save
   end
 end
