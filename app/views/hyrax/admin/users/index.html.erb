@@ -1,7 +1,7 @@
 <% provide :page_header do %>
   <h1><span class="fa fa-user" aria-hidden="true"></span> <%= t('hyrax.admin.users.index.title') %></h1>
   <div class="col-md-4 pull-right">
-    <%= button_to "Invite New User",{}, {class: "btn btn-primary"} %>
+    <%= link_to("Invite New User", main_app.new_user_invitation_path, class: "btn btn-primary") %>
   </div>
 <% end %>
 

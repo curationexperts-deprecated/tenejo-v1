@@ -12,7 +12,9 @@ RSpec.describe 'Manage users', type: :system do
     end
     it "has a button to add a user" do
       expect(page).to have_content("Manage Users")
-      expect(page).to have_button("Invite New User")
+      expect(page).to have_link("Invite New User", href: "/users/invitation/new?locale=en")
+      click_on("Invite New User")
+      expect(page).to have_content("Send invitation")
     end
   end
 
@@ -22,7 +24,8 @@ RSpec.describe 'Manage users', type: :system do
       login_as user
     end
     it "cannot see the 'Send Invitation' page" do
-      true
+      visit '/users/invitation/new'
+      expect(page).to have_content("You are not authorized to access this page.")
     end
   end
 end
