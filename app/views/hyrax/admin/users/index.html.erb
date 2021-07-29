@@ -1,5 +1,8 @@
 <% provide :page_header do %>
   <h1><span class="fa fa-user" aria-hidden="true"></span> <%= t('hyrax.admin.users.index.title') %></h1>
+  <div class="col-md-4 pull-right">
+    <%= button_to "Invite New User",{}, {class: "btn btn-primary"} %>
+  </div>
 <% end %>
 
 <div class="panel panel-default users-listing">
