@@ -1,17 +1,20 @@
 FROM ruby:2.6.3-stretch
 
-
-
-# Add node and yarn repos and install them along
+# Add node and yarn repos and install them
 # along with other rails deps
 RUN apt-get update && apt install -y curl apt-transport-https ca-certificates
+
+# Install node from nodesource
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && apt-get install -y nodejs
+
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - 2>/dev/null \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN curl -sS https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 2>/dev/null  \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
 # Install system dependencies
-RUN apt-get update -qq && apt install -y --no-install-recommends postgresql-client build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip clamav clamav-freshclam clamav-daemon openjdk-8-jre-headless apt-transport-https build-essential git vim google-chrome-stable
+RUN apt-get update -qq && apt install -y --no-install-recommends postgresql-client build-essential libpq-dev imagemagick libreoffice ffmpeg unzip clamav clamav-freshclam clamav-daemon openjdk-8-jre-headless apt-transport-https build-essential git vim google-chrome-stable
 
 # Chromedriver
 RUN curl -sS https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip > chromedriver_linux64.zip
