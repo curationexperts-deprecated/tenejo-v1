@@ -18,12 +18,7 @@ namespace :tenejo do
 
   desc "Setup standard login accounts"
   task standard_users_setup: :environment do
-    if ENV["RAILS_ENV"] != "production"
-      create_first_user
-      create_first_admin_user
-    else
-      puts "Rails running in production mode, not creating first user or first admin"
-    end
+    create_first_admin_user
   end
 
   desc "Cleanup all uploaded files and delete all user accounts"
@@ -32,13 +27,6 @@ namespace :tenejo do
     Work.all.each(&:destroy!)
     Collection.all.each(&:destroy!)
     User.all.each(&:destroy!)
-  end
-
-  def create_first_user
-    u = User.find_or_create_by(email: ENV['FIRST_USER_EMAIL'])
-    u.display_name = ENV['FIRST_USER_DISPLAY_NAME']
-    u.password = ENV['FIRST_USER_PASSWORD']
-    u.save
   end
 
   def create_first_admin_user
