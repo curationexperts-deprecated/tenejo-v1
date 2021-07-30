@@ -26,6 +26,7 @@ namespace :tenejo do
     Hyrax::UploadedFile.all.each(&:destroy!)
     Work.all.each(&:destroy!)
     Collection.all.each(&:destroy!)
+    Zizia::CsvImport.all.each(&:destroy!)
     User.all.each(&:destroy!)
   end
 
@@ -34,12 +35,12 @@ namespace :tenejo do
     u.display_name = ENV['ADMIN_DISPLAY_NAME']
     u.password = ENV['ADMIN_PASSWORD']
     u.save
-    assign_admin_role_to_first_admin unless u.admin?
+    assign_admin_role_to_first_admin(u) unless u.admin?
   end
 
-  def assign_admin_role_to_first_admin
+  def assign_admin_role_to_first_admin(user)
     admin_role = Role.find_or_create_by(name: 'admin')
-    admin_role.users << u
+    admin_role.users << user
     admin_role.save
   end
 end
