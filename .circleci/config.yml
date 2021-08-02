@@ -31,6 +31,7 @@ jobs:
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
             ruby_version: << parameters.ruby_version >>
+            solr_version: << parameters.solr_version >>
         working_directory: ~/project
         parallelism: 4
         steps:
@@ -59,7 +60,6 @@ jobs:
 
             - samvera/install_solr_core:
                 solr_config_path: << parameters.solr_config_path >>
-                solr_version: << parameters.solr_version >>
 
             - run:
                 name: Install Code Climate test reporter
