@@ -26,6 +26,10 @@ jobs:
           WORKING_PATH: /tmp
           UPLOAD_PATH: /tmp
           CACHE_PATH: /tmp/cache
+          FCREPO_HOST: 127.0.0.1
+          FCREPO_PORT: 8080
+          FCREPO_REST_PATH: rest
+          FCREPO_BASE_PATH: /test
           FEDORA_TEST_URL: http://127.0.0.1:8080/fcrepo/rest
           SOLR_TEST_URL: http://127.0.0.1:8985/solr/hydra-test
         executor:
