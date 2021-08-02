@@ -13,9 +13,6 @@ jobs:
             solr_config_path:
                 type: string
                 default: solr/conf
-            solr_version:
-                type: string
-                default: 7.7.3-slim
         environment:
           DATABASE_URL: postgresql://postgres@127.0.0.1/circle_test
           DATABASE_NAME: circle_test
@@ -31,7 +28,6 @@ jobs:
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
             ruby_version: << parameters.ruby_version >>
-            solr_version: << parameters.solr_version >>
         working_directory: ~/project
         parallelism: 4
         steps:
