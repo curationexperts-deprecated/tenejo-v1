@@ -22,7 +22,7 @@ RSpec.describe 'Getting a 404 for RecordNotFound', type: :system do
   context 'visiting a non-existent collection' do
     it 'has a 404 page' do
       visit('/collections/not_a_collection_id')
-      expect(page).to have_content('does not exist')
+      expect(page).to have_content('You are not authorized to access this page.')
     end
   end
 end
