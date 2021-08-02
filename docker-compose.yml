@@ -10,6 +10,7 @@ services:
       - redis
       - solr
     environment:
+      TENEJO_VERSION: hyrax_3
       DATABASE_HOST: db
       DATABASE_PASSWORD: postgres
       FEDORA_PORT: 8080
@@ -62,7 +63,7 @@ services:
   solr:
     image: solr:7-alpine
     volumes:
-      - ./solr/config:/opt/solr/server/solr/configsets/tenejo
+      - ./solr/conf:/opt/solr/server/solr/configsets/tenejo
     ports:
       - "8983:8983"
     command: bash -c 'precreate-core hydra-development /opt/solr/server/solr/configsets/tenejo; precreate-core hydra-test /opt/solr/server/solr/configsets/tenejo; exec solr -f'

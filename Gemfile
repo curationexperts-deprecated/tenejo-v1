@@ -18,7 +18,7 @@ gem 'dotenv-rails', '~> 2.2.1'
 gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
-gem 'hyrax', '~> 2.9'
+gem 'hyrax', '~> 3.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'

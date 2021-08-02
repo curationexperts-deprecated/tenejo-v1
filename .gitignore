@@ -37,6 +37,7 @@ auto-save-list
 tramp
 .\#*
 public/tmp
+public/uv
 darlingtonia_import.log
 
 # Ignore bundle folder that can be created by docker-compose

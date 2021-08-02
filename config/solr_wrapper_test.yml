@@ -5,5 +5,5 @@ instance_dir: tmp/solr-test
 download_dir: tmp/solr_downloads
 collection:
     persist: false
-    dir: solr/config
+    dir: solr/conf
     name: hydra-test
