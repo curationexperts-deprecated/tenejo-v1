@@ -13,6 +13,9 @@ jobs:
             solr_config_path:
                 type: string
                 default: solr/conf
+            solr_version:
+                type: string
+                default: 7.7.3-slim
         environment:
           DATABASE_URL: postgresql://postgres@127.0.0.1/circle_test
           DATABASE_NAME: circle_test
@@ -56,6 +59,7 @@ jobs:
 
             - samvera/install_solr_core:
                 solr_config_path: << parameters.solr_config_path >>
+                solr_version: << parameters.solr_version >>
 
             - run:
                 name: Install Code Climate test reporter
