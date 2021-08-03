@@ -37,7 +37,7 @@ gem 'zizia', '~> 6.0.1'
 
 group :development do
   # Use Capistrano for deployment automation
-  gem "capistrano", "~> 3.11", require: false
+  gem "capistrano", "~> 3.16", require: false
   gem 'capistrano-bundler', '~> 1.3'
   gem 'capistrano-ext'
   gem 'capistrano-passenger'
