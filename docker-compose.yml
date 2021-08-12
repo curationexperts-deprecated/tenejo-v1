@@ -11,6 +11,7 @@ services:
       - solr
     environment:
       DATABASE_HOST: db
+      DATABASE_USERNAME: tenejo
       DATABASE_PASSWORD: postgres
       FEDORA_PORT: 8080
       FEDORA_TEST_URL: http://fedora:8080/rest
@@ -52,7 +53,6 @@ services:
     environment:
       POSTGRES_USER: tenejo
       POSTGRES_PASSWORD: postgres
-
   redis:
     image: redis:4
     volumes:
