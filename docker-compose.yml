@@ -31,6 +31,7 @@ services:
       - log:/tenejo/log
       - tenejo_tmp:/tenejo/tmp
       - tmp:/tmp
+      - clam:/var/lib/clamav
     working_dir: /tenejo
     stdin_open: true
     tty: true
@@ -78,3 +79,4 @@ volumes:
   tmp:
   tenejo_tmp:
   uploads:
+  clam:
