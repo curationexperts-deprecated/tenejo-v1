@@ -3,7 +3,7 @@ module Zizia
   class CsvImportsController < ::ApplicationController
     load_and_authorize_resource
     before_action :load_and_authorize_preview, only: [:preview]
-    before_action :clamd_running?, only: [:new]
+    before_action :antivirus_running?, only: [:new]
 
     with_themed_layout 'dashboard'
 
@@ -31,11 +31,12 @@ module Zizia
 
     private
 
-      def clamd_running?
-        @clamd_running = list_clamd_service.present?
+      def antivirus_running?
+        @antivirus_running = list_antivirus_service.present?
       end
 
-      def list_clamd_service
+      # TODO: Is there a way to make this more service-neutral? Put name of service in configuration?
+      def list_antivirus_service
         `ps ax | grep [c]lamd`
       end
 
