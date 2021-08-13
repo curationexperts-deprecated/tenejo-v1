@@ -32,7 +32,6 @@ module Zizia
     private
 
       def clamd_running?
-        byebug
         @clamd_running = list_clamd_service.present?
       end
 
