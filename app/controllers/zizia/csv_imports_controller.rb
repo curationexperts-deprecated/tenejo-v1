@@ -4,6 +4,7 @@ module Zizia
     load_and_authorize_resource
     before_action :load_and_authorize_preview, only: [:preview]
     before_action :antivirus_running?, only: [:new]
+    before_action :image_conversion_running?, only: [:new]
 
     with_themed_layout 'dashboard'
 
@@ -38,6 +39,22 @@ module Zizia
       # TODO: Is there a way to make this more service-neutral? Put name of service in configuration?
       def list_antivirus_service
         `ps ax | grep [c]lamd`
+      end
+
+      # If MiniMagick can validate a small image, that means it has all its dependencies installed and running.
+      def image_conversion_running?
+        @image_conversion_running = check_image_conversion
+      end
+
+      def check_image_conversion
+        image_path = Rails.root.join("spec", "fixtures", "images", "birds.jpg")
+        begin
+          MiniMagick::Image.open(image_path).validate!
+          true
+        rescue => error
+          Rails.logger.error "There was a problem when testing for MiniMagick: #{error.message} \n"
+          false
+        end
       end
 
       def load_and_authorize_preview

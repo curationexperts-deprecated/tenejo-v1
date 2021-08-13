@@ -4,5 +4,8 @@
   <% unless @antivirus_running %>
     <h3><span style="color:red">WARNING:</span> antivirus is not configured correctly, please contact your system administrator</h3>
   <% end %>
+  <% unless @image_conversion_running %>
+    <h3><span style="color:red">WARNING:</span> image conversion is not configured correctly, please contact your system administrator</h3>
+  <% end %>
   <%= render 'form', csv_import: @csv_import %>
 </div>
