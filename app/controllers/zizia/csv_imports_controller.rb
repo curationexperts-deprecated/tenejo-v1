@@ -59,7 +59,6 @@ module Zizia
       end
 
       def audiovisual_conversion_running?
-        byebug
         @audiovisual_conversion_running = check_audiovisual_conversion.present?
       end
 
