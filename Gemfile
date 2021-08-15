@@ -22,6 +22,7 @@ gem 'hyrax', '~> 2.9'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
+gem 'open3', '~> 0.1.0'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 4.3' # Use Puma as the app server
 gem 'rails', '~> 5.2.4'
