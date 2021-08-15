@@ -55,7 +55,6 @@ Development
 1. (optional) Create standard accounts: `bundle exec rails tenejo:standard_users_setup`.
 1. Create default collection types: `bundle exec rails hyrax:default_collection_types:create`
 1. `bundle exec rails hyrax:default_admin_set:create`
-1. Make sure your computer has directories `/opt/uploads/` and `/opt/derivatives` that you own
 
 Production
 ----------
