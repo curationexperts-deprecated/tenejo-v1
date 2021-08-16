@@ -5,6 +5,7 @@ module Zizia
     before_action :load_and_authorize_preview, only: [:preview]
     before_action :antivirus_running?, only: [:new]
     before_action :image_conversion_running?, only: [:new]
+    before_action :audiovisual_conversion_running?, only: [:new]
 
     with_themed_layout 'dashboard'
 
@@ -55,6 +56,18 @@ module Zizia
           Rails.logger.error "There was a problem when testing for MiniMagick: #{error.message} \n"
           false
         end
+      end
+
+      def audiovisual_conversion_running?
+        @audiovisual_conversion_running = check_audiovisual_conversion.present?
+      end
+
+      def check_audiovisual_conversion
+        Open3.capture3('ffmpeg -codecs').to_s
+      rescue StandardError
+
+        Rails.logger.error('Unable to find ffmpeg')
+        ""
       end
 
       def load_and_authorize_preview
