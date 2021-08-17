@@ -3,9 +3,7 @@ module Zizia
   class CsvImportsController < ::ApplicationController
     load_and_authorize_resource
     before_action :load_and_authorize_preview, only: [:preview]
-    before_action :antivirus_running?, only: [:new]
-    before_action :image_conversion_running?, only: [:new]
-    before_action :audiovisual_conversion_running?, only: [:new]
+    before_action :antivirus_running?, :audiovisual_conversion_running?, :image_conversion_running?, only: [:new]
 
     with_themed_layout 'dashboard'
 
@@ -34,12 +32,17 @@ module Zizia
     private
 
       def antivirus_running?
-        @antivirus_running = list_antivirus_service.present?
+        @antivirus_running = check_antivirus_service
       end
 
-      # TODO: Is there a way to make this more service-neutral? Put name of service in configuration?
-      def list_antivirus_service
-        `ps ax | grep [c]lamd`
+      def check_antivirus_service
+        image_path = Rails.root.join("spec", "fixtures", "images", "birds.jpg")
+        begin
+          Clamby.safe?(image_path.to_s)
+        rescue => error
+          Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
+          false
+        end
       end
 
       # If MiniMagick can validate a small image, that means it has all its dependencies installed and running.
@@ -59,15 +62,15 @@ module Zizia
       end
 
       def audiovisual_conversion_running?
-        @audiovisual_conversion_running = check_audiovisual_conversion.present?
+        @audiovisual_conversion_running = check_audiovisual_conversion
       end
 
       def check_audiovisual_conversion
-        Open3.capture3('ffmpeg -codecs').to_s
+        Open3.capture3('ffmpeg -codecs')
+        true
       rescue StandardError
-
         Rails.logger.error('Unable to find ffmpeg')
-        ""
+        false
       end
 
       def load_and_authorize_preview

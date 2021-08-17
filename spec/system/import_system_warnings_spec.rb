@@ -12,59 +12,80 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
     login_as admin_user
   end
 
-  context "with audiovisual software running" do
-    it "does not show a warning about audiovisual software configuration" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_audiovisual_conversion).and_return("all sorts of codecs")
+  context "with audiovisual software" do
+    context "running" do
+      it "does not show a warning" do
+        allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_audiovisual_conversion).and_return(true)
 
-      visit '/csv_imports/new'
-      expect(page).to have_content 'Batch Import'
-      expect(page).not_to have_content audiovisual_warning
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).not_to have_content audiovisual_warning
+      end
+    end
+
+    context "broken" do
+      it "shows a warning" do
+        allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_audiovisual_conversion).and_return(false)
+
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).to have_content audiovisual_warning
+      end
     end
   end
 
-  context "with audiovisual software broken" do
-    it "shows a warning about audiovisual software configuration" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_audiovisual_conversion).and_return("")
+  context "with antivirus" do
+    context "stopped" do
+      before do
+        class_double("Clamby").as_stubbed_const
+        allow(Clamby).to receive(:safe?).and_return(false)
+      end
+      it "shows a warning on the page" do
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).to have_content antivirus_warning
+      end
+    end
 
-      visit '/csv_imports/new'
-      expect(page).to have_content 'Batch Import'
-      expect(page).to have_content audiovisual_warning
+    context "running" do
+      it "does not show a warning about antivirus" do
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).not_to have_content antivirus_warning
+      end
     end
   end
-  context "with antivirus stopped" do
-    it "shows a warning on the page" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:list_antivirus_service).and_return("")
+
+  context "with image conversion software" do
+    context "running" do
+      it "does not show a warning" do
+        allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_image_conversion).and_return(true)
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).not_to have_content image_conversion_warning
+      end
+    end
+
+    context "broken" do
+      it "shows a warning" do
+        allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_image_conversion).and_return(false)
+        visit '/csv_imports/new'
+        expect(page).to have_content 'Batch Import'
+        expect(page).to have_content image_conversion_warning
+      end
+    end
+  end
+
+  context "with software broken or misconfigured" do
+    it "shows warnings for each service that is not working" do
+      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_antivirus_service).and_return(false)
+      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_audiovisual_conversion).and_return(false)
+      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_image_conversion).and_return(false)
       visit '/csv_imports/new'
       expect(page).to have_content 'Batch Import'
       expect(page).to have_content antivirus_warning
-    end
-  end
-
-  context "with image conversion software running" do
-    it "does not show a warning about image configuration" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_image_conversion).and_return(true)
-
-      visit '/csv_imports/new'
-      expect(page).to have_content 'Batch Import'
-      expect(page).not_to have_content image_conversion_warning
-    end
-  end
-
-  context "with image conversion software broken" do
-    it "shows a warning" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:check_image_conversion).and_return(false)
-
-      visit '/csv_imports/new'
-      expect(page).to have_content 'Batch Import'
+      expect(page).to have_content audiovisual_warning
       expect(page).to have_content image_conversion_warning
-    end
-  end
-
-  context "with antivirus running" do
-    it "does not show a warning about antivirus" do
-      allow_any_instance_of(Zizia::CsvImportsController).to receive(:list_antivirus_service).and_return("472 ? Ssl 0:00 /usr/sbin/clamd -c /etc/clamav/clamd.conf --pid=/run/clamav/clamd.pid")
-      visit '/csv_imports/new'
-      expect(page).not_to have_content antivirus_warning
     end
   end
 end
