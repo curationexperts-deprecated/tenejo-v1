@@ -52,6 +52,7 @@ RSpec.configure do |config|
   config.before do |_example|
     class_double("Clamby").as_stubbed_const
     allow(Clamby).to receive(:virus?).and_return(false)
+    allow(Clamby).to receive(:safe?).and_return(true)
   end
 
   # We use an EICAR-STANDARD-ANTIVIRUS-TEST-FILE, but when stubbing virus checks
