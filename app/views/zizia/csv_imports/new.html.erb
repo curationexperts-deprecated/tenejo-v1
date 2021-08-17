@@ -2,13 +2,13 @@
 <div id="zizia_new" class="zizia">
   <h2><span class="glyphicon glyphicon-cloud-upload"></span> Batch Import </h2>
   <% unless @antivirus_running %>
-    <h3><span style="color:red">WARNING:</span> antivirus is not configured correctly, please contact your system administrator</h3>
+    <%= render 'service_warning', service: "antivirus" %>
   <% end %>
   <% unless @image_conversion_running %>
-    <h3><span style="color:red">WARNING:</span> image conversion is not configured correctly, please contact your system administrator</h3>
+    <%= render 'service_warning', service: "image conversion" %>
   <% end %>
   <% unless @audiovisual_conversion_running %>
-    <h3><span style="color:red">WARNING:</span> media processing is not configured correctly, please contact your system administrator</h3>
+    <%= render 'service_warning', service: "media processing" %>
   <% end %>
   <%= render 'form', csv_import: @csv_import %>
 </div>
