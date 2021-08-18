@@ -2,7 +2,7 @@
 
 module ServicesHelper
   def services
-    ["antivirus", "image conversion", "media processing"]
+    ["antivirus", "image conversion", "media processing", "background jobs"]
   end
 
   def service_running?(service)
@@ -13,7 +13,43 @@ module ServicesHelper
       check_image_conversion
     when "media processing"
       check_audiovisual_conversion
+    when "background jobs"
+      check_background_jobs
     end
+  end
+
+  # Determines whether phrase should be read as singular or plural
+  def service_phrase(service)
+    case service
+    when "background jobs"
+      "background jobs are"
+    else
+      "#{service} is"
+    end
+  end
+
+  def check_background_jobs
+    check_sidekiq && check_redis
+  end
+
+  def check_sidekiq
+    stdout_str, _stderr_str, _status = Open3.capture3('ps aux | grep [s]idekiq')
+    if stdout_str.present?
+      true
+    else
+      false
+    end
+  rescue => error
+    Rails.logger.error "There was a problem when testing for Sidekiq: #{error.message} \n"
+    false
+  end
+
+  def check_redis
+    Redis.current.ping
+    true
+  rescue => error
+    Rails.logger.error "There was a problem when testing for Redis: #{error.message} \n"
+    false
   end
 
   def check_antivirus_service
