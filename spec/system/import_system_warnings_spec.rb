@@ -7,7 +7,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
   let(:antivirus_warning) { 'WARNING: antivirus is not configured correctly, please contact your system administrator' }
   let(:image_conversion_warning) { "WARNING: image conversion is not configured correctly, please contact your system administrator" }
   let(:audiovisual_warning) { "WARNING: media processing is not configured correctly, please contact your system administrator" }
-  let(:background_processing_warning) { "WARNING: background jobs are not configured correctly, please contact your system administrator" }
+  let(:background_processing_warning) { "WARNING: background processing is not configured correctly, please contact your system administrator" }
 
   before do
     login_as admin_user

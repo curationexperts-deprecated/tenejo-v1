@@ -2,7 +2,7 @@
 
 module ServicesHelper
   def services
-    ["antivirus", "image conversion", "media processing", "background jobs"]
+    ["antivirus", "image conversion", "media processing", "background processing"]
   end
 
   def service_running?(service)
@@ -13,22 +13,12 @@ module ServicesHelper
       check_image_conversion
     when "media processing"
       check_audiovisual_conversion
-    when "background jobs"
-      check_background_jobs
+    when "background processing"
+      check_background_processing
     end
   end
 
-  # Determines whether phrase should be read as singular or plural
-  def service_phrase(service)
-    case service
-    when "background jobs"
-      "background jobs are"
-    else
-      "#{service} is"
-    end
-  end
-
-  def check_background_jobs
+  def check_background_processing
     check_sidekiq && check_redis
   end
 
