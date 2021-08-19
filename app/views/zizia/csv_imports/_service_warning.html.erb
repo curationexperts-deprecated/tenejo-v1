@@ -1,5 +1,5 @@
 <% services.each do |service| %>
   <% unless service_running?(service) %>
-    <h3><span style="color:red">WARNING:</span> <%= service_phrase(service) %>  not configured correctly, please contact your system administrator</h3>
+    <h3><span style="color:red">WARNING:</span> <%= service %> is not configured correctly, please contact your system administrator</h3>
   <% end %>
 <% end %>
