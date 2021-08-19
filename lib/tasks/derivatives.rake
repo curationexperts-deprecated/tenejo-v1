@@ -14,12 +14,16 @@ namespace :derivatives do
     end
   end
 
+  desc "reprocess a fileset attach "
+  task repro_fileset: :environment do
+    FileSetAttachedEventJob.new.perform(FileSet.find(ENV.fetch("fsid")), User.find(ENV.fetch("uid")))
+  end
+
   def regenerate_derivatives(work)
     work.file_sets.each do |fs|
-      puts " processing FileSet #{fs.id}"
       asset_path = fs.original_file.uri.to_s
       asset_path = asset_path[asset_path.index(fs.id.to_s)..-1]
-      CreateDerivativesJob.perform_later(fs, asset_path)
+      CreateDerivativesJob.new.perform(fs, asset_path)
     end
   end
 end
