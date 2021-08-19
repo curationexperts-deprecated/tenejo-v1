@@ -14,25 +14,11 @@ Development
 ### Installing
 1. `git clone https://github.com/curationexperts/tenejo.git`
 1. `cd ./tenejo` then check out a working branch `git checkout -b my_working_branch`
-1. Copy `.env.sample` to `.env.development` if you want to override any default settings in your local development environment. Choose a random password for your local tenejo database user and add it to this file.
+1. Copy `.env.sample` to `.env.development` if you want to override any default settings in your local development environment.
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running.
 
-    * Create your development and test postgres databases `createdb tenejo_development` and `createdb tenejo_test`
-    * Open your psql console in using the newly created tenejo_development database `psql tenejo_development`
-    ```
-    postgres=# create user tenejo with encrypted password 'whatever';
-    CREATE ROLE
-    postgres=# grant all privileges on database tenejo_development to tenejo;
-    GRANT
-    postgres=# grant all privileges on database tenejo_test to tenejo;
-    GRANT
-    postgres=# ALTER DATABASE tenejo_development OWNER TO tenejo;
-    ALTER DATABASE
-    postgres=# ALTER DATABASE tenejo_test OWNER TO tenejo;
-    postgres=# \q
-    ```
 1. Set up your gemset using rvm (it's possible you'll need to download a new Ruby, depending on the project - `rvm install [ruby-version]`)
     ```
     rvm list rubies
@@ -50,11 +36,14 @@ Development
     ```
 1. Run `bundle install`
 1. Run `bundle exec rails db:migrate` to setup the development database and schema.
-1. Start the servers, one per terminal window/tab - `fcrepo_wrapper`, `solr_wrapper`, `bundle exec rails server`, and `bundle exec sidekiq`
+1. Start the servers, one per terminal window/tab - `bundle exec fcrepo_wrapper`, `bundle exec solr_wrapper`, `bundle exec rails server`, and `bundle exec sidekiq`
 ### User and workflow setup
 1. (optional) Create standard accounts: `bundle exec rails tenejo:standard_users_setup`.
 1. Create default collection types: `bundle exec rails hyrax:default_collection_types:create`
 1. `bundle exec rails hyrax:default_admin_set:create`
+
+### Testing
+1. Start the test servers, one per terminal window / tab - `bundle exec fcrepo_wrapper --config config/fcrepo_wrapper_test.yml`, `bundle exec solr_wrapper --config config/solr_wrapper_test.yml`
 
 Production
 ----------
