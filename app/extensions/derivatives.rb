@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Extensions to the derivative generation processes
 # to generate & serve ptiff derivatives
 module TenejoExtensions
