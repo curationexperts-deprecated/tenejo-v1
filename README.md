@@ -44,7 +44,8 @@ Development
 
 ### Testing
 1. Start the test servers, one per terminal window / tab - `bundle exec fcrepo_wrapper --config config/fcrepo_wrapper_test.yml`, `bundle exec solr_wrapper --config config/solr_wrapper_test.yml`
+1. Run the tests using `bundle exec rspec` or `bundle exec rspec spec/PATH_TO_TEST`
 
-Production
+### Production
 ----------
 1. Set `IIIF_SERVER_URL=http://SERVERNAME/cantaloupe/iiif/2/` to use an external cantaloupe IIIF server
