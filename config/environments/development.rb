@@ -49,7 +49,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.web_console.whitelisted_ips = ['127.0.0.1', '10.160.3.1', '172.17.0.0/16']
+  config.web_console.whitelisted_ips = ['127.0.0.1', '10.160.3.1', '172.17.0.0/16', '172.21.0.1']
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
