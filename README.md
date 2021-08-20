@@ -35,7 +35,7 @@ Development
     Using /Users/max/.rvm/gems/ruby-2.6.3 with gemset tenejo
     ```
 1. Run `bundle install`
-1. Run `bundle exec rails db:migrate` to setup the development database and schema.
+1. Run `bundle exec rails db:setup` to setup the development database and schema.
 1. Start the servers, one per terminal window/tab - `bundle exec fcrepo_wrapper`, `bundle exec solr_wrapper`, `bundle exec rails server`, and `bundle exec sidekiq`
 ### User and workflow setup
 1. (optional) Create standard accounts: `bundle exec rails tenejo:standard_users_setup`.
