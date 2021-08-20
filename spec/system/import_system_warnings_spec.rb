@@ -42,6 +42,8 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
         allow(Clamby).to receive(:safe?).and_return(false)
       end
       it "shows a warning on the page" do
+        allow_any_instance_of(ServicesHelper).to receive(:check_antivirus_service).and_return(false)
+
         visit '/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content antivirus_warning
@@ -50,6 +52,8 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
 
     context "running" do
       it "does not show a warning about antivirus" do
+        allow_any_instance_of(ServicesHelper).to receive(:check_antivirus_service).and_return(true)
+
         visit '/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).not_to have_content antivirus_warning
