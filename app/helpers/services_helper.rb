@@ -46,6 +46,7 @@ module ServicesHelper
     image_path = Rails.root.join("spec", "fixtures", "images", "birds.jpg")
     begin
       Clamby.safe?(image_path.to_s)
+      true
     rescue => error
       Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
       false
