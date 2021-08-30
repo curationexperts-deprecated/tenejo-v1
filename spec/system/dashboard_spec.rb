@@ -4,6 +4,11 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Dashboard', type: :system do
+  before do
+    test_strategy = Flipflop::FeatureSet.current.test!
+    test_strategy.switch!(:new_ui, false)
+  end
+
   context 'as a regular user' do
     let(:user) { FactoryBot.create(:user) }
 
