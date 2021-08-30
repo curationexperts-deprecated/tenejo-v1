@@ -43,14 +43,11 @@ module ServicesHelper
   end
 
   def check_antivirus_service
-    image_path = Rails.root.join("spec", "fixtures", "images", "birds.jpg")
-    begin
-      Clamby.safe?(image_path.to_s)
-      true
-    rescue => error
-      Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
-      false
-    end
+    Open3.capture3('ps ax | grep [c]lamd')
+    true
+  rescue => error
+    Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
+    false
   end
 
   def check_image_conversion
