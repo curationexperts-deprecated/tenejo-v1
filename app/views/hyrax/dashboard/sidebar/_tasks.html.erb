@@ -1,31 +1,35 @@
-  <% if can? :review, :submissions %>
-    <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
-    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-      <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
+<% if can? :review, :submissions %>
+  <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
+  <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+    <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= menu.nav_link(hyrax.admin_users_path) do %>
+    <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.users') %></span>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= menu.nav_link('/roles/') do %>
+    <span class="fa fa-id-card"></span> <span class="sidebar-action-text">Manage User Roles</span>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= menu.nav_link('/sidekiq/',  data: { turbolinks: false }) do %>
+    <span class="fa fa-line-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.sidekiq') %></span>
+  <% end %>
+<% end %>
+
+<% if current_user.admin? && Flipflop.import_csv? %>
+  <% if Flipflop.new_ui? %>
+    <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
+      <span class="fa fa-upload"></span> <span class="sidebar-action-text">Bulk Operations</span>
     <% end %>
-  <% end %>
-
-  <% if current_user.admin? %>
-    <%= menu.nav_link(hyrax.admin_users_path) do %>
-      <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.users') %></span>
-    <% end %>
-  <% end %>
-
-  <% if current_user.admin? %>
-    <%= menu.nav_link('/roles/') do %>
-      <span class="fa fa-id-card"></span> <span class="sidebar-action-text">Manage User Roles</span>
-    <% end %>
-  <% end %>
-
-  <% if current_user.admin? %>
-      <%= menu.nav_link('/sidekiq/',  data: { turbolinks: false }) do %>
-          <span class="fa fa-line-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.sidekiq') %></span>
-      <% end %>
-  <% end %>
-
-<% if Flipflop.import_csv? %>
-  <% if current_user.admin? %>
-  <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
+  <% else %>
+    <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
       <span class="fa fa-upload"></span> <span class="sidebar-action-text">Import Content From a CSV</span>
     <% end %>
   <% end %>
