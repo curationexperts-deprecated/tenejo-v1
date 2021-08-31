@@ -36,7 +36,7 @@ services:
     stdin_open: true
     tty: true
   fedora:
-    image: nulib/fcrepo4:4.7.5
+    image: nulib/fcrepo4:4.7.5-s3fix
     ports:
       - "8984:8080"
     volumes:
