@@ -294,4 +294,4 @@ Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Loca
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
 # load our extensions to hyrax after hyrax/hydra has been configured & monkeypatched already
 require './app/extensions/derivatives.rb'
-require './app/extensions/menu_presenter.rb'
+require './app/extensions/importer.rb'
