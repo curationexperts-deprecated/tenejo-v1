@@ -15,5 +15,6 @@
  *= require hyrax
  *= require tenejo
  *= require zizia/application
+ *= require 'bulkrax/application'
  *= require_self
  */

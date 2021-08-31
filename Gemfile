@@ -9,6 +9,7 @@ end
 ruby '2.6.3'
 
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
+gem 'bulkrax', '1.0.0'
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
@@ -34,7 +35,7 @@ gem 'sidekiq', '~> 5.1.3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
-gem 'zizia', '~> 6.0.1'
+gem 'zizia', :git => 'https://github.com/curationexperts/zizia.git', :branch => 'walk'
 
 group :development do
   # Use Capistrano for deployment automation
@@ -70,3 +71,5 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'solr_wrapper', '>= 0.3'
 end
+
+gem 'willow_sword', github: 'notch8/willow_sword'

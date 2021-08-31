@@ -3,6 +3,8 @@
     - [ingest, 4]
     - [batch, 2]
     - [default, 1]
+    - [import]
+    - [export] 
 
   test: # n/a
     :concurrency: 1
