@@ -20,12 +20,6 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
      expect(page).to have_content 'Batch Import'
      expect(page).not_to have_content file_characterization_warning
     end
-
-    it "does displays warning when absent" do
-     visit '/csv_imports/new'
-     expect(page).to have_content 'Batch Import'
-     expect(page).to have_content file_characterization_warning
-    end
   end
 
 

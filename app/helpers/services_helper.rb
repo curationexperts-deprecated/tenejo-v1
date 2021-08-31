@@ -74,6 +74,10 @@ module ServicesHelper
   end
 
   def check_characterization
+    Open3.capture3('fits -h')
+    true
+  rescue StandardError
+    Rails.logger.error('Unable to find fits')
     false
   end
 end
