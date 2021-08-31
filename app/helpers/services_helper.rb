@@ -2,7 +2,7 @@
 
 module ServicesHelper
   def services
-    ["antivirus", "image conversion", "media processing", "background processing"]
+    ["antivirus", "image conversion", "media processing", "background processing", "file characterization"]
   end
 
   def service_running?(service)
@@ -15,6 +15,8 @@ module ServicesHelper
       check_audiovisual_conversion
     when "background processing"
       check_background_processing
+    when "file characterization"
+      check_characterization
     end
   end
 
@@ -66,6 +68,14 @@ module ServicesHelper
     true
   rescue StandardError
     Rails.logger.error('Unable to find ffmpeg')
+    false
+  end
+
+  def check_characterization
+    Open3.capture3('fits -h')
+    true
+  rescue StandardError
+    Rails.logger.error('Unable to find fits')
     false
   end
 end
