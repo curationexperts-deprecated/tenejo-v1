@@ -8,7 +8,8 @@ module TenejoExtensions
       def batch_operations_section?
         [Zizia::CsvImportsController,
          Zizia::CsvImportDetailsController,
-         Zizia::ImporterDocumentationController].include? controller.class
+         Zizia::ImporterDocumentationController,
+         Zizia::MetadataDetailsController].include? controller.class
       end
     end
   end
