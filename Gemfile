@@ -34,7 +34,7 @@ gem 'sidekiq', '~> 5.1.3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
-gem 'zizia', '~> 6.0.1'
+gem 'zizia', git: 'https://github.com/curationexperts/zizia', tag: 'v6.0.2'
 
 group :development do
   # Use Capistrano for deployment automation
