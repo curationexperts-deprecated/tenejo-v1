@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/curationexperts/zizia.git
-  revision: c19bac7e405af0a07900a99e27d9f345242a4b49
-  branch: walk
+  revision: 396c86f3f22af9505d7e0b40bfa4046de45a3c25
+  branch: 909-identify_required_csv_import_template_fields
   specs:
     zizia (6.0.1)
       active-fedora
