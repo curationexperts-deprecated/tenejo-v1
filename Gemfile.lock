@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/curationexperts/zizia
-  revision: 457a5b2106e8ba4f7791d34b2a00c99abab53e1f
-  tag: v6.1.0
+  revision: c2f7060f299ef3f25eca8856690673cefe8b86f5
+  tag: v6.2.0
   specs:
-    zizia (6.1.0)
+    zizia (6.2.0)
       active-fedora
       carrierwave
       kaminari
