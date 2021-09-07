@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/curationexperts/zizia.git
-  revision: 396c86f3f22af9505d7e0b40bfa4046de45a3c25
+  revision: 2551636718ae1e9fadf126b0aa8446b92426e3ee
   branch: 909-identify_required_csv_import_template_fields
   specs:
     zizia (6.0.1)
