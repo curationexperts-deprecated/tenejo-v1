@@ -4,6 +4,9 @@
   <%= render 'home_content' %>
 </div>
 
+<% if Flipflop.new_ui? %>
+
+<% else %>
 <% if @presenter.display_share_button? %>
 <div class="row home-share-work text-center">
   <% if signed_in? %>
@@ -27,6 +30,8 @@
   <% end %>
   <p class="terms-of-use"><%= link_to t(:'hyrax.pages.tabs.terms_page'), hyrax.terms_path %></p>
 </div>
+<% end %>
+
 <% end %>
 
 <%= render '/shared/select_work_type_modal', create_work_presenter: @presenter.create_work_presenter if @presenter.draw_select_work_modal? %>
