@@ -1,22 +1,41 @@
 <div class="col-sm-6">
   <ul id="homeTabs" class="nav nav-tabs">
-    <li class="active"><a href="#featured_container" data-toggle="tab" role="tab" id="featureTab"><%= t('hyrax.homepage.featured_works.tab_label') %></a></li>
-    <li><a href="#recently_uploaded" data-toggle="tab" role="tab" id="recentTab"><%= t('hyrax.homepage.recently_uploaded.tab_label') %></a></li>
+    <li class="active">
+      <a href="#featured_container" data-toggle="tab" role="tab" id="featureTab"><%= t('hyrax.homepage.featured_works.tab_label') %></a>
+    </li>
+    <% if Flipflop.new_ui? %>
+      <%# New UI - remove recently uploaded %>
+    <% else %>
+      <%# Old UI - remove recently uploaded %>
+      <li>
+        <a href="#recently_uploaded" data-toggle="tab" role="tab" id="recentTab"><%= t('hyrax.homepage.recently_uploaded.tab_label') %></a>
+      </li>
+
+    <% end %>
+
   </ul>
   <div class="tab-content">
     <div class="tab-pane fade in active" id="featured_container" role="tabpanel" aria-labelledby="featureTab">
       <%= render 'featured_works' %>
     </div>
-    <div class="tab-pane fade" id="recently_uploaded" role="tabpanel" aria-labelledby="recentTab">
-      <%= render 'recently_uploaded', recent_documents: @recent_documents %>
-    </div>
+    <% if Flipflop.new_ui? %>
+      <%# New UI - remove recently uploaded %>
+    <% else %>
+      <%# Old UI - remove recently uploaded %>
+      <div class="tab-pane fade" id="recently_uploaded" role="tabpanel" aria-labelledby="recentTab">
+        <%= render 'recently_uploaded', recent_documents: @recent_documents %>
+      </div>
+    <% end %>
   </div>
-</div><!-- /.col-xs-6 -->
+</div>
+<!-- /.col-xs-6 -->
 
 <div class="col-sm-6">
 
   <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a aria-expanded="true" href="#tab-col2-first" role="tab" data-toggle="tab"><%= t('hyrax.homepage.admin_sets.title') %></a></li>
+    <li class="active">
+      <a aria-expanded="true" href="#tab-col2-first" role="tab" data-toggle="tab"><%= t('hyrax.homepage.admin_sets.title') %></a>
+    </li>
   </ul>
 
   <div class="tab-content">
