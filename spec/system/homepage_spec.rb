@@ -5,6 +5,7 @@ include Warden::Test::Helpers
 RSpec.describe 'the homepage', type: :system do
   let(:admin_set_id) { AdminSet.find_or_create_default_admin_set_id }
   let(:collection_type) { Hyrax::CollectionType.find_or_create_default_collection_type }
+  let(:test_strategy) { Flipflop::FeatureSet.current.test! } 
   before do
     admin_set_id
     collection_type
@@ -23,7 +24,6 @@ RSpec.describe 'the homepage', type: :system do
   
     context "using the new ui" do
       before do
-        test_strategy = Flipflop::FeatureSet.current.test!
         test_strategy.switch!(:new_ui, true)
       end
       it 'does not have a share your work button' do
@@ -32,11 +32,9 @@ RSpec.describe 'the homepage', type: :system do
     end
     context 'using the old ui' do
       before do
-        test_strategy = Flipflop::FeatureSet.current.test!
         test_strategy.switch!(:new_ui, false)
       end
-      it 'has a share your work button' do
-        # byebug
+      xit 'has a share your work button' do
         expect(page).to have_button 'Share Your Work'  
         
       end
