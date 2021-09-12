@@ -14,6 +14,7 @@ RSpec.describe 'Virus Scanning', :clean, :js, :virus_scan, type: :system do
   context 'with the new zizia ui' do
     before do
       test_strategy.switch!(:new_zizia_ui, true)
+      test_strategy.switch!(:new_ui, true)
     end
     scenario 'uploading a file with a virus', :perform_jobs do
       ActiveJob::Base.queue_adapter.filter = [AttachFilesToWorkJob, IngestJob]
@@ -56,6 +57,7 @@ RSpec.describe 'Virus Scanning', :clean, :js, :virus_scan, type: :system do
   context 'with the old zizia ui' do
     before do
       test_strategy.switch!(:new_zizia_ui, false)
+      test_strategy.switch!(:new_ui, true)
     end
     scenario 'uploading a file with a virus', :perform_jobs do
       ActiveJob::Base.queue_adapter.filter = [AttachFilesToWorkJob, IngestJob]
