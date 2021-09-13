@@ -3,13 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'the homepage', type: :system, js: false do
-  let(:admin_set_id) { AdminSet.find_or_create_default_admin_set_id }
-  let(:collection_type) { Hyrax::CollectionType.find_or_create_default_collection_type }
   let(:test_strategy) { Flipflop::FeatureSet.current.test! }
-  before do
-    admin_set_id
-    collection_type
-  end
 
   context "as admin user" do
     let(:admin) { FactoryBot.create(:admin) }
