@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/curationexperts/zizia
-  revision: c2f7060f299ef3f25eca8856690673cefe8b86f5
-  tag: v6.2.0
+  revision: 8cd34ed9c4882628707af52b1e96dc8b5813301b
+  tag: v6.3.0
   specs:
-    zizia (6.2.0)
+    zizia (6.3.0)
       active-fedora
       carrierwave
       kaminari
@@ -1002,4 +1002,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.14
+   2.2.26
