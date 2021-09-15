@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Ye Olde Virus Scanning', :clean, :js, :virus_scan, type: :system do
+RSpec.describe 'Virus Scanning New UI', :clean, :js, :virus_scan, type: :system do
   let(:admin) { FactoryBot.create(:admin) }
   before { login_as admin }
   after  { logout }
@@ -10,9 +10,10 @@ RSpec.describe 'Ye Olde Virus Scanning', :clean, :js, :virus_scan, type: :system
   let(:test_strategy) { Flipflop::FeatureSet.current.test! }
   let(:safe_path)  { "#{fixture_path}/images/cat.jpg" }
   let(:virus_path) { "#{fixture_path}/virus_check.txt" }
-  context 'with the old zizia ui' do
+
+  context 'with the new zizia ui' do
     before do
-      test_strategy.switch!(:new_zizia_ui, false)
+      test_strategy.switch!(:new_zizia_ui, true)
       test_strategy.switch!(:new_ui, true)
     end
     scenario 'uploading a file with a virus', :perform_jobs do
