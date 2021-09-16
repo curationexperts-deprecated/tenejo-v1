@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/curationexperts/zizia.git
-  revision: 2551636718ae1e9fadf126b0aa8446b92426e3ee
-  branch: 909-identify_required_csv_import_template_fields
-  specs:
-    zizia (6.0.1)
-      active-fedora
-      carrierwave
-      kaminari
-      rails (~> 5, < 5.3)
-      rails-controller-testing
-
-GIT
   remote: https://github.com/notch8/willow_sword.git
   revision: 0a669d78617c6003e4aa1a46a10447be92be27d5
   specs:
@@ -18,6 +6,16 @@ GIT
       bagit (~> 0.4.1)
       rails (>= 5.1.6)
       rubyzip (>= 1.0.0)
+
+PATH
+  remote: /Users/sfox/zizia_work/zizia
+  specs:
+    zizia (6.3.0)
+      active-fedora
+      carrierwave
+      kaminari
+      rails (~> 5, < 5.3)
+      rails-controller-testing
 
 GEM
   remote: https://rubygems.org/
@@ -1059,4 +1057,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.24
+   2.2.27
