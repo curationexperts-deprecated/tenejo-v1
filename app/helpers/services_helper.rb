@@ -2,7 +2,7 @@
 
 module ServicesHelper
   def services
-    ["antivirus", "image conversion", "media processing", "background processing"]
+    ["antivirus", "image conversion", "media processing", "background processing", "file characterization"]
   end
 
   def service_running?(service)
@@ -15,6 +15,8 @@ module ServicesHelper
       check_audiovisual_conversion
     when "background processing"
       check_background_processing
+    when "file characterization"
+      check_characterization
     end
   end
 
@@ -43,14 +45,11 @@ module ServicesHelper
   end
 
   def check_antivirus_service
-    image_path = Rails.root.join("spec", "fixtures", "images", "birds.jpg")
-    begin
-      Clamby.safe?(image_path.to_s)
-      true
-    rescue => error
-      Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
-      false
-    end
+    Open3.capture3('ps ax | grep [c]lamd')
+    true
+  rescue => error
+    Rails.logger.error "There was a problem when testing for Clamby / ClamAV: #{error.message} \n"
+    false
   end
 
   def check_image_conversion
@@ -69,6 +68,14 @@ module ServicesHelper
     true
   rescue StandardError
     Rails.logger.error('Unable to find ffmpeg')
+    false
+  end
+
+  def check_characterization
+    Open3.capture3('fits -h')
+    true
+  rescue StandardError
+    Rails.logger.error('Unable to find fits')
     false
   end
 end

@@ -1057,4 +1057,8 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
+<<<<<<< HEAD
    2.2.27
+=======
+   2.2.26
+>>>>>>> main

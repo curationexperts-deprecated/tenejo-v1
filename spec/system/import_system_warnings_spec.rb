@@ -8,9 +8,26 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
   let(:image_conversion_warning) { "WARNING: image conversion is not configured correctly, please contact your system administrator" }
   let(:audiovisual_warning) { "WARNING: media processing is not configured correctly, please contact your system administrator" }
   let(:background_processing_warning) { "WARNING: background processing is not configured correctly, please contact your system administrator" }
+  let(:file_characterization_warning) { "WARNING: file characterization is not configured correctly, please contact your system administrator" }
 
   before do
     login_as admin_user
+  end
+
+  context "with characterization software" do
+    it "does display warning when absent" do
+      allow_any_instance_of(ServicesHelper).to receive(:check_characterization).and_return(false)
+      visit '/csv_imports/new'
+      expect(page).to have_content 'Batch Import'
+      expect(page).to have_content file_characterization_warning
+    end
+
+    it "does not display warning when present" do
+      allow_any_instance_of(ServicesHelper).to receive(:check_characterization).and_return(true)
+      visit '/csv_imports/new'
+      expect(page).to have_content 'Batch Import'
+      expect(page).not_to have_content file_characterization_warning
+    end
   end
 
   context "with audiovisual software" do

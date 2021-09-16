@@ -1,31 +1,47 @@
-  <% if can? :review, :submissions %>
-    <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
-    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-      <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
-    <% end %>
+<% if can? :review, :submissions %>
+  <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
+  <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+    <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
   <% end %>
+<% end %>
 
-  <% if current_user.admin? %>
-    <%= menu.nav_link(hyrax.admin_users_path) do %>
-      <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.users') %></span>
-    <% end %>
+<% if current_user.admin? %>
+  <%= menu.nav_link(hyrax.admin_users_path) do %>
+    <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.users') %></span>
   <% end %>
+<% end %>
 
-  <% if current_user.admin? %>
-    <%= menu.nav_link('/roles/') do %>
-      <span class="fa fa-id-card"></span> <span class="sidebar-action-text">Manage User Roles</span>
-    <% end %>
+<% if current_user.admin? %>
+  <%= menu.nav_link('/roles/') do %>
+    <span class="fa fa-id-card"></span> <span class="sidebar-action-text">Manage User Roles</span>
   <% end %>
+<% end %>
 
-  <% if current_user.admin? %>
-      <%= menu.nav_link('/sidekiq/',  data: { turbolinks: false }) do %>
+<% if current_user.admin? && Flipflop.import_csv? %>
+  <% if Flipflop.new_ui? %>
+    <%# New UI - toggle group %>
+    <li>
+      <%= menu.collapsable_section 'Batch Operations',
+                                   icon_class: "fa fa-tasks",
+                                   id: 'collapseBatchOperations',
+                                   open: menu.batch_operations_section? do %>
+        <%= menu.nav_link('/importer_documentation/guide', title: 'CSV Import Field Guide', data: { turbolinks: false }) do %>
+          <span class="fa fa-book"></span> <span class="sidebar-action-text">Field Guide</span>
+        <% end %>
+        <%= menu.nav_link('/csv_imports/new', title: 'Import content using a CSV file', data: { turbolinks: false }) do %>
+          <span class="fa fa-arrow-right"></span> <span class="sidebar-action-text">Import</span>
+        <% end %>
+        <%= menu.nav_link('/csv_import_details/index', title: 'CSV Import history', data: { turbolinks: false }) do %>
+          <span class="fa fa-hourglass-half"></span> <span class="sidebar-action-text">Status</span>
+        <% end %>
+        <%= menu.nav_link('/sidekiq/',  data: { turbolinks: false }) do %>
           <span class="fa fa-line-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.sidekiq') %></span>
+        <% end %>
       <% end %>
-  <% end %>
-
-<% if Flipflop.import_csv? %>
-  <% if current_user.admin? %>
-  <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
+    </li>
+  <% else %>
+    <%# Old UI %>
+    <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
       <span class="fa fa-upload"></span> <span class="sidebar-action-text">Import Content From a CSV</span>
     <% end %>
   <% end %>
