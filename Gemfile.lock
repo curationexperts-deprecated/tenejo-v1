@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/curationexperts/zizia
-  revision: 7f0bc9de7e89791b6d8e4697b986a45116adcc62
-  tag: v6.5.0
+  revision: 78992459ccf9e21239b730c448f3f7e90e160bfd
+  tag: v6.6.0
   specs:
     zizia (6.5.0)
       active-fedora
