@@ -652,6 +652,8 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-linux)
+      racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     oai (1.1.0)
@@ -1001,6 +1003,7 @@ GEM
 
 PLATFORMS
   -darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt_pbkdf (~> 1.1)
