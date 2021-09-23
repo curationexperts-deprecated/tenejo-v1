@@ -22,6 +22,7 @@ jobs:
           CACHE_PATH: /tmp/cache
           FEDORA_TEST_URL: http://127.0.0.1:8080/fcrepo/rest
           SOLR_TEST_URL: http://127.0.0.1:8985/solr/hydra-test
+          COVERAGE: 1
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
             ruby_version: << parameters.ruby_version >>
