@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # Extensions to the derivative generation processes
 # to generate & serve ptiff derivatives
-module TenejoExtensions
+module Extensions
   module DerivativePath
     def self.included(k)
       k.class_eval do
@@ -58,7 +58,3 @@ module TenejoExtensions
     end
   end
 end
-
-Hyrax::FileSetDerivativesService.include(TenejoExtensions::PtiffDerivative)
-Hydra::Derivatives::Processors::Image.include(TenejoExtensions::ImageProcessor)
-Hyrax::DerivativePath.include(TenejoExtensions::DerivativePath)
