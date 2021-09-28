@@ -7,19 +7,14 @@ git_source(:github) do |repo_name|
 end
 
 ruby '2.7.4'
-#ruby '2.6.6'
 
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
-#gem 'bcrypt_pbkdf'
-#gem 'bcrypt_pbkdf-ruby'
-#gem 'bcrypt'
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'dotenv-rails', '~> 2.2.1'
-#gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
 gem 'ed25519'
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
@@ -59,7 +54,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bixby', '2.0.0.pre.beta1'
+  gem 'bixby', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver

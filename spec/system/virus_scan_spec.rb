@@ -44,7 +44,7 @@ RSpec.describe 'Virus Scanning', :clean, :js, :virus_scan, type: :system do
         .to have_received(:error)
         .with(/Virus.*virus_check\.txt/m)
       # does not attach the virus file; deletes it from disk
-      expect(Hyrax::UploadedFile.select { |f| f.file.file.exists? }.count).to eq 1
+      expect(Hyrax::UploadedFile.count { |f| f.file.file.exists? }).to eq 1
 
       find(:css, '.notify-number').click
       expect(page).to have_content('virus')

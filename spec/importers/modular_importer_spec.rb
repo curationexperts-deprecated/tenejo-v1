@@ -18,7 +18,7 @@ RSpec.describe ModularImporter, :clean do
   end
 
   it "imports a csv" do
-    expect { ModularImporter.new(csv_import).import }.to change { Work.count }.by 2
+    expect { described_class.new(csv_import).import }.to change { Work.count }.by 2
 
     # We can't guarantee that background jobs create this
     # arrangement currently.

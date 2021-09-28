@@ -2,9 +2,9 @@ inherit_gem:
   bixby: bixby_default.yml
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
 
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: false
 
 Metrics/BlockLength:
