@@ -11,7 +11,7 @@ RSpec.describe 'Virus Scanning', :clean, :js, :virus_scan, type: :system do
   let(:safe_path)  { "#{fixture_path}/images/cat.jpg" }
   let(:virus_path) { "#{fixture_path}/virus_check.txt" }
 
-  pending 'with either  zizia ui' do
+  xit 'with either  zizia ui' do
     before do
       test_strategy.switch!(:new_zizia_ui, true)
       test_strategy.switch!(:new_ui, true)
