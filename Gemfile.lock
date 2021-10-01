@@ -999,7 +999,7 @@ DEPENDENCIES
   zizia!
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.7.4p191
 
 BUNDLED WITH
-   2.2.26
+   2.2.28
