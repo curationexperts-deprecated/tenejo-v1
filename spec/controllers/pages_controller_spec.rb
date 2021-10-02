@@ -6,6 +6,6 @@ RSpec.describe PagesController do
   it 'has a flash alert & 404' do
     get :error_404
     expect(flash[:alert]).not_to be(nil)
-    expect(response).to have_http_status(404)
+    expect(response).to have_http_status(:not_found)
   end
 end

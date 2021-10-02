@@ -6,10 +6,10 @@ jobs:
         parameters:
             ruby_version:
                 type: string
-                default: 2.6.3
+                default: 2.7.4
             bundler_version:
                 type: string
-                default: 2.2.14
+                default: 2.2.28
         environment:
           DATABASE_URL: postgresql://postgres@127.0.0.1/circle_test
           DATABASE_NAME: circle_test
@@ -76,7 +76,7 @@ jobs:
 
     coverage:
         docker:
-            - image: circleci/ruby:2.6.3
+            - image: circleci/ruby:2.7.4
         working_directory: ~/project
         parallelism: 1
         steps:
@@ -99,12 +99,12 @@ jobs:
         parameters:
             ruby_version:
                 type: string
-                default: 2.6.3
+                default: 2.7.4
             bundler_version:
                 type: string
-                default: 2.2.14
+                default: 2.2.28
         docker:
-            - image: circleci/ruby:2.6.3
+            - image: circleci/ruby:2.7.4
         working_directory: ~/project
         steps:
             - checkout

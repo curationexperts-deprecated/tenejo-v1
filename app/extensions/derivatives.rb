@@ -46,14 +46,14 @@ module Extensions
       k.class_eval do
         private
 
-          def create_image_derivatives(filename)
-            Hydra::Derivatives::ImageDerivatives.create(
-              filename, outputs: [
-                { label: :ptiff, format: 'ptif', define: "tiff:tile-geometry=1600x900", url: derivative_url('ptiff'), layer: 0 },
-                { label: :thumbnail, format: 'jpg', size: '200x150>', url: derivative_url('thumbnail'), layer: 0 }
-              ]
-            )
-          end
+        def create_image_derivatives(filename)
+          Hydra::Derivatives::ImageDerivatives.create(
+            filename, outputs: [
+              { label: :ptiff, format: 'ptif', define: "tiff:tile-geometry=1600x900", url: derivative_url('ptiff'), layer: 0 },
+              { label: :thumbnail, format: 'jpg', size: '200x150>', url: derivative_url('thumbnail'), layer: 0 }
+            ]
+          )
+        end
       end
     end
   end
