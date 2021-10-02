@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.16.0"
 
+require 'capistrano/passenger'
 set :application, "tenejo"
 set :repo_url, "https://github.com/curationexperts/tenejo.git"
 set :ssh_options, keys: ["tenejo-cd"] if File.exist?("tenejo-cd")
 
 set :deploy_to, '/opt/tenejo'
 set :rails_env, 'production'
-
 set :log_level, :warn
-set :bundle_flags, '--deployment'
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 set :keep_releases, 5
@@ -49,17 +48,6 @@ namespace :sidekiq do
   task :restart do
     on roles(:app) do
       execute :sudo, :systemctl, :restart, :sidekiq
-    end
-  end
-end
-
-# Capistrano passenger restart isn't working consistently,
-# so restart apache2 after a successful deploy, to ensure
-# changes are picked up.
-namespace :deploy do
-  after :finishing, :restart_apache do
-    on roles(:app) do
-      execute :sudo, :systemctl, :restart, :apache2
     end
   end
 end
