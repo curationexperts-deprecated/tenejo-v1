@@ -12,7 +12,7 @@ module Tenejo
   class Application < Rails::Application
     require 'zizia'
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 5.2
     config.action_mailer.default_url_options = { host: ENV['RAILS_HOST'] }
     config.active_job.queue_adapter = :sidekiq
     config.middleware.use(::ExceptionMiddleware)

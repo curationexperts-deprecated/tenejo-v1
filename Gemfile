@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.6.3'
+ruby '2.7.4'
 
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'clamby'
@@ -15,22 +15,23 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'dotenv-rails', '~> 2.2.1'
-gem 'ed25519', '~> 1.2', '>= 1.2.4' # Needed to support more secure ssh keys
+gem 'ed25519'
 gem 'honeybadger', '~> 4.0'
 gem 'hydra-role-management', '~> 1.0.0'
 gem 'hyrax', '~> 2.9'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
+gem 'nokogiri', '>= 1.12.5'
 gem 'open3', '~> 0.1.0'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 4.3' # Use Puma as the app server
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 5.2.6'
 gem 'redcarpet', '>= 3.5.1'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
-gem 'sidekiq', '~> 5.1.3'
+gem 'sidekiq', '5.2.7'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
@@ -53,7 +54,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bixby', '2.0.0.pre.beta1'
+  gem 'bixby', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
