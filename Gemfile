@@ -9,6 +9,7 @@ end
 ruby '2.7.4'
 
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
+gem 'capistrano-passenger'
 gem 'clamby'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise'
@@ -36,7 +37,6 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
 gem 'zizia', git: 'https://github.com/curationexperts/zizia', tag: 'v6.7.0'
-gem 'capistrano-passenger'
 
 group :development do
   # Use Capistrano for deployment automation
@@ -54,8 +54,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rubocop'
   gem 'bixby', '~> 3.0'
+  gem 'rubocop'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
