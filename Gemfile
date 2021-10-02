@@ -35,13 +35,13 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
 gem 'zizia', git: 'https://github.com/curationexperts/zizia', tag: 'v6.7.0'
+gem 'capistrano-passenger'
 
 group :development do
   # Use Capistrano for deployment automation
-  gem "capistrano", "~> 3.11", require: false
-  gem 'capistrano-bundler', '~> 1.3'
+  gem "capistrano", "~> 3.16", require: false
+  gem 'capistrano-bundler', '~> 2.0'
   gem 'capistrano-ext'
-  gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq', '~> 1.0.3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -53,7 +53,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bixby', '2.0.0.pre.beta1'
+  gem 'bixby', '3.0.2'
+  gem 'rubocop'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
