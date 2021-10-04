@@ -12,4 +12,4 @@
     :logfile: ./log/sidekiq_development.log
 
   production:
-    :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 5 %>
+    :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 2 %>
