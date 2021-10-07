@@ -15,6 +15,27 @@ ActiveRecord::Schema.define(version: 201901241536542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "bookmarks", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
@@ -68,6 +89,12 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "external_key"
+  end
+
+  create_table "csv_imports", force: :cascade do |t|
+    t.string "original_filename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "curation_concerns_operations", force: :cascade do |t|
@@ -627,6 +654,7 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.index ["deduplication_key"], name: "index_zizia_pre_ingest_works_on_deduplication_key"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
