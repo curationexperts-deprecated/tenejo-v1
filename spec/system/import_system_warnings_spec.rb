@@ -17,14 +17,14 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
   context "with characterization software" do
     it "does display warning when absent" do
       allow_any_instance_of(ServicesHelper).to receive(:check_characterization).and_return(false)
-      visit '/csv_imports/new'
+      visit '/zizia/csv_imports/new'
       expect(page).to have_content 'Batch Import'
       expect(page).to have_content file_characterization_warning
     end
 
     it "does not display warning when present" do
       allow_any_instance_of(ServicesHelper).to receive(:check_characterization).and_return(true)
-      visit '/csv_imports/new'
+      visit '/zizia/csv_imports/new'
       expect(page).to have_content 'Batch Import'
       expect(page).not_to have_content file_characterization_warning
     end
@@ -35,7 +35,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "does not show a warning" do
         allow_any_instance_of(ServicesHelper).to receive(:check_audiovisual_conversion).and_return(true)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).not_to have_content audiovisual_warning
       end
@@ -45,7 +45,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "shows a warning" do
         allow_any_instance_of(ServicesHelper).to receive(:check_audiovisual_conversion).and_return(false)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content audiovisual_warning
       end
@@ -61,7 +61,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "shows a warning on the page" do
         allow_any_instance_of(ServicesHelper).to receive(:check_antivirus_service).and_return(false)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content antivirus_warning
       end
@@ -71,7 +71,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "does not show a warning about antivirus" do
         allow_any_instance_of(ServicesHelper).to receive(:check_antivirus_service).and_return(true)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).not_to have_content antivirus_warning
       end
@@ -83,7 +83,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "does not show a warning" do
         allow_any_instance_of(ServicesHelper).to receive(:check_image_conversion).and_return(true)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).not_to have_content image_conversion_warning
       end
@@ -93,7 +93,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       it "shows a warning" do
         allow_any_instance_of(ServicesHelper).to receive(:check_image_conversion).and_return(false)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content image_conversion_warning
       end
@@ -106,7 +106,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
         allow_any_instance_of(ServicesHelper).to receive(:check_sidekiq).and_return(true)
         allow_any_instance_of(ServicesHelper).to receive(:check_redis).and_return(true)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).not_to have_content background_processing_warning
       end
@@ -116,7 +116,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
         allow_any_instance_of(ServicesHelper).to receive(:check_sidekiq).and_return(false)
         allow_any_instance_of(ServicesHelper).to receive(:check_redis).and_return(true)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content background_processing_warning
       end
@@ -126,7 +126,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
         allow_any_instance_of(ServicesHelper).to receive(:check_sidekiq).and_return(true)
         allow_any_instance_of(ServicesHelper).to receive(:check_redis).and_return(false)
 
-        visit '/csv_imports/new'
+        visit '/zizia/csv_imports/new'
         expect(page).to have_content 'Batch Import'
         expect(page).to have_content background_processing_warning
       end
@@ -139,7 +139,7 @@ RSpec.describe 'Showing background services warnings on import page', :perform_j
       allow_any_instance_of(ServicesHelper).to receive(:check_audiovisual_conversion).and_return(false)
       allow_any_instance_of(ServicesHelper).to receive(:check_image_conversion).and_return(false)
 
-      visit '/csv_imports/new'
+      visit '/zizia/csv_imports/new'
       expect(page).to have_content 'Batch Import'
       expect(page).to have_content antivirus_warning
       expect(page).to have_content audiovisual_warning

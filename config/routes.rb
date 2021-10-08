@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
-  # mount Zizia::Engine => '/'
+  mount Zizia::Engine => '/zizia'
 
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
-  resources :csv_imports 
+  resources :csv_imports
   devise_for :users, controllers: { invitations: 'users/invitations' }
 
   mount Hydra::RoleManagement::Engine => '/'

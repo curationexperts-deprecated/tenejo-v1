@@ -16,7 +16,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
     end
 
     it 'starts the import' do
-      visit '/csv_imports/new'
+      visit '/zizia/csv_imports/new'
       expect(page).to have_content 'Testing Collection'
       expect(page).not_to have_content '["Testing Collection"]'
       select 'Testing Collection', from: "csv_import[fedora_collection_id]"
@@ -34,7 +34,7 @@ RSpec.describe 'Importing records from a CSV file', type: :system, js: true do
       expect(page).to have_content 'This import will process 3 row(s).'
 
       # There is a link so the user can cancel.
-      expect(page).to have_link 'Cancel', href: '/csv_imports/new?locale=en'
+      expect(page).to have_link 'Cancel', href: '/zizia/csv_imports/new?locale=en'
 
       # After reading the warnings, the user decides
       # to continue with the import.

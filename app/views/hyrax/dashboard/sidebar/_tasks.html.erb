@@ -25,13 +25,13 @@
                                    icon_class: "fa fa-tasks",
                                    id: 'collapseBatchOperations',
                                    open: menu.batch_operations_section? do %>
-        <%= menu.nav_link('/importer_documentation/guide', title: 'CSV Import Field Guide', data: { turbolinks: false }) do %>
+        <%= menu.nav_link('/zizia/importer_documentation/guide', title: 'CSV Import Field Guide', data: { turbolinks: false }) do %>
           <span class="fa fa-book"></span> <span class="sidebar-action-text">Field Guide</span>
         <% end %>
-        <%= menu.nav_link('/csv_imports/new', title: 'Import content using a CSV file', data: { turbolinks: false }) do %>
+        <%= menu.nav_link('/zizia/csv_imports/new', title: 'Import content using a CSV file', data: { turbolinks: false }) do %>
           <span class="fa fa-arrow-right"></span> <span class="sidebar-action-text">Import</span>
         <% end %>
-        <%= menu.nav_link('/csv_import_details/index', title: 'CSV Import history', data: { turbolinks: false }) do %>
+        <%= menu.nav_link('/zizia/csv_import_details/index', title: 'CSV Import history', data: { turbolinks: false }) do %>
           <span class="fa fa-hourglass-half"></span> <span class="sidebar-action-text">Status</span>
         <% end %>
         <%= menu.nav_link('/sidekiq/',  data: { turbolinks: false }) do %>
@@ -41,7 +41,7 @@
     </li>
   <% else %>
     <%# Old UI %>
-    <%= menu.nav_link('/csv_imports/new',  data: { turbolinks: false }) do %>
+    <%= menu.nav_link('/zizia/csv_imports/new',  data: { turbolinks: false }) do %>
       <span class="fa fa-upload"></span> <span class="sidebar-action-text">Import Content From a CSV</span>
     <% end %>
   <% end %>
