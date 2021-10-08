@@ -15,6 +15,7 @@ RSpec.describe CsvImport, type: :model do
     context "with invalid files" do
       context "an empty import" do
         let(:csv_import) { described_class.create(csv_file: nil) }
+
         it "does not validate the import" do
           expect(csv_import.valid?).to be false
           expect(csv_import.errors.messages[:csv_file]).to include("Must attach a file")
@@ -32,6 +33,7 @@ RSpec.describe CsvImport, type: :model do
 
       context "with a file pretending to be a csv" do
         let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "csv_files_with_problems", "not_a_csv_file.pdf.csv")) }
+
         it "does not validate the import" do
           expect(csv_import.valid?).to be false
           expect(csv_import.errors.messages[:csv_file]).to include("Must be a csv file, your file has been determined to be: application/pdf")
@@ -44,7 +46,37 @@ RSpec.describe CsvImport, type: :model do
         it "does not validate the import" do
           expect(csv_import.valid?).to be false
           expect(csv_import.errors.messages[:csv_file])
-            .to include('The file is missing required headers. Missing headers are: title, creator, keyword, rights_statement, visibility, files, deduplication_key')
+            .to match_array(['The file is missing required headers. Missing headers are: title, creator, keyword, rights_statement, visibility, files, deduplication_key'])
+        end
+      end
+
+      context "just headers" do
+        let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "csv_files_with_problems", "just_headers.csv")) }
+
+        it "does not validate the import" do
+          expect(csv_import.valid?).to be false
+          expect(csv_import.errors.messages[:csv_file])
+            .to include('The file has no rows with data')
+        end
+      end
+
+      context "just empty rows" do
+        let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "csv_files_with_problems", "just_headers_and_empty_rows.csv")) }
+
+        it "does not validate the import" do
+          expect(csv_import.valid?).to be false
+          expect(csv_import.errors.messages[:csv_file])
+            .to include('The file has no rows with data')
+        end
+      end
+
+      context "duplicate headers" do
+        let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "csv_files_with_problems", "duplicate_headers.csv")) }
+
+        it "does not validate the import" do
+          expect(csv_import.valid?).to be false
+          expect(csv_import.errors.messages[:csv_file])
+            .to include('The file has duplicate headers. Duplicate headers are: title, keyword, creator')
         end
       end
     end
