@@ -35,7 +35,7 @@ class CsvImport < ApplicationRecord
   def validate_headers
     missing_headers = default_required_headers - parsed_csv.headers
     return true if missing_headers.empty?
-    errors.add :csv_file, "The file is missing required headers. Missing headers are: #{missing_headers}"
+    errors.add :csv_file, "The file is missing required headers. Missing headers are: #{missing_headers.join(', ')}"
     false
   end
 

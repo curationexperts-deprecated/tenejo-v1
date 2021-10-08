@@ -44,7 +44,7 @@ RSpec.describe CsvImport, type: :model do
         it "does not validate the import" do
           expect(csv_import.valid?).to be false
           expect(csv_import.errors.messages[:csv_file])
-            .to include("The file is missing required headers. Missing headers are: [:title, :creator, :keyword, :rights_statement, :visibility, :files, :deduplication_key]")
+            .to include('The file is missing required headers. Missing headers are: title, creator, keyword, rights_statement, visibility, files, deduplication_key')
         end
       end
     end
