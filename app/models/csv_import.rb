@@ -21,7 +21,7 @@ class CsvImport < ApplicationRecord
 
   def validate_content_type
     content_type = csv_file.content_type
-    return true if content_type == "text/plain"
+    return true if content_type == "text/plain" || content_type == "text/csv"
     errors.add :csv_file, "Must be a csv file, your file has been determined to be: #{content_type}"
     false
   end
