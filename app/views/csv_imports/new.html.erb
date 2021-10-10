@@ -1,4 +1,4 @@
 <%= simple_form_for @csv_import do |f| %>
-  <%= f.input :csv_file, as: :file, label: 'Upload new csv', required: false %>
+  <%= f.input :csv_file, as: :file, label: 'Upload new csv', required: true %>
   <%= f.button :submit %>
 <% end %>
