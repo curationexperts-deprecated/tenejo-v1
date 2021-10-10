@@ -5,13 +5,19 @@ RSpec.describe CsvImport, type: :model do
   let(:csv_import) { described_class.create(csv_file: csv_upload) }
   let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "good", "all_fields.csv")) }
 
+  it "uploads a file" do
+    expect(csv_import.csv_file).to be_an_instance_of(ActiveStorage::Attached::One)
+    expect(csv_import.csv_file.attached?).to be true
+    expect(csv_import.csv_file.content_type).to eq "text/plain"
+    expect(csv_import.valid?).to be true
+  end
+
+  it "includes the original row number in the parsed csv" do
+    expect(csv_import.parsed_csv).to be_an_instance_of(CSV::Table)
+    expect(csv_import.parsed_csv.headers).to match_array([:original_row_num, :creator, :deduplication_key, :files, :identifier, :keyword, :license, :location, :rights_statement, :title, :visibility])
+  end
+
   context "validating a new import" do
-    it "uploads a file" do
-      expect(csv_import.csv_file).to be_an_instance_of(ActiveStorage::Attached::One)
-      expect(csv_import.csv_file.attached?).to be true
-      expect(csv_import.csv_file.content_type).to eq "text/plain"
-      expect(csv_import.valid?).to be true
-    end
     context "with invalid files" do
       context "an empty import" do
         let(:csv_import) { described_class.create(csv_file: nil) }
@@ -77,6 +83,16 @@ RSpec.describe CsvImport, type: :model do
           expect(csv_import.valid?).to be false
           expect(csv_import.errors.messages[:csv_file])
             .to include('The file has duplicate headers. Duplicate headers are: title, keyword, creator')
+        end
+      end
+
+      context "unmatched rows and headers" do
+        let(:csv_upload) { Rack::Test::UploadedFile.new(Rails.root.join(fixture_path, "csv_import", "csv_files_with_problems", "mismatched_headers_and_columns.csv")) }
+
+        it "does not validate the import" do
+          expect(csv_import.valid?).to be false
+          expect(csv_import.errors.messages[:csv_file])
+            .to include('All rows must have the same number of cells as the header row. Rows with the wrong length: 3')
         end
       end
     end
