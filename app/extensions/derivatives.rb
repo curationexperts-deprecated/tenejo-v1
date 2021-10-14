@@ -23,8 +23,28 @@ module Extensions
   module ImageProcessor
     def self.included(k)
       k.class_eval do
-        def create_image
-          xfrm = selected_layers(load_image_transformer)
+        protected
+
+        def load_image_transformer
+          img = MiniMagick::Image.open(source_path)
+          yield(img)
+        ensure
+          img.destroy! # deletes tmpfile
+        end
+
+        def create_resized_image
+          load_image_transformer do |img|
+            create_image(img) do |xfrm|
+              if size
+                xfrm.flatten
+                xfrm.resize(size)
+              end
+            end
+          end
+        end
+
+        def create_image(img)
+          xfrm = selected_layers(img)
           # unless we combine options, image generation will be triggered by both define and format
           xfrm.combine_options do |b|
             yield(b) if block_given?
@@ -32,7 +52,11 @@ module Extensions
             b.define(define.to_s) if define
           end
           xfrm.format(directives.fetch(:format))
-          write_image(xfrm)
+          begin
+            write_image(xfrm)
+          ensure
+            FileUtils.rm_f(xfrm.path) # the xfrm has a different path than is visible above, so clean this up too after writing it to the file service
+          end
         end
 
         def define
