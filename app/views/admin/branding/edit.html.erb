@@ -1,4 +1,6 @@
+<h1><span class="fa fa-paint-brush" aria-hidden="true"></span> Display</h1>
+<br>
 <%= simple_form_for @branding, url: admin_branding_path, html: { method: :put } do |f| %>
-  <%= f.input :banner_image, as: :file, label: 'Upload new banner image', required: false %>
+  <%= f.input :image_viewer, as: :radio_buttons, collection: ["Show all images by default", "Hide all images by default"] %>
   <%= f.button :submit %>
 <% end %>

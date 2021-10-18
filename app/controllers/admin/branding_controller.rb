@@ -15,6 +15,7 @@ module Admin
     def edit
       add_breadcrumb t(:'hyrax.controls.home'), root_path
       add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
+      add_breadcrumb 'Display options', hyrax.dashboard_path
     end
 
     def update

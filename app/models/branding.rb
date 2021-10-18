@@ -23,4 +23,7 @@ class Branding
     FileUtils.chmod(0644, orig_file_path)
     # rubocop:enable Style/NumericLiteralPrefix
   end
+
+  def image_viewer
+  end
 end
