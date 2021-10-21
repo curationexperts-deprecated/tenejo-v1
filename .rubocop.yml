@@ -15,9 +15,11 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Enabled: true
-  ExcludedMethods: ['describe', 'context']
+  ExcludedMethods: ['describe', 'context', 'scenario', 'configure', 'config', 'setup', 'class_eval']
   Exclude:
-    - spec/rails_helper.rb
+    - config/**
+    - lib/tasks/**
+    - 'app/controllers/catalog_controller.rb'
 
 Metrics/ClassLength:
   Exclude:
