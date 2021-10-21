@@ -1,0 +1,7 @@
+Identifier,deduplication_key,object type,parent,title,creator,keyword,Rights Statement,Visibility,files,Resource Type,abstract or summary,Contributor,License,Publisher,Date Created,Subject,Language,location,Related Url,bibliographic_citation,Source
+TESTINGCOLLECTION,TESTINGCOLLECTION,C,,The testing collection,mml,test,,open,,Collection,A collection of test things,mml,,,,,,,,,
+MPC002,MPC002,W,TESTINGCOLLECTION,"TEST Postcards - Minneapolis UNPACKED FILES - Canoeing on Lake Harriet, Minneapolis",Minneapolis Selling Company,postcard|~|Minneapolis|~|Lake Harriet,http://rightsstatements.org/vocab/NoC-OKLR/1.0/,open,,Image,"Postcard depicting Lake Harriet in Minnneapolis, MN",,http://creativecommons.org/publicdomain/mark/1.0/,,1900-1945,Postcards,English,,,,
+,,fIle,MPC002,,,,,,MN-02 2.png,Image,,,,,,,,,,,
+,,F,MPC002,,,,,,MN-02 3.png,Image,,,,,,,,,,,
+MPC003,MPC003,W,TESTINGCOLLECTION,"TEST Postcards - Minneapolis UNPACKED FILES - Lake Harriet, Minneapolis, Minn",Bloom Bros Co.,postcard|~|Minneapolis|~|Lake Harriet,http://rightsstatements.org/vocab/NoC-OKLR/1.0/,open,,Image,Postcard depicting Lake Harriet,,http://creativecommons.org/publicdomain/mark/1.0/,,1900-1945,Postcards,English,,,,
+,,F,MPC003,,,,,,MN-02 4.png,Image,,,,,,,,,,,

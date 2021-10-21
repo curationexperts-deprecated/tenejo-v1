@@ -15,6 +15,7 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Enabled: true
+  IgnoredMethods: ['describe', 'context']
   Exclude:
     - 'app/extensions/derivatives.rb'
     - '**/*/catalog_controller.rb'
