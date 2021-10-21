@@ -5,7 +5,7 @@ require 'byebug'
 
 RSpec.describe Tenejo::Preflight do
   context "a file with no data" do
-    let(:graph) { described_class.parse_to_type("spec/fixtures/csv/empty.csv") }
+    let(:graph) { described_class.read_csv("spec/fixtures/csv/empty.csv") }
     it "returns an empty graph" do
       [:work, :collection, :file].each do |x|
         expect(graph[x]).to be_empty
@@ -18,14 +18,14 @@ RSpec.describe Tenejo::Preflight do
   end
 
   context "a file with a bad object type" do
-    let(:graph) { described_class.parse_to_type("spec/fixtures/csv/bad_ot.csv") }
+    let(:graph) { described_class.read_csv("spec/fixtures/csv/bad_ot.csv") }
 
     it "records a warning for that row" do
       expect(graph[:warnings]).to eq ["Uknown object type on row 2: potato"]
     end
   end
   context "a well formed file" do
-    let(:graph) { described_class.parse_to_type("spec/fixtures/csv/fancy.csv") }
+    let(:graph) { described_class.read_csv("spec/fixtures/csv/fancy.csv") }
     it "records line number" do
       expect(graph[:work].first.lineno).to be 3
       expect(graph[:collection].first.lineno).to be 2

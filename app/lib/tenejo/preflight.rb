@@ -43,30 +43,29 @@ module Tenejo
     def self.read_csv(input)
       csv = CSV.open(input, headers: true, return_headers: true, skip_blanks: true,
                      header_converters: [->(m) { m.downcase.tr(' ', '_').to_sym }])
-      csv.each do |row|
-        next if (csv.lineno == 1) || row.to_h.values.all?(nil) # this is because csv.headers is nonsensical
-        yield row, csv.lineno
-      end
-      csv.close
-    end
-
-    def self.parse_to_type(input)
       output = Hash.new { |h, k| h[k] = [] }
       output[:fatal_errors] = []
       output[:warnings] = []
-      read_csv(input) do |row, lineno|
-        case row[:object_type].downcase
-        when /c/i
-          output[:collection] << PFCollection.new(row.to_h, lineno)
-        when /f/i, /file/
-          output[:file] << PFFile.new(row, lineno)
-        when /w/i
-          output[:work] << PFWork.new(row, lineno)
-        else
-          output[:warnings] << "Uknown object type on row #{lineno}: #{row[:object_type]}"
-        end
+      csv.each do |row|
+        next if (csv.lineno == 1) || row.to_h.values.all?(nil) # this is because csv.headers is nonsensical
+        output = parse_to_type row, csv.lineno, output
       end
+      csv.close
       output[:fatal_errors] << "No data was detected" if (output[:work] + output[:file] + output[:collection]).empty?
+      output
+    end
+
+    def self.parse_to_type(row, lineno, output)
+      case row[:object_type].downcase
+      when /c/i
+        output[:collection] << PFCollection.new(row.to_h, lineno)
+      when /f/i, /file/
+        output[:file] << PFFile.new(row, lineno)
+      when /w/i
+        output[:work] << PFWork.new(row, lineno)
+      else
+        output[:warnings] << "Uknown object type on row #{lineno}: #{row[:object_type]}"
+      end
       output
     end
   end
