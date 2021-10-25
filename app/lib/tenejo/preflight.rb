@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'csv'
 require 'active_model'
+require 'active_support/core_ext/enumerable'
 module Tenejo
   class PreFlightObj
     include ActiveModel::Validations
@@ -97,11 +98,11 @@ module Tenejo
 
     def self.parse_to_type(row, lineno, output)
       case row[:object_type].downcase
-      when /c/i
+      when 'c', 'collection'
         output[:collection] << PFCollection.new(row.to_h, lineno)
-      when /f/i, /file/
+      when 'f', 'file'
         output[:file] << PFFile.new(row, lineno)
-      when /w/i
+      when 'w', 'work'
         output[:work] << PFWork.new(row, lineno)
       else
         output[:warnings] << "Uknown object type on row #{lineno}: #{row[:object_type]}"
