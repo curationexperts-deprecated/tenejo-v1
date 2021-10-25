@@ -4,6 +4,13 @@ require 'spec_helper'
 require 'byebug'
 
 RSpec.describe Tenejo::Preflight do
+  context "a file with duplicate columns" do
+    let(:dupes) { described_class.read_csv("spec/fixtures/csv/dupe_col.csv") }
+
+    it "records fatal error for duplicate column " do
+      expect(dupes[:fatal_errors]).to include "Duplicate column names detected [:identifier, :identifier, :deduplication_key, :deduplication_key], cannot process"
+    end
+  end
   context "a file that isn't a csv " do
     let(:graph) { described_class.read_csv("spec/fixtures/images/cat.jpg") }
     it "returns a fatal error" do
@@ -30,6 +37,7 @@ RSpec.describe Tenejo::Preflight do
       expect(graph[:warnings]).to eq ["Uknown object type on row 2: potato"]
     end
   end
+
   context "a well formed file" do
     let(:graph) { described_class.read_csv("spec/fixtures/csv/fancy.csv") }
     it "records line number" do
@@ -42,7 +50,7 @@ RSpec.describe Tenejo::Preflight do
       expect(graph[:work].first.files.map(&:file)).to eq ['MN-02 2.png', 'MN-02 3.png']
       expect(graph[:work][1].files.map(&:file)).to eq ["MN-02 4.png"]
     end
-    it "connects works with worrks" do
+    it "connects works with works" do
       expect(graph[:work][1].children.map(&:identifier)).to eq ["MPC008"]
     end
     it "warns about disconnected  works" do

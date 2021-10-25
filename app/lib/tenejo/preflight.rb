@@ -47,21 +47,41 @@ module Tenejo
       rec.errors.add attr, "is required" if val.blank?
     end
   end
+  class DuplicateColumnError < RuntimeError
+  end
   class Preflight
+    def self.check_headers(row)
+      all = row.map(&:first)
+      dupes = all.select { |x| all.count(x) > 1 }
+      raise DuplicateColumnError, "Duplicate column names detected #{dupes}, cannot process" unless dupes.empty?
+      true
+    end
+
+    def self.should_skip?(row, lineno)
+      (row.to_h.values.all?(nil) || lineno == 1)
+    end
+
+    def self.init_graph
+      graph = Hash.new { |h, k| h[k] = [] }
+      graph[:fatal_errors] = []
+      graph[:warnings] = []
+      graph
+    end
+
     def self.read_csv(input)
       begin
         csv = CSV.open(input, headers: true, return_headers: true, skip_blanks: true,
                        header_converters: [->(m) { m.downcase.tr(' ', '_').to_sym }])
-        graph = Hash.new { |h, k| h[k] = [] }
-        graph[:fatal_errors] = []
-        graph[:warnings] = []
+        graph = init_graph
         csv.each do |row|
-          next if (csv.lineno == 1) || row.to_h.values.all?(nil) # this is because csv.headers is nonsensical
-          graph = parse_to_type row, csv.lineno, graph
+          check_headers(row) and next if csv.lineno == 1
+          parse_to_type(row, csv.lineno, graph)
         end
         graph[:fatal_errors] << "No data was detected" if (graph[:work] + graph[:file] + graph[:collection]).empty?
       rescue CSV::MalformedCSVError
         graph[:fatal_errors] << "Could not recognize this file format"
+      rescue DuplicateColumnError => x
+        graph[:fatal_errors] << x.message
       ensure
         csv.close
       end
@@ -97,6 +117,7 @@ module Tenejo
     end
 
     def self.parse_to_type(row, lineno, output)
+      return output if row.to_h.values.all?(nil)
       case row[:object_type].downcase
       when 'c', 'collection'
         output[:collection] << PFCollection.new(row.to_h, lineno)
