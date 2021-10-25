@@ -68,6 +68,10 @@ module Tenejo
       graph
     end
 
+    def self.empty_graph?(graph)
+(graph[:work] + graph[:file] + graph[:collection]).empty?
+    end
+
     def self.read_csv(input)
       begin
         csv = CSV.open(input, headers: true, return_headers: true, skip_blanks: true,
@@ -77,7 +81,7 @@ module Tenejo
           check_headers(row) and next if csv.lineno == 1
           parse_to_type(row, csv.lineno, graph)
         end
-        graph[:fatal_errors] << "No data was detected" if (graph[:work] + graph[:file] + graph[:collection]).empty?
+        graph[:fatal_errors] << "No data was detected" if  empty_graph?(graph)
       rescue CSV::MalformedCSVError
         graph[:fatal_errors] << "Could not recognize this file format"
       rescue DuplicateColumnError => x
